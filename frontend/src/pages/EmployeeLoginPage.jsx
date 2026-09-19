@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Briefcase, ArrowLeft, LogIn, Sparkles, AlertCircle } from 'lucide-react';
+import { Briefcase, ArrowLeft, LogIn, Sparkles, AlertCircle, Eye, EyeOff, User, Lock, Building2, Rocket } from 'lucide-react';
 import { useAuth } from '../services/authContext.jsx';
 import { apiRequest } from '../services/api.js';
 
@@ -7,8 +7,10 @@ export function EmployeeLoginPage({ onBack }) {
   const { login } = useAuth();
 
   const [employeeId, setEmployeeId] = useState('EMP-001');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('password123');
   const [department, setDepartment] = useState('Engineering');
+  const [showPassword, setShowPassword] = useState(false);
   const [departmentsList, setDepartmentsList] = useState([
     'Engineering',
     'Design',
@@ -24,7 +26,6 @@ export function EmployeeLoginPage({ onBack }) {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Fetch dynamic configured departments and demo accounts
     apiRequest('/auth/departments')
       .then(res => {
         if (res.employeeDepartments) {
@@ -55,7 +56,7 @@ export function EmployeeLoginPage({ onBack }) {
       return;
     }
     if (!department) {
-      setError('Department must be selected.');
+      setError('Department selection is mandatory.');
       return;
     }
 
@@ -64,6 +65,7 @@ export function EmployeeLoginPage({ onBack }) {
       await login({
         role: 'employee',
         employeeId: employeeId.trim(),
+        name: name.trim() || undefined,
         password: password.trim(),
         department
       });
@@ -76,6 +78,7 @@ export function EmployeeLoginPage({ onBack }) {
 
   const fillDemoUser = (emp) => {
     setEmployeeId(emp.employeeId);
+    setName(emp.name);
     setPassword('password123');
     setDepartment(emp.department);
     setError('');
@@ -86,15 +89,15 @@ export function EmployeeLoginPage({ onBack }) {
       <div className="login-card">
         <button className="back-link" onClick={onBack}>
           <ArrowLeft size={16} />
-          <span>Change Role</span>
+          <span>Switch Role</span>
         </button>
 
         <div className="login-header">
           <div className="login-badge emp-badge">
-            <Briefcase size={20} />
+            <span className="login-emoji">👋</span>
           </div>
-          <h2>New Employee Sign In</h2>
-          <p>Enter your employee credentials and department to access your workspace.</p>
+          <h2>Welcome Back!</h2>
+          <p className="login-subtext">Let's continue your onboarding journey.</p>
         </div>
 
         {error && (
@@ -106,53 +109,105 @@ export function EmployeeLoginPage({ onBack }) {
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
-            <label htmlFor="emp-id">Employee ID <span className="req">*</span></label>
-            <input
-              id="emp-id"
-              type="text"
-              className="form-input"
-              placeholder="e.g. EMP-001"
-              value={employeeId}
-              onChange={(e) => setEmployeeId(e.target.value)}
-              disabled={submitting}
-              required
-            />
+            <label htmlFor="emp-id">
+              <span className="label-icon">🆔</span> Employee ID <span className="req">*</span>
+            </label>
+            <div className="input-with-icon">
+              <span className="input-prefix-icon"><User size={16} /></span>
+              <input
+                id="emp-id"
+                type="text"
+                className="form-input"
+                placeholder="e.g. EMP-001 or new ID (e.g. EMP-104)"
+                value={employeeId}
+                onChange={(e) => setEmployeeId(e.target.value)}
+                disabled={submitting}
+                required
+              />
+            </div>
+            <span className="input-helper">First time logging in? Enter your assigned ID to register automatically.</span>
           </div>
 
           <div className="form-group">
-            <label htmlFor="emp-dept">Department <span className="req">*</span></label>
-            <select
-              id="emp-dept"
-              className="form-select"
-              value={department}
-              onChange={(e) => setDepartment(e.target.value)}
-              disabled={submitting}
-              required
-            >
-              <option value="">Select your department</option>
-              {departmentsList.map(dept => (
-                <option key={dept} value={dept}>{dept}</option>
-              ))}
-            </select>
+            <label htmlFor="emp-name">
+              <span className="label-icon">👤</span> Full Name <span className="opt-tag">(Optional for new hire registration)</span>
+            </label>
+            <div className="input-with-icon">
+              <span className="input-prefix-icon"><User size={16} /></span>
+              <input
+                id="emp-name"
+                type="text"
+                className="form-input"
+                placeholder="e.g. Alex Chen or Priya Sharma"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                disabled={submitting}
+              />
+            </div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="emp-pw">Password <span className="req">*</span></label>
-            <input
-              id="emp-pw"
-              type="password"
-              className="form-input"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              disabled={submitting}
-              required
-            />
+            <label htmlFor="emp-dept">
+              <span className="label-icon">🏢</span> Department <span className="req">*</span>
+            </label>
+            <div className="input-with-icon">
+              <span className="input-prefix-icon"><Building2 size={16} /></span>
+              <select
+                id="emp-dept"
+                className="form-select"
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+                disabled={submitting}
+                required
+              >
+                <option value="">Select your assigned department</option>
+                {departmentsList.map(dept => (
+                  <option key={dept} value={dept}>{dept}</option>
+                ))}
+              </select>
+            </div>
           </div>
 
-          <button type="submit" className="btn btn-primary btn-full" disabled={submitting}>
-            <LogIn size={18} />
-            <span>{submitting ? 'Authenticating...' : 'Sign In to Workspace'}</span>
+          <div className="form-group">
+            <label htmlFor="emp-pw">
+              <span className="label-icon">🔐</span> Password <span className="req">*</span>
+            </label>
+            <div className="input-with-icon password-input-wrap">
+              <span className="input-prefix-icon"><Lock size={16} /></span>
+              <input
+                id="emp-pw"
+                type={showPassword ? 'text' : 'password'}
+                className="form-input"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={submitting}
+                required
+              />
+              <button
+                type="button"
+                className="password-toggle-btn"
+                onClick={() => setShowPassword(!showPassword)}
+                tabIndex={-1}
+                title={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" className="btn btn-primary btn-full btn-submit-auth" disabled={submitting}>
+            {submitting ? (
+              <>
+                <span className="btn-spinner" />
+                <span>Authenticating...</span>
+              </>
+            ) : (
+              <>
+                <Rocket size={18} />
+                <span>🚀 Continue to Dashboard</span>
+              </>
+            )}
           </button>
         </form>
 
@@ -160,18 +215,18 @@ export function EmployeeLoginPage({ onBack }) {
           <div className="demo-accounts-box">
             <div className="demo-title">
               <Sparkles size={14} />
-              <span>Quick Demo Fill (Hackathon Helpers):</span>
+              <span>Quick Demo Fill (Pre-Seeded Roster):</span>
             </div>
             <div className="demo-buttons">
-              {demoEmployees.slice(0, 3).map(emp => (
+              {demoEmployees.slice(0, 4).map(emp => (
                 <button
                   key={emp.employeeId}
                   type="button"
                   className="demo-chip"
                   onClick={() => fillDemoUser(emp)}
                 >
-                  <b>{emp.name}</b>
-                  <small>({emp.department} · {emp.employeeId})</small>
+                  <span className="chip-name">{emp.name}</span>
+                  <span className="chip-dept">{emp.department} · {emp.employeeId}</span>
                 </button>
               ))}
             </div>

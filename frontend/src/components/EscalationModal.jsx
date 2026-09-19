@@ -148,10 +148,10 @@ export function EscalationModal({ escalation, onClose, onSuccess }) {
 
               <div className="decision-header">
                 <Database size={20} className="text-blue" />
-                <b style={{ fontSize: '1rem' }}>Save this answer to the approved Knowledge Base for future employees?</b>
+                <b style={{ fontSize: '1rem' }}>Save this answer to approved Knowledge Base?</b>
               </div>
               <p className="decision-desc">
-                If saved, future employees asking similar questions will automatically receive this approved answer via the AI assistant. If not saved, the answer will only be visible to {escalation.employeeName}.
+                If saved, future employees asking similar questions will automatically receive this approved answer via the AI assistant. If kept private, the answer will only be sent to {escalation.employeeName}.
               </p>
 
               <div className="decision-actions">
@@ -162,7 +162,7 @@ export function EscalationModal({ escalation, onClose, onSuccess }) {
                   disabled={submitting}
                 >
                   <CheckCircle size={16} />
-                  <span>Save to Knowledge Base</span>
+                  <span>✅ Yes, Save for Future Employees</span>
                 </button>
 
                 <button
@@ -171,7 +171,7 @@ export function EscalationModal({ escalation, onClose, onSuccess }) {
                   onClick={() => handleResolve(false)}
                   disabled={submitting}
                 >
-                  <span>Do Not Save</span>
+                  <span>🔒 No, Keep Private</span>
                 </button>
               </div>
             </div>

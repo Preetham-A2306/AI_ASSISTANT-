@@ -12,7 +12,15 @@ import {
   ShieldAlert,
   HelpCircle,
   ChevronRight,
-  ExternalLink
+  ExternalLink,
+  Copy,
+  Check,
+  ArrowDown,
+  Building2,
+  Calendar,
+  Briefcase,
+  TrendingUp,
+  Bot
 } from 'lucide-react';
 import { useAuth } from '../services/authContext.jsx';
 import { apiRequest } from '../services/api.js';
@@ -29,7 +37,10 @@ export function EmployeeDashboard() {
   const [messages, setMessages] = useState([]);
   const [inputQuestion, setInputQuestion] = useState('');
   const [isSending, setIsSending] = useState(false);
+  const [copiedIndex, setCopiedIndex] = useState(null);
+  const [showScrollBottom, setShowScrollBottom] = useState(false);
   const chatBottomRef = useRef(null);
+  const chatScrollRef = useRef(null);
 
   // Escalations state
   const [escalations, setEscalations] = useState([]);
@@ -89,6 +100,17 @@ export function EmployeeDashboard() {
     }
   }, [messages, activeTab]);
 
+  const handleChatScroll = () => {
+    if (!chatScrollRef.current) return;
+    const { scrollTop, scrollHeight, clientHeight } = chatScrollRef.current;
+    const isUp = scrollHeight - scrollTop - clientHeight > 100;
+    setShowScrollBottom(isUp);
+  };
+
+  const scrollToBottom = () => {
+    chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   // Toggle checklist task
   const handleToggleTask = async (taskId) => {
     if (!plan) return;
@@ -105,6 +127,13 @@ export function EmployeeDashboard() {
     } catch (err) {
       console.error('Failed to toggle task:', err);
     }
+  };
+
+  // Copy assistant response
+  const handleCopyAnswer = (text, idx) => {
+    navigator.clipboard.writeText(text);
+    setCopiedIndex(idx);
+    setTimeout(() => setCopiedIndex(null), 2000);
   };
 
   // Send message to AI Assistant
@@ -151,7 +180,7 @@ export function EmployeeDashboard() {
         ...prev.filter(m => m.role !== 'loading'),
         {
           role: 'assistant',
-          content: 'The assistant service could not be reached right now. Please check backend connection.',
+          content: 'The assistant service could not be reached right now. Please check your network or backend server connection.',
           escalation: true,
           reason: err.message,
           timestamp: new Date().toISOString()
@@ -164,27 +193,40 @@ export function EmployeeDashboard() {
 
   const sampleQuestions = [
     'How do I submit a code review?',
-    'What are the core office working hours?',
+    'What are the core working hours?',
     'How do I claim expense reimbursement?',
     'What is the company salary revision policy?'
   ];
 
+  const pendingEscalationsCount = escalations.filter(e => e.status === 'Pending').length;
+
+  const formatDate = (dateStr) => {
+    if (!dateStr) return '15 September 2026';
+    try {
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return dateStr;
+      return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    } catch {
+      return dateStr;
+    }
+  };
+
   return (
     <div className="workspace-container">
-      {/* Tab Navigation */}
+      {/* SaaS Tab Navigation */}
       <div className="tab-navigation">
         <button
           className={`tab-btn ${activeTab === 'overview' ? 'active' : ''}`}
           onClick={() => setActiveTab('overview')}
         >
-          <LayoutDashboard size={18} />
+          <span className="nav-emoji">🏠</span>
           <span>Overview</span>
         </button>
         <button
           className={`tab-btn ${activeTab === 'checklist' ? 'active' : ''}`}
           onClick={() => setActiveTab('checklist')}
         >
-          <CheckCircle2 size={18} />
+          <span className="nav-emoji">📋</span>
           <span>My Checklist</span>
           {checklistStats.remaining > 0 && (
             <span className="tab-counter">{checklistStats.remaining}</span>
@@ -194,181 +236,209 @@ export function EmployeeDashboard() {
           className={`tab-btn ${activeTab === 'chat' ? 'active' : ''}`}
           onClick={() => setActiveTab('chat')}
         >
-          <MessageSquare size={18} />
-          <span>AI Knowledge Assistant</span>
+          <span className="nav-emoji">🤖</span>
+          <span>AI Assistant</span>
         </button>
         <button
           className={`tab-btn ${activeTab === 'escalations' ? 'active' : ''}`}
           onClick={() => setActiveTab('escalations')}
         >
-          <AlertTriangle size={18} />
+          <span className="nav-emoji">🚨</span>
           <span>My HR Questions</span>
-          {escalations.filter(e => e.status === 'Pending').length > 0 && (
-            <span className="tab-counter pending-counter">
-              {escalations.filter(e => e.status === 'Pending').length}
-            </span>
+          {pendingEscalationsCount > 0 && (
+            <span className="tab-counter pending-counter">{pendingEscalationsCount}</span>
           )}
         </button>
+      </div>
+
+      {/* Top Welcome Banner */}
+      <div className="welcome-banner">
+        <div className="welcome-text">
+          <div className="eyebrow-pill">
+            <Sparkles size={13} />
+            <span>PERSONALIZED ONBOARDING WORKSPACE</span>
+          </div>
+          <h2>👋 Welcome, {user?.name}!</h2>
+          <p className="welcome-sub">
+            Let's get you set up for success in <b>{user?.department}</b>. You have completed <b>{checklistStats.completed} of {checklistStats.total}</b> onboarding milestones.
+          </p>
+        </div>
+        <div className="welcome-quick-actions">
+          <button className="btn btn-outline-white" onClick={() => setActiveTab('checklist')}>
+            <span>View Tasks</span>
+            <ChevronRight size={15} />
+          </button>
+          <button className="btn btn-primary-light-btn" onClick={() => setActiveTab('chat')}>
+            <span>Ask AI Assistant</span>
+            <Sparkles size={15} />
+          </button>
+        </div>
+      </div>
+
+      {/* 4 Premium Summary Cards (Requirement 6) */}
+      <div className="metrics-grid employee-metrics-grid">
+        <div className="metric-card card-accent-indigo">
+          <div className="metric-header">
+            <span className="metric-icon-wrap indigo-bg">📋</span>
+            <span className="metric-title">Onboarding Progress</span>
+          </div>
+          <div className="metric-val text-indigo">{checklistStats.progress}%</div>
+          <div className="mini-progress-track">
+            <div className="mini-progress-fill" style={{ width: `${checklistStats.progress}%` }} />
+          </div>
+          <span className="metric-meta">{checklistStats.completed} of {checklistStats.total} tasks completed</span>
+        </div>
+
+        <div className="metric-card card-accent-violet">
+          <div className="metric-header">
+            <span className="metric-icon-wrap violet-bg">🗓️</span>
+            <span className="metric-title">Start Date</span>
+          </div>
+          <div className="metric-val text-violet">{formatDate(user?.startDate)}</div>
+          <span className="metric-meta">Official first working day</span>
+        </div>
+
+        <div className="metric-card card-accent-cyan">
+          <div className="metric-header">
+            <span className="metric-icon-wrap cyan-bg">🏢</span>
+            <span className="metric-title">Department</span>
+          </div>
+          <div className="metric-val text-dark">{user?.department}</div>
+          <span className="metric-meta">{user?.jobTitle || 'Team Member'}</span>
+        </div>
+
+        <div className="metric-card card-accent-emerald">
+          <div className="metric-header">
+            <span className="metric-icon-wrap emerald-bg">💬</span>
+            <span className="metric-title">AI Assistant</span>
+          </div>
+          <div className="metric-val text-emerald">Available</div>
+          <span className="metric-meta">🟢 24/7 Grounded Answers</span>
+        </div>
       </div>
 
       {/* TAB 1: OVERVIEW */}
       {activeTab === 'overview' && (
         <div className="dashboard-content">
-          {/* Welcome Command Banner */}
-          <div className="welcome-banner">
-            <div className="welcome-text">
-              <span className="eyebrow-tag">ONBOARDING COMMAND CENTER</span>
-              <h2>Welcome to the team, {user?.name}!</h2>
-              <p>
-                Role: <b>{user?.jobTitle || 'Team Member'}</b> · Department: <b>{user?.department}</b> · Start Date: <b>{user?.startDate}</b>
-              </p>
-            </div>
-            <div className="progress-card">
-              <div className="progress-number">{checklistStats.progress}%</div>
-              <div className="progress-label">First-Week Completed</div>
-              <div className="progress-track">
-                <div className="progress-fill" style={{ width: `${checklistStats.progress}%` }} />
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Action & Stat Cards */}
-          <div className="metrics-grid">
-            <div className="metric-card">
-              <span className="metric-title">Completed Tasks</span>
-              <div className="metric-val text-green">{checklistStats.completed}</div>
-              <span className="metric-meta">of {checklistStats.total} total items</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-title">Remaining Tasks</span>
-              <div className="metric-val text-amber">{checklistStats.remaining}</div>
-              <span className="metric-meta">Scheduled for this week</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-title">HR Inquiries</span>
-              <div className="metric-val text-blue">{escalations.length}</div>
-              <span className="metric-meta">
-                {escalations.filter(e => e.status === 'Resolved').length} resolved · {escalations.filter(e => e.status === 'Pending').length} pending
-              </span>
-            </div>
-          </div>
-
-          {/* Dual Panel Grid */}
           <div className="two-column-grid">
-            {/* Checklist Overview Panel */}
+            {/* Checklist Overview Card */}
             <div className="panel-card">
               <div className="panel-header">
                 <div>
-                  <h3>First-Week Tasks</h3>
-                  <p className="panel-subtitle">Review and check off your onboarding milestones</p>
+                  <h3>📋 Onboarding Milestones Checklist</h3>
+                  <p className="panel-subtitle">
+                    {checklistStats.completed} of {checklistStats.total} tasks completed ({checklistStats.progress}%)
+                  </p>
                 </div>
                 <button className="btn-link" onClick={() => setActiveTab('checklist')}>
-                  View All ({checklistStats.total}) →
+                  Full Checklist →
                 </button>
               </div>
-              <div className="compact-task-list">
-                {!plan?.tasks?.length ? (
-                  <p className="empty-text">No checklist generated yet.</p>
-                ) : (
-                  plan.tasks.slice(0, 4).map(task => (
-                    <div
-                      key={task.id}
-                      className={`task-row ${task.done ? 'task-done' : ''}`}
-                      onClick={() => handleToggleTask(task.id)}
-                    >
-                      <button className="checkbox-btn" aria-label="Toggle task">
-                        {task.done ? (
-                          <CheckCircle2 size={18} className="text-green" />
-                        ) : (
-                          <Circle size={18} className="text-gray" />
-                        )}
-                      </button>
-                      <div className="task-info">
-                        <span className="task-day">Day {task.day}</span>
-                        <span className="task-title">{task.title}</span>
-                      </div>
-                    </div>
-                  ))
-                )}
+
+              <div className="overview-tasks-preview">
+                {plan?.tasks?.slice(0, 4).map(task => (
+                  <div
+                    key={task.id}
+                    className={`preview-task-item ${task.done ? 'task-done' : ''}`}
+                    onClick={() => handleToggleTask(task.id)}
+                  >
+                    <button className="task-checkbox-btn" aria-label="Toggle task">
+                      {task.done ? (
+                        <CheckCircle2 size={18} className="text-green" />
+                      ) : (
+                        <Circle size={18} className="text-gray" />
+                      )}
+                    </button>
+                    <span className="preview-task-title">{task.title}</span>
+                    <span className={`task-badge ${task.done ? 'badge-done' : 'badge-pending'}`}>
+                      {task.done ? '✅ Completed' : '☐ Pending'}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* AI Assistant Quick Access Panel */}
-            <div className="panel-card">
+            {/* AI Assistant Quick Launcher Card */}
+            <div className="panel-card ai-launcher-card">
               <div className="panel-header">
                 <div>
-                  <h3>Ask AI Onboarding Assistant</h3>
-                  <p className="panel-subtitle">Grounded in verified company policies and guidelines</p>
+                  <h3>🤖 AI Knowledge Assistant</h3>
+                  <p className="panel-subtitle">Grounded in verified company policies & HR documents</p>
                 </div>
                 <button className="btn-link" onClick={() => setActiveTab('chat')}>
                   Open Chat →
                 </button>
               </div>
-              <div className="quick-chat-preview">
-                <p className="ai-intro-text">
-                  Have a question about code reviews, office hours, benefits, or expense claims? The assistant searches approved company knowledge instantly.
+
+              <div className="ai-launcher-body">
+                <p className="launcher-desc">
+                  Have a question about leave, expense reimbursement, equipment setup, or daily standups? Ask our assistant for instant, policy-verified answers.
                 </p>
-                <div className="sample-prompts-grid">
-                  {sampleQuestions.slice(0, 3).map((q, idx) => (
-                    <button
-                      key={idx}
-                      className="prompt-chip"
-                      onClick={() => {
-                        setActiveTab('chat');
-                        handleSendMessage(q);
-                      }}
-                    >
-                      <span>{q}</span>
-                      <ChevronRight size={14} />
-                    </button>
-                  ))}
+                <div className="quick-suggestions-wrap">
+                  <span className="quick-sugg-label">Popular Questions:</span>
+                  <div className="suggestions-list">
+                    {sampleQuestions.slice(0, 3).map((q, idx) => (
+                      <button
+                        key={idx}
+                        className="suggestion-bubble"
+                        onClick={() => {
+                          setActiveTab('chat');
+                          handleSendMessage(q);
+                        }}
+                      >
+                        {q}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Recent Inquiries & HR Responses Panel */}
-          <div className="panel-card" style={{ marginTop: '1.5rem' }}>
+          <div className="panel-card full-width-panel">
             <div className="panel-header">
               <div>
-                <h3>Recent Questions & HR Responses</h3>
-                <p className="panel-subtitle">Track the status of your policy inquiries and official HR answers</p>
+                <h3>🚨 Recent Questions & HR Responses</h3>
+                <p className="panel-subtitle">Inquiries escalated to People Operations and resolved answers</p>
               </div>
               <button className="btn-link" onClick={() => setActiveTab('escalations')}>
-                All HR Questions ({escalations.length}) →
+                All Escalations ({escalations.length}) →
               </button>
             </div>
 
-            <div className="compact-escalation-list">
+            <div className="overview-escalations-list">
               {!escalations.length ? (
-                <div className="empty-panel" style={{ padding: '1.5rem', textAlign: 'center', color: '#64748b' }}>
-                  <HelpCircle size={24} style={{ margin: '0 auto 0.5rem', color: '#94a3b8' }} />
-                  <p style={{ margin: 0, fontSize: '0.9rem' }}>No questions escalated yet. Ask the AI Assistant above anytime you have a question!</p>
+                <div className="empty-panel-box">
+                  <span className="empty-emoji">💬</span>
+                  <p>No questions forwarded to HR yet.</p>
+                  <small>When a question cannot be answered by indexed documents, it will automatically appear here.</small>
                 </div>
               ) : (
                 escalations.slice(0, 3).map(esc => (
-                  <div key={esc.id} className="compact-esc-item" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.85rem 1rem', borderBottom: '1px solid #f1f5f9' }}>
-                    <div className="compact-esc-info" style={{ flex: 1, marginRight: '1rem' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-                        <span className={`status-badge ${esc.status === 'Resolved' ? 'badge-resolved' : 'badge-pending'}`} style={{ fontSize: '0.75rem', padding: '0.15rem 0.5rem' }}>
-                          {esc.status === 'Resolved' ? '✓ HR Answered' : '⏳ Pending HR'}
-                        </span>
-                        <small style={{ color: '#94a3b8' }}>{new Date(esc.timestamp).toLocaleDateString()}</small>
-                      </div>
-                      <p style={{ margin: '0 0 0.25rem', fontWeight: '500', color: '#1e293b', fontSize: '0.925rem' }}>"{esc.question}"</p>
-                      {esc.status === 'Resolved' && esc.hrAnswer && (
-                        <p style={{ margin: 0, fontSize: '0.85rem', color: '#059669', fontStyle: 'italic' }}>
-                          <b>HR:</b> {esc.hrAnswer.slice(0, 100)}{esc.hrAnswer.length > 100 ? '...' : ''}
-                        </p>
-                      )}
+                  <div key={esc.id} className="overview-esc-card">
+                    <div className="overview-esc-top">
+                      <span className={`status-badge ${esc.status === 'Resolved' ? 'badge-resolved' : 'badge-pending'}`}>
+                        {esc.status === 'Resolved' ? '✅ Resolved' : '⏳ Pending HR'}
+                      </span>
+                      <span className="esc-date">
+                        {new Date(esc.timestamp).toLocaleDateString()} at {new Date(esc.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </span>
                     </div>
-                    <button
-                      className="btn btn-sm btn-secondary"
-                      onClick={() => setActiveTab('escalations')}
-                      style={{ whiteSpace: 'nowrap' }}
-                    >
-                      View Details
-                    </button>
+                    <div className="esc-body">
+                      <b>Question:</b> "{esc.question}"
+                    </div>
+                    {esc.status === 'Resolved' && esc.hrAnswer ? (
+                      <div className="esc-hr-response">
+                        <span className="hr-tag">HR Response:</span>
+                        <p>{esc.hrAnswer}</p>
+                      </div>
+                    ) : (
+                      <div className="esc-pending-note">
+                        <Clock size={13} />
+                        <span>Awaiting review by People Operations.</span>
+                      </div>
+                    )}
                   </div>
                 ))
               )}
@@ -382,49 +452,77 @@ export function EmployeeDashboard() {
         <div className="dashboard-content">
           <div className="section-header-card">
             <div>
-              <h2>Personalized Onboarding Checklist</h2>
-              <p>Tailored 5-day ramp up plan for your role as <b>{user?.jobTitle}</b> in <b>{user?.department}</b>.</p>
+              <h2>📋 Your 5-Day Onboarding Milestones</h2>
+              <p>Track and complete your first-week onboarding responsibilities.</p>
             </div>
-            <div className="progress-summary">
-              <b>{checklistStats.completed} / {checklistStats.total} Completed</b>
-              <span>({checklistStats.progress}%)</span>
+            <div className="header-stat-chip">
+              <span className="chip-counter">{checklistStats.completed} of {checklistStats.total} tasks completed</span>
+              <span className="chip-pct">({checklistStats.progress}%)</span>
             </div>
           </div>
 
-          <div className="full-task-list">
-            {!plan?.tasks?.length ? (
-              <div className="empty-state">Loading your onboarding plan...</div>
+          <div className="checklist-full-list">
+            {!plan || !plan.tasks || plan.tasks.length === 0 ? (
+              <div className="empty-state">
+                <span className="empty-emoji">📋</span>
+                <p>No onboarding checklist assigned yet.</p>
+              </div>
             ) : (
               [1, 2, 3, 4, 5].map(dayNum => {
                 const dayTasks = plan.tasks.filter(t => t.day === dayNum);
                 if (!dayTasks.length) return null;
+                const completedInDay = dayTasks.filter(t => t.done).length;
+                const allDone = completedInDay === dayTasks.length;
+
                 return (
-                  <div key={dayNum} className="day-group">
-                    <h3 className="day-header">Day {dayNum} Milestone</h3>
+                  <div key={dayNum} className={`day-group-card ${allDone ? 'day-complete' : ''}`}>
+                    <div className="day-header-row">
+                      <div className="day-title-wrap">
+                        <span className="day-number-badge">Day {dayNum}</span>
+                        <h3>Milestone Objectives</h3>
+                      </div>
+                      <span className="day-completion-tag">
+                        {completedInDay}/{dayTasks.length} Done
+                      </span>
+                    </div>
+
                     <div className="day-tasks-box">
-                      {dayTasks.map(task => (
-                        <div
-                          key={task.id}
-                          className={`full-task-row ${task.done ? 'task-done' : ''}`}
-                          onClick={() => handleToggleTask(task.id)}
-                        >
-                          <button className="checkbox-btn">
-                            {task.done ? (
-                              <CheckCircle2 size={20} className="text-green" />
-                            ) : (
-                              <Circle size={20} className="text-gray" />
-                            )}
-                          </button>
-                          <div className="task-content">
-                            <span className="task-title">{task.title}</span>
-                            {task.done && task.completedAt && (
-                              <small className="completed-timestamp">
-                                Completed {new Date(task.completedAt).toLocaleDateString()}
-                              </small>
-                            )}
+                      {dayTasks.map(task => {
+                        let statusText = '☐ Pending';
+                        let statusClass = 'task-pending-status';
+                        if (task.done) {
+                          statusText = '✅ Completed';
+                          statusClass = 'task-completed-status';
+                        } else if (dayNum === 1 || completedInDay > 0) {
+                          statusText = '⏳ In Progress';
+                          statusClass = 'task-progress-status';
+                        }
+
+                        return (
+                          <div
+                            key={task.id}
+                            className={`full-task-row ${task.done ? 'task-done' : ''}`}
+                            onClick={() => handleToggleTask(task.id)}
+                          >
+                            <button className="checkbox-btn" aria-label="Toggle status">
+                              {task.done ? (
+                                <CheckCircle2 size={20} className="text-green" />
+                              ) : (
+                                <Circle size={20} className="text-gray" />
+                              )}
+                            </button>
+                            <div className="task-content">
+                              <span className="task-title">{task.title}</span>
+                              {task.done && task.completedAt && (
+                                <small className="completed-timestamp">
+                                  ✓ Completed {new Date(task.completedAt).toLocaleDateString()}
+                                </small>
+                              )}
+                            </div>
+                            <span className={`status-pill ${statusClass}`}>{statusText}</span>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 );
@@ -434,22 +532,47 @@ export function EmployeeDashboard() {
         </div>
       )}
 
-      {/* TAB 3: AI ASSISTANT */}
+      {/* TAB 3: AI ASSISTANT (Requirement 8) */}
       {activeTab === 'chat' && (
         <div className="chat-container">
-          <div className="chat-messages-scroll">
+          <div className="chat-top-header">
+            <div className="ai-status-indicator">
+              <div className="ai-avatar-badge">
+                <Bot size={20} />
+              </div>
+              <div className="ai-header-info">
+                <h3>🤖 AI Assistant</h3>
+                <span className="ai-sub-badge">🟢 Online · Grounded Retrieval</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="chat-messages-scroll"
+            ref={chatScrollRef}
+            onScroll={handleChatScroll}
+          >
             {messages.length === 0 ? (
-              <div className="chat-empty-intro">
-                <div className="ai-icon-circle">
-                  <Sparkles size={32} />
+              <div className="chat-welcome-card">
+                <div className="welcome-avatar-circle">
+                  <Bot size={36} />
                 </div>
-                <h3>Company Knowledge Assistant</h3>
-                <p>
-                  Ask any question about company policies, setup procedures, or employee benefits. Answers are strictly grounded in approved documentation.
+                <h3>Hi {user?.name}! 👋</h3>
+                <p className="welcome-intro-text">
+                  I'm your <b>AI Onboarding Assistant</b>. You can ask me anything about:
                 </p>
 
+                <div className="welcome-topics-grid">
+                  <div className="topic-chip">🏢 Company policies</div>
+                  <div className="topic-chip">💻 Workplace setup</div>
+                  <div className="topic-chip">📚 Documents</div>
+                  <div className="topic-chip">👥 Teams & culture</div>
+                  <div className="topic-chip">📅 Onboarding steps</div>
+                  <div className="topic-chip">❓ First-week questions</div>
+                </div>
+
                 <div className="prompt-suggestions">
-                  <span className="suggestions-title">Try asking:</span>
+                  <span className="suggestions-title">💡 Try asking one of these:</span>
                   <div className="suggestions-list">
                     {sampleQuestions.map((q, idx) => (
                       <button
@@ -468,52 +591,88 @@ export function EmployeeDashboard() {
                 <div key={idx} className={`chat-message-row ${m.role === 'user' ? 'msg-user' : 'msg-ai'}`}>
                   {m.role === 'loading' ? (
                     <div className="ai-bubble loading-bubble">
-                      <Sparkles size={16} className="animate-spin" />
-                      <span>Searching approved company knowledge...</span>
+                      <Sparkles size={16} className="animate-spin text-indigo" />
+                      <span>🤖 AI is thinking... Searching approved company knowledge...</span>
                     </div>
                   ) : m.role === 'user' ? (
-                    <div className="user-bubble">{m.content}</div>
-                  ) : (
-                    <div className="ai-response-wrap">
-                      <div className="ai-bubble">
-                        <p>{m.content}</p>
-
-                        {/* Automatic Escalation Banner */}
-                        {m.escalation && (
-                          <div className="escalation-alert-card">
-                            <div className="escalation-alert-header">
-                              <ShieldAlert size={18} className="text-amber" />
-                              <b>Automatically Forwarded to HR</b>
-                            </div>
-                            <p>
-                              {m.reason || "We couldn't confirm this in existing documentation. An escalation ticket has been generated for HR review."}
-                            </p>
-                            <span className="escalation-status-tag">Status: Pending HR Answer</span>
-                          </div>
-                        )}
-
-                        {/* Citations List */}
-                        {m.sources && m.sources.length > 0 && (
-                          <div className="citations-box">
-                            <div className="citations-header">
-                              <FileText size={14} />
-                              <span>Approved Sources & Citations:</span>
-                            </div>
-                            <div className="citations-list">
-                              {m.sources.map((s, sIdx) => (
-                                <div key={sIdx} className="citation-chip">
-                                  <span className="citation-doc">{s.documentTitle}</span>
-                                  {s.section && <span className="citation-section">§ {s.section}</span>}
-                                  {s.sourceType && <span className="citation-type">{s.sourceType}</span>}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
+                    <div className="user-message-wrap">
+                      <div className="user-bubble">{m.content}</div>
+                      <div className="msg-avatar user-avatar-badge">
+                        {user?.avatar || 'ME'}
                       </div>
-                      <small className="message-time">
-                        {new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                      </small>
+                    </div>
+                  ) : (
+                    <div className="ai-message-wrap">
+                      <div className="msg-avatar ai-avatar-badge">
+                        <Bot size={18} />
+                      </div>
+                      <div className="ai-bubble-box">
+                        <div className="ai-bubble-content">
+                          <p>{m.content}</p>
+
+                          {/* Automatic Zero-Click Escalation Banner */}
+                          {m.escalation && (
+                            <div className="escalation-alert-card">
+                              <div className="escalation-alert-header">
+                                <ShieldAlert size={18} className="text-amber" />
+                                <b>⚠️ Question Forwarded to HR</b>
+                              </div>
+                              <p>
+                                {m.reason || "I couldn't find a reliable answer in the company knowledge base. Your question has been forwarded to HR."}
+                              </p>
+                              <span className="escalation-status-tag">Status: 🔴 Pending HR Answer</span>
+                            </div>
+                          )}
+
+                          {/* Approved Sources & Citations */}
+                          {m.sources && m.sources.length > 0 && (
+                            <div className="citations-box">
+                              <div className="citations-header">
+                                <FileText size={14} />
+                                <span>Approved Citations:</span>
+                              </div>
+                              <div className="citations-list">
+                                {m.sources.map((s, sIdx) => {
+                                  const isHRApproved = s.documentTitle?.includes('HR Approved') || s.sourceType === 'HR Approved Knowledge';
+                                  return (
+                                    <div key={sIdx} className={`citation-chip ${isHRApproved ? 'kb-citation' : 'doc-citation'}`}>
+                                      <span className="citation-icon">{isHRApproved ? '✅' : '📚'}</span>
+                                      <span className="citation-doc">
+                                        {isHRApproved ? 'Approved HR Knowledge' : `Source: ${s.documentTitle}`}
+                                      </span>
+                                      {s.section && <span className="citation-section">§ {s.section}</span>}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Action buttons & timestamp */}
+                        <div className="ai-bubble-footer">
+                          <span className="message-time">
+                            {new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          </span>
+                          <button
+                            className="btn-copy-msg"
+                            onClick={() => handleCopyAnswer(m.content, idx)}
+                            title="Copy response"
+                          >
+                            {copiedIndex === idx ? (
+                              <>
+                                <Check size={13} className="text-green" />
+                                <span className="text-green">Copied</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy size={13} />
+                                <span>Copy</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -522,7 +681,15 @@ export function EmployeeDashboard() {
             <div ref={chatBottomRef} />
           </div>
 
-          {/* Chat Input Box */}
+          {/* Floating Scroll-to-bottom button */}
+          {showScrollBottom && (
+            <button className="btn-scroll-bottom" onClick={scrollToBottom} title="Scroll to latest">
+              <ArrowDown size={16} />
+              <span>Scroll to latest</span>
+            </button>
+          )}
+
+          {/* Chat Input Bar */}
           <form
             className="chat-input-bar"
             onSubmit={(e) => {
@@ -533,7 +700,7 @@ export function EmployeeDashboard() {
             <input
               type="text"
               className="chat-input"
-              placeholder="Ask anything about company onboarding, policies, or setup..."
+              placeholder="Ask anything about company policies, benefits, code review, or setup..."
               value={inputQuestion}
               onChange={(e) => setInputQuestion(e.target.value)}
               disabled={isSending}
@@ -542,6 +709,7 @@ export function EmployeeDashboard() {
               type="submit"
               className="btn btn-primary btn-send"
               disabled={isSending || !inputQuestion.trim()}
+              title="Send message"
             >
               <Send size={18} />
             </button>
@@ -549,29 +717,30 @@ export function EmployeeDashboard() {
         </div>
       )}
 
-      {/* TAB 4: MY HR QUESTIONS & ESCALATIONS */}
+      {/* TAB 4: MY HR QUESTIONS */}
       {activeTab === 'escalations' && (
         <div className="dashboard-content">
           <div className="section-header-card">
             <div>
-              <h2>My HR Questions & Escalations</h2>
-              <p>Track questions automatically forwarded to People Operations and view HR responses.</p>
+              <h2>🚨 My Escalated HR Questions</h2>
+              <p>Inquiries automatically forwarded to People Operations with verified HR answers.</p>
             </div>
+            <span className="badge-counter-total">{escalations.length} total inquiries</span>
           </div>
 
           <div className="escalations-list">
             {!escalations.length ? (
               <div className="empty-state">
-                <HelpCircle size={32} className="text-gray" />
-                <p>No escalated questions yet.</p>
-                <small>Any question the AI cannot confirm is automatically sent here for HR review.</small>
+                <span className="empty-emoji">🎉</span>
+                <p>No escalated questions.</p>
+                <small>When a question is forwarded to HR, you can monitor its resolution status right here.</small>
               </div>
             ) : (
               escalations.map(esc => (
                 <div key={esc.id} className="escalation-card">
                   <div className="escalation-top">
                     <span className={`status-badge ${esc.status === 'Resolved' ? 'badge-resolved' : 'badge-pending'}`}>
-                      {esc.status}
+                      {esc.status === 'Resolved' ? '✅ Resolved by HR' : '🔴 Pending HR Answer'}
                     </span>
                     <span className="esc-time">
                       <Clock size={12} />
@@ -585,19 +754,19 @@ export function EmployeeDashboard() {
                     <div className="hr-answer-box">
                       <div className="hr-answer-header">
                         <CheckCircle2 size={16} className="text-green" />
-                        <b>Answer from HR ({esc.resolvedBy || 'HR Administrator'}):</b>
+                        <b>Official Answer from People Operations ({esc.resolvedBy || 'HR Partner'}):</b>
                       </div>
                       <p className="hr-answer-text">{esc.hrAnswer}</p>
                       {esc.savedToKB && (
                         <span className="kb-badge-saved">
-                          ✓ Saved to Company Knowledge Base
+                          ✓ Saved to Company Knowledge Base for all employees
                         </span>
                       )}
                     </div>
                   ) : (
                     <div className="hr-pending-box">
                       <Clock size={16} className="text-amber" />
-                      <span>Forwarded to HR team. An HR partner will review and provide an official response.</span>
+                      <span>Forwarded to HR. A People Operations partner will review and provide an answer here.</span>
                     </div>
                   )}
                 </div>

@@ -1,7 +1,7 @@
 import express from 'express';
 import crypto from 'crypto';
 import { getDB, saveDB } from '../models/db.js';
-import { EMPLOYEE_DEPARTMENTS, HR_DEPARTMENTS } from '../config/constants.js';
+import { EMPLOYEE_DEPARTMENTS, HR_DEPARTMENTS, DEFAULT_ROLE_TASKS } from '../config/constants.js';
 import { createToken, authenticate } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -43,7 +43,7 @@ router.get('/demo-accounts', (_req, res) => {
 
 // POST /api/auth/login
 router.post('/login', (req, res) => {
-  const { role, employeeId, password, department } = req.body;
+  const { role, employeeId, password, department, name } = req.body;
 
   if (!role || !['employee', 'hr'].includes(role)) {
     return res.status(400).json({ error: 'Valid role (New Employee or HR) must be specified.' });
@@ -63,33 +63,94 @@ router.post('/login', (req, res) => {
 
   const db = getDB();
   const cleanId = employeeId.trim().toLowerCase();
-
-  // Find user by employeeId or name matching the requested role
-  const user = db.users.find(
-    u => (u.employeeId.toLowerCase() === cleanId || u.name.toLowerCase() === cleanId) && u.role === role
-  );
-
-  if (!user) {
-    return res.status(401).json({
-      error: `No ${role === 'hr' ? 'HR Administrator' : 'Employee'} account found with ID "${employeeId}".`
-    });
-  }
-
-  if (user.password !== password) {
-    return res.status(401).json({ error: 'Incorrect password.' });
-  }
-
-  // Validate department compatibility
-  if (user.department.toLowerCase() !== department.trim().toLowerCase()) {
-    return res.status(400).json({
-      error: `Department mismatch: Account ${user.employeeId} belongs to "${user.department}", but you selected "${department}".`
-    });
-  }
-
-  // Record login event for analytics
   const today = new Date().toISOString().slice(0, 10);
   const now = new Date().toISOString();
 
+  // Find user by employeeId or name matching the requested role
+  let user = db.users.find(
+    u => (u.employeeId.toLowerCase() === cleanId || u.name.toLowerCase() === cleanId) && u.role === role
+  );
+
+  let isNewRegistration = false;
+
+  if (!user) {
+    if (role === 'hr') {
+      return res.status(401).json({
+        error: `No HR Administrator account found with ID "${employeeId}".`
+      });
+    }
+
+    // Role is employee: Auto-register new employee upon first login/onboarding
+    isNewRegistration = true;
+    const formattedId = employeeId.trim().toUpperCase();
+    const displayName = (name && name.trim()) 
+      ? name.trim() 
+      : (formattedId.startsWith('EMP') ? `Employee ${formattedId}` : employeeId.trim());
+    
+    const initials = displayName
+      .split(' ')
+      .map(part => part[0])
+      .filter(Boolean)
+      .slice(0, 2)
+      .join('')
+      .toUpperCase() || 'EM';
+
+    user = {
+      id: `usr-emp-${crypto.randomUUID().slice(0, 8)}`,
+      employeeId: formattedId,
+      name: displayName,
+      role: 'employee',
+      department: department.trim(),
+      jobTitle: `${department.trim()} Specialist`,
+      startDate: today,
+      createdDate: now,
+      password: password.trim(),
+      avatar: initials,
+      loginCount: 1,
+      firstLogin: now,
+      lastLogin: now,
+      lastActive: now
+    };
+
+    db.users.push(user);
+
+    // Create personalized onboarding plan for the new employee
+    const taskTemplates = DEFAULT_ROLE_TASKS[department.trim()] || DEFAULT_ROLE_TASKS.Default;
+    const plan = {
+      id: `plan-${user.employeeId.toLowerCase()}`,
+      employeeId: user.employeeId,
+      name: user.name,
+      role: user.jobTitle,
+      department: user.department,
+      startDate: user.startDate,
+      tasks: taskTemplates.map(t => ({
+        id: crypto.randomUUID(),
+        day: t.day,
+        title: t.title,
+        done: Boolean(t.done),
+        completedAt: t.done ? now : null
+      }))
+    };
+    db.onboardingPlans.push(plan);
+  } else {
+    // Existing user: check credentials
+    if (user.password !== password.trim()) {
+      return res.status(401).json({ error: 'Incorrect password.' });
+    }
+
+    // Validate department compatibility
+    if (user.department.toLowerCase() !== department.trim().toLowerCase()) {
+      return res.status(400).json({
+        error: `Department mismatch: Account ${user.employeeId} belongs to "${user.department}", but you selected "${department}".`
+      });
+    }
+
+    user.lastLogin = now;
+    user.lastActive = now;
+    user.loginCount = (user.loginCount || 1) + 1;
+  }
+
+  // Record login activity event for analytics
   const activityRecord = {
     id: crypto.randomUUID(),
     userId: user.id,
@@ -105,7 +166,9 @@ router.post('/login', (req, res) => {
 
   db.activities.unshift({
     id: crypto.randomUUID(),
-    text: `${user.name} (${user.department}) logged in`,
+    text: isNewRegistration 
+      ? `New employee ${user.name} (${user.department}) registered and logged in`
+      : `${user.name} (${user.department}) logged in`,
     timestamp: now
   });
 

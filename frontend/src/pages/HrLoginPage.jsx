@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Building2, ArrowLeft, LogIn, Sparkles, AlertCircle } from 'lucide-react';
+import { Building2, ArrowLeft, LogIn, Sparkles, AlertCircle, Eye, EyeOff, Shield, Lock, BarChart3 } from 'lucide-react';
 import { useAuth } from '../services/authContext.jsx';
 import { apiRequest } from '../services/api.js';
 
@@ -9,6 +9,7 @@ export function HrLoginPage({ onBack }) {
   const [employeeId, setEmployeeId] = useState('HR-001');
   const [password, setPassword] = useState('password123');
   const [department, setDepartment] = useState('Human Resources');
+  const [showPassword, setShowPassword] = useState(false);
   const [departmentsList, setDepartmentsList] = useState([
     'Human Resources',
     'People Operations',
@@ -77,18 +78,18 @@ export function HrLoginPage({ onBack }) {
 
   return (
     <div className="landing-screen">
-      <div className="login-card">
+      <div className="login-card hr-login-theme">
         <button className="back-link" onClick={onBack}>
           <ArrowLeft size={16} />
-          <span>Change Role</span>
+          <span>Switch Role</span>
         </button>
 
         <div className="login-header">
           <div className="login-badge hr-badge">
-            <Building2 size={20} />
+            <span className="login-emoji">👋</span>
           </div>
-          <h2>HR Administrator Sign In</h2>
-          <p>Access the people operations command center and analytics portal.</p>
+          <h2>Welcome HR!</h2>
+          <p className="login-subtext">Manage your people, knowledge and onboarding experience.</p>
         </div>
 
         {error && (
@@ -100,53 +101,86 @@ export function HrLoginPage({ onBack }) {
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
-            <label htmlFor="hr-id">HR / Admin ID <span className="req">*</span></label>
-            <input
-              id="hr-id"
-              type="text"
-              className="form-input"
-              placeholder="e.g. HR-001"
-              value={employeeId}
-              onChange={(e) => setEmployeeId(e.target.value)}
-              disabled={submitting}
-              required
-            />
+            <label htmlFor="hr-id">
+              <span className="label-icon">🆔</span> HR Administrator ID <span className="req">*</span>
+            </label>
+            <div className="input-with-icon">
+              <span className="input-prefix-icon"><Shield size={16} /></span>
+              <input
+                id="hr-id"
+                type="text"
+                className="form-input"
+                placeholder="e.g. HR-001"
+                value={employeeId}
+                onChange={(e) => setEmployeeId(e.target.value)}
+                disabled={submitting}
+                required
+              />
+            </div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="hr-dept">Department <span className="req">*</span></label>
-            <select
-              id="hr-dept"
-              className="form-select"
-              value={department}
-              onChange={(e) => setDepartment(e.target.value)}
-              disabled={submitting}
-              required
-            >
-              <option value="">Select your department</option>
-              {departmentsList.map(dept => (
-                <option key={dept} value={dept}>{dept}</option>
-              ))}
-            </select>
+            <label htmlFor="hr-dept">
+              <span className="label-icon">🏢</span> Department <span className="req">*</span>
+            </label>
+            <div className="input-with-icon">
+              <span className="input-prefix-icon"><Building2 size={16} /></span>
+              <select
+                id="hr-dept"
+                className="form-select"
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+                disabled={submitting}
+                required
+              >
+                <option value="">Select HR Division</option>
+                {departmentsList.map(dept => (
+                  <option key={dept} value={dept}>{dept}</option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="hr-pw">Password <span className="req">*</span></label>
-            <input
-              id="hr-pw"
-              type="password"
-              className="form-input"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              disabled={submitting}
-              required
-            />
+            <label htmlFor="hr-pw">
+              <span className="label-icon">🔐</span> Password <span className="req">*</span>
+            </label>
+            <div className="input-with-icon password-input-wrap">
+              <span className="input-prefix-icon"><Lock size={16} /></span>
+              <input
+                id="hr-pw"
+                type={showPassword ? 'text' : 'password'}
+                className="form-input"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={submitting}
+                required
+              />
+              <button
+                type="button"
+                className="password-toggle-btn"
+                onClick={() => setShowPassword(!showPassword)}
+                tabIndex={-1}
+                title={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
+            </div>
           </div>
 
-          <button type="submit" className="btn btn-primary btn-full" disabled={submitting}>
-            <LogIn size={18} />
-            <span>{submitting ? 'Authenticating...' : 'Sign In as HR Administrator'}</span>
+          <button type="submit" className="btn btn-secondary btn-full btn-submit-auth" disabled={submitting}>
+            {submitting ? (
+              <>
+                <span className="btn-spinner" />
+                <span>Authenticating Admin...</span>
+              </>
+            ) : (
+              <>
+                <BarChart3 size={18} />
+                <span>📊 Open HR Dashboard</span>
+              </>
+            )}
           </button>
         </form>
 
@@ -154,18 +188,18 @@ export function HrLoginPage({ onBack }) {
           <div className="demo-accounts-box">
             <div className="demo-title">
               <Sparkles size={14} />
-              <span>Quick Demo HR Login:</span>
+              <span>Quick Demo Fill (HR Administrators):</span>
             </div>
             <div className="demo-buttons">
               {demoHR.map(hr => (
                 <button
                   key={hr.employeeId}
                   type="button"
-                  className="demo-chip hr-demo-chip"
+                  className="demo-chip hr-chip"
                   onClick={() => fillDemoHr(hr)}
                 >
-                  <b>{hr.name}</b>
-                  <small>({hr.department} · {hr.employeeId})</small>
+                  <span className="chip-name">{hr.name}</span>
+                  <span className="chip-dept">{hr.department} · {hr.employeeId}</span>
                 </button>
               ))}
             </div>

@@ -13,7 +13,14 @@ import {
   Clock,
   Sparkles,
   Send,
-  Plus
+  Plus,
+  Search,
+  RefreshCw,
+  X,
+  UserCheck,
+  UserX,
+  HelpCircle,
+  Activity
 } from 'lucide-react';
 import { apiRequest } from '../services/api.js';
 import { EscalationModal } from '../components/EscalationModal.jsx';
@@ -30,6 +37,11 @@ export function HrDashboard() {
   const [questionTrends, setQuestionTrends] = useState([]);
   const [documents, setDocuments] = useState([]);
   const [knowledgeItems, setKnowledgeItems] = useState([]);
+
+  // Search filter states
+  const [empSearch, setEmpSearch] = useState('');
+  const [queueSearch, setQueueSearch] = useState('');
+  const [docSearch, setDocSearch] = useState('');
 
   // Modal states
   const [selectedEscalation, setSelectedEscalation] = useState(null);
@@ -146,6 +158,66 @@ export function HrDashboard() {
 
   const pendingEscalations = escalations.filter(e => e.status === 'Pending');
 
+  // Relative time helper for Section 15
+  const getRelativeTime = (timestamp) => {
+    if (!timestamp) return 'recently';
+    const now = Date.now();
+    const past = new Date(timestamp).getTime();
+    const diffSec = Math.floor((now - past) / 1000);
+    if (diffSec < 60) return 'just now';
+    const diffMin = Math.floor(diffSec / 60);
+    if (diffMin < 60) return `${diffMin}m ago`;
+    const diffHr = Math.floor(diffMin / 60);
+    if (diffHr < 24) return `${diffHr}h ago`;
+    const diffDays = Math.floor(diffHr / 24);
+    return `${diffDays}d ago`;
+  };
+
+  const getDeptIcon = (deptName) => {
+    switch (deptName?.toLowerCase()) {
+      case 'engineering': return '👨‍💻';
+      case 'design': return '🎨';
+      case 'sales': return '📈';
+      case 'marketing': return '📣';
+      case 'finance': return '💼';
+      case 'human resources': return '👥';
+      case 'operations': return '⚙️';
+      default: return '🏢';
+    }
+  };
+
+  // Filtered lists
+  const filteredEmployees = employees.filter(emp => {
+    const q = empSearch.toLowerCase().trim();
+    if (!q) return true;
+    return (
+      emp.name?.toLowerCase().includes(q) ||
+      emp.employeeId?.toLowerCase().includes(q) ||
+      emp.department?.toLowerCase().includes(q) ||
+      emp.jobTitle?.toLowerCase().includes(q)
+    );
+  });
+
+  const filteredEscalations = escalations.filter(esc => {
+    const q = queueSearch.toLowerCase().trim();
+    if (!q) return true;
+    return (
+      esc.question?.toLowerCase().includes(q) ||
+      esc.employeeName?.toLowerCase().includes(q) ||
+      esc.department?.toLowerCase().includes(q)
+    );
+  });
+
+  const filteredDocs = documents.filter(doc => {
+    const q = docSearch.toLowerCase().trim();
+    if (!q) return true;
+    return (
+      doc.title?.toLowerCase().includes(q) ||
+      doc.category?.toLowerCase().includes(q) ||
+      doc.type?.toLowerCase().includes(q)
+    );
+  });
+
   return (
     <div className="workspace-container">
       {/* Tab Navigation */}
@@ -154,29 +226,29 @@ export function HrDashboard() {
           className={`tab-btn ${activeTab === 'overview' ? 'active' : ''}`}
           onClick={() => setActiveTab('overview')}
         >
-          <LayoutDashboard size={18} />
-          <span>Overview</span>
+          <span className="nav-emoji">🏠</span>
+          <span>Dashboard</span>
         </button>
         <button
           className={`tab-btn ${activeTab === 'employees' ? 'active' : ''}`}
           onClick={() => setActiveTab('employees')}
         >
-          <Users size={18} />
+          <span className="nav-emoji">👥</span>
           <span>Employees ({employees.length})</span>
         </button>
         <button
           className={`tab-btn ${activeTab === 'departments' ? 'active' : ''}`}
           onClick={() => setActiveTab('departments')}
         >
-          <Building2 size={18} />
-          <span>Departments</span>
+          <span className="nav-emoji">📊</span>
+          <span>Analytics</span>
         </button>
         <button
           className={`tab-btn ${activeTab === 'queue' ? 'active' : ''}`}
           onClick={() => setActiveTab('queue')}
         >
-          <AlertTriangle size={18} />
-          <span>HR Queue</span>
+          <span className="nav-emoji">🚨</span>
+          <span>HR Questions</span>
           {pendingEscalations.length > 0 && (
             <span className="tab-counter pending-counter">{pendingEscalations.length}</span>
           )}
@@ -185,70 +257,114 @@ export function HrDashboard() {
           className={`tab-btn ${activeTab === 'trends' ? 'active' : ''}`}
           onClick={() => setActiveTab('trends')}
         >
-          <TrendingUp size={18} />
-          <span>Question Trends</span>
+          <span className="nav-emoji">📈</span>
+          <span>FAQ Trends</span>
         </button>
         <button
           className={`tab-btn ${activeTab === 'documents' ? 'active' : ''}`}
           onClick={() => setActiveTab('documents')}
         >
-          <FileText size={18} />
+          <span className="nav-emoji">📚</span>
           <span>Documents ({documents.length})</span>
         </button>
         <button
           className={`tab-btn ${activeTab === 'knowledge' ? 'active' : ''}`}
           onClick={() => setActiveTab('knowledge')}
         >
-          <Database size={18} />
+          <span className="nav-emoji">📖</span>
           <span>Knowledge Base ({knowledgeItems.length})</span>
         </button>
       </div>
 
-      {loading && <div className="loading-bar">Refreshing dashboard data...</div>}
+      {/* Top Banner: Good Morning, HR! (Requirement 10) */}
+      <div className="welcome-banner hr-welcome-banner">
+        <div className="welcome-text">
+          <div className="eyebrow-pill">
+            <Sparkles size={13} />
+            <span>ENTERPRISE PEOPLE OPERATIONS</span>
+          </div>
+          <h2>👋 Good Morning, HR!</h2>
+          <p className="welcome-sub">Here's what's happening with your employees today.</p>
+        </div>
+        <div className="welcome-quick-actions">
+          <button className="btn btn-outline-white" onClick={loadAllData} disabled={loading} title="Refresh live data">
+            <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
+            <span>{loading ? 'Syncing...' : 'Sync Data'}</span>
+          </button>
+          <button className="btn btn-primary-light-btn" onClick={() => setActiveTab('queue')}>
+            <span>Review Escalations</span>
+            <AlertTriangle size={14} />
+          </button>
+        </div>
+      </div>
+
+      {/* 4 Premium SaaS Metrics Cards (Requirement 10) */}
+      <div className="metrics-grid stats-overview-grid">
+        <div className="metric-card card-accent-indigo">
+          <div className="metric-header">
+            <span className="metric-icon-wrap indigo-bg">👥</span>
+            <span className="metric-title">Total Employees</span>
+          </div>
+          <div className="metric-val text-indigo">{stats?.overview?.totalEmployees ?? employees.length}</div>
+          <span className="metric-meta">Unique registered employee accounts</span>
+        </div>
+
+        <div className="metric-card card-accent-emerald">
+          <div className="metric-header">
+            <span className="metric-icon-wrap emerald-bg">🟢</span>
+            <span className="metric-title">Active Today</span>
+          </div>
+          <div className="metric-val text-emerald">{stats?.overview?.activeToday ?? 0}</div>
+          <span className="metric-meta">Logged in today ({new Date().toLocaleDateString('en-GB')})</span>
+        </div>
+
+        <div className="metric-card card-accent-slate">
+          <div className="metric-header">
+            <span className="metric-icon-wrap slate-bg">⚪</span>
+            <span className="metric-title">Not Active Today</span>
+          </div>
+          <div className="metric-val text-muted">{stats?.overview?.notActiveToday ?? 0}</div>
+          <span className="metric-meta">Total Employees − Active Today</span>
+        </div>
+
+        <div className="metric-card card-accent-amber">
+          <div className="metric-header">
+            <span className="metric-icon-wrap amber-bg">❓</span>
+            <span className="metric-title">Pending Questions</span>
+          </div>
+          <div className="metric-val text-amber">{pendingEscalations.length}</div>
+          <span className="metric-meta">Awaiting official HR answers</span>
+        </div>
+
+        <div className="metric-card card-accent-violet">
+          <div className="metric-header">
+            <span className="metric-icon-wrap violet-bg">📖</span>
+            <span className="metric-title">Approved Knowledge</span>
+          </div>
+          <div className="metric-val text-violet">{knowledgeItems.length}</div>
+          <span className="metric-meta">Verified policy entries for AI</span>
+        </div>
+
+        <div className="metric-card card-accent-cyan">
+          <div className="metric-header">
+            <span className="metric-icon-wrap cyan-bg">📚</span>
+            <span className="metric-title">Company Documents</span>
+          </div>
+          <div className="metric-val text-cyan">{documents.length}</div>
+          <span className="metric-meta">Indexed for grounded retrieval</span>
+        </div>
+      </div>
 
       {/* TAB 1: OVERVIEW */}
       {activeTab === 'overview' && (
         <div className="dashboard-content">
-          <div className="metrics-grid stats-overview-grid">
-            <div className="metric-card">
-              <span className="metric-title">Total Employees</span>
-              <div className="metric-val">{stats?.overview?.totalEmployees ?? employees.length}</div>
-              <span className="metric-meta">Across all company departments</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-title">Active Today</span>
-              <div className="metric-val text-green">{stats?.overview?.activeToday ?? 0}</div>
-              <span className="metric-meta">Logged in today</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-title">Not Active Today</span>
-              <div className="metric-val text-muted">{stats?.overview?.notActiveToday ?? 0}</div>
-              <span className="metric-meta">No activity recorded today</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-title">Pending Escalations</span>
-              <div className="metric-val text-amber">{pendingEscalations.length}</div>
-              <span className="metric-meta">Awaiting HR answer</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-title">Approved Knowledge</span>
-              <div className="metric-val text-blue">{knowledgeItems.length}</div>
-              <span className="metric-meta">Verified policy entries</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-title">Company Documents</span>
-              <div className="metric-val">{documents.length}</div>
-              <span className="metric-meta">Parsed & indexed for AI</span>
-            </div>
-          </div>
-
           <div className="two-column-grid">
-            {/* Department Activity Snapshot */}
+            {/* Department Headcount & Activity Snapshot (Requirement 14) */}
             <div className="panel-card">
               <div className="panel-header">
                 <div>
-                  <h3>Department Employee Distribution</h3>
-                  <p className="panel-subtitle">Total headcount and active today status per sector</p>
+                  <h3>📊 Department Distribution & Activity</h3>
+                  <p className="panel-subtitle">Total headcount and active login breakdown per sector</p>
                 </div>
                 <button className="btn-link" onClick={() => setActiveTab('departments')}>
                   Full Breakdown →
@@ -263,9 +379,12 @@ export function HrDashboard() {
                     return (
                       <div key={dept.department} className="dept-bar-row">
                         <div className="dept-bar-labels">
-                          <span className="dept-name"><b>{dept.department}</b></span>
+                          <span className="dept-name">
+                            <span className="dept-emoji-prefix">{getDeptIcon(dept.department)}</span>
+                            <b>{dept.department}</b>
+                          </span>
                           <span className="dept-counts">
-                            <b>{dept.total} employees</b> · <span className="text-green">{dept.activeToday} active</span> · <span className="text-muted">{dept.notActiveToday} not active</span>
+                            <b>{dept.total} employees</b> · <span className="text-green font-semibold">{dept.activeToday} active today</span> · <span className="text-muted">{dept.notActiveToday} inactive</span>
                           </span>
                         </div>
                         <div className="dept-bar-track">
@@ -281,8 +400,8 @@ export function HrDashboard() {
             <div className="panel-card">
               <div className="panel-header">
                 <div>
-                  <h3>Pending Escalations ({pendingEscalations.length})</h3>
-                  <p className="panel-subtitle">Questions requiring official HR answers</p>
+                  <h3>🚨 Pending HR Questions ({pendingEscalations.length})</h3>
+                  <p className="panel-subtitle">Inquiries forwarded automatically by AI assistant</p>
                 </div>
                 <button className="btn-link" onClick={() => setActiveTab('queue')}>
                   Open Queue →
@@ -291,17 +410,21 @@ export function HrDashboard() {
 
               <div className="compact-escalation-list">
                 {!pendingEscalations.length ? (
-                  <div className="empty-panel">
-                    <CheckCircle2 size={24} className="text-green" />
-                    <p>All employee questions have been resolved!</p>
+                  <div className="empty-panel-box">
+                    <span className="empty-emoji">🎉</span>
+                    <p>No pending HR questions.</p>
+                    <small>All employee questions are currently resolved!</small>
                   </div>
                 ) : (
                   pendingEscalations.slice(0, 3).map(esc => (
                     <div key={esc.id} className="compact-esc-item">
                       <div className="compact-esc-info">
                         <b>{esc.employeeName} ({esc.department})</b>
-                        <p>"{esc.question}"</p>
-                        <small>{new Date(esc.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</small>
+                        <p className="compact-question-text">"{esc.question}"</p>
+                        <small className="compact-time">
+                          <Clock size={11} />
+                          {getRelativeTime(esc.timestamp)}
+                        </small>
                       </div>
                       <button
                         className="btn btn-sm btn-primary"
@@ -315,6 +438,38 @@ export function HrDashboard() {
               </div>
             </div>
           </div>
+
+          {/* Recent Employee Activity Stream (Requirement 15) */}
+          <div className="panel-card full-width-panel">
+            <div className="panel-header">
+              <div>
+                <h3>⚡ Recent Employee Activity</h3>
+                <p className="panel-subtitle">Live real-time login and onboarding activity from backend records</p>
+              </div>
+              <span className="badge-counter-total">{(stats?.recentActivities || []).length} events</span>
+            </div>
+
+            <div className="activity-feed-list">
+              {!(stats?.recentActivities || []).length ? (
+                <div className="empty-panel-box">
+                  <span className="empty-emoji">🟢</span>
+                  <p>No activity records logged yet today.</p>
+                </div>
+              ) : (
+                (stats?.recentActivities || []).slice(0, 6).map((act, idx) => (
+                  <div key={act.id || idx} className="activity-feed-item">
+                    <div className="activity-icon-bullet">
+                      <span className="activity-bullet-dot" />
+                    </div>
+                    <div className="activity-content">
+                      <span className="activity-text">{act.text}</span>
+                      <small className="activity-relative-time">{getRelativeTime(act.timestamp)}</small>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
         </div>
       )}
 
@@ -323,13 +478,33 @@ export function HrDashboard() {
         <div className="dashboard-content">
           <div className="section-header-card">
             <div>
-              <h2>Company Employee Directory</h2>
-              <p>Roster of all company employees with live daily activity status and onboarding completion.</p>
+              <h2>👥 Company Employee Directory</h2>
+              <p>Roster of unique registered employees with live daily activity status and onboarding completion.</p>
             </div>
             <div className="roster-metrics">
-              <span className="badge badge-active">{stats?.overview?.activeToday ?? 0} Active today</span>
-              <span className="badge badge-inactive">{stats?.overview?.notActiveToday ?? 0} Not active today</span>
+              <span className="badge badge-active">🟢 {stats?.overview?.activeToday ?? 0} Active today</span>
+              <span className="badge badge-inactive">⚪ {stats?.overview?.notActiveToday ?? 0} Not active today</span>
             </div>
+          </div>
+
+          {/* Search Bar (Requirement 20) */}
+          <div className="table-search-bar">
+            <div className="search-input-wrap">
+              <Search size={16} className="search-icon" />
+              <input
+                type="text"
+                className="search-input"
+                placeholder="🔎 Search employees by name, ID, department, or role..."
+                value={empSearch}
+                onChange={(e) => setEmpSearch(e.target.value)}
+              />
+              {empSearch && (
+                <button className="clear-search-btn" onClick={() => setEmpSearch('')}>
+                  <X size={14} />
+                </button>
+              )}
+            </div>
+            <span className="search-results-count">Showing {filteredEmployees.length} of {employees.length} employees</span>
           </div>
 
           <div className="table-wrapper">
@@ -346,47 +521,60 @@ export function HrDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {employees.map(emp => (
-                  <tr key={emp.id}>
-                    <td>
-                      <div className="table-user-cell">
-                        <div className="cell-avatar">{emp.avatar || emp.name.slice(0, 2)}</div>
-                        <span className="cell-name">{emp.name}</span>
-                      </div>
-                    </td>
-                    <td><code>{emp.employeeId}</code></td>
-                    <td><span className="badge badge-dept">{emp.department}</span></td>
-                    <td>{emp.jobTitle}</td>
-                    <td>{emp.startDate}</td>
-                    <td>
-                      <span className={`status-pill ${emp.isActiveToday ? 'pill-active' : 'pill-inactive'}`}>
-                        <span className="status-dot" />
-                        {emp.activityStatus}
-                      </span>
-                    </td>
-                    <td>
-                      <div className="table-progress-cell">
-                        <div className="cell-progress-track">
-                          <div className="cell-progress-fill" style={{ width: `${emp.onboardingProgress}%` }} />
-                        </div>
-                        <span className="cell-progress-text">{emp.onboardingProgress}% ({emp.completedTasks}/{emp.totalTasks})</span>
-                      </div>
+                {!filteredEmployees.length ? (
+                  <tr>
+                    <td colSpan={7} className="empty-table-cell">
+                      <span className="empty-search-emoji">🔎</span>
+                      <p>No employees match "{empSearch}".</p>
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  filteredEmployees.map(emp => (
+                    <tr key={emp.id}>
+                      <td>
+                        <div className="table-user-cell">
+                          <div className="cell-avatar">{emp.avatar || emp.name.slice(0, 2).toUpperCase()}</div>
+                          <span className="cell-name">{emp.name}</span>
+                        </div>
+                      </td>
+                      <td><code>{emp.employeeId}</code></td>
+                      <td>
+                        <span className="badge badge-dept">
+                          {getDeptIcon(emp.department)} {emp.department}
+                        </span>
+                      </td>
+                      <td>{emp.jobTitle}</td>
+                      <td>{emp.startDate}</td>
+                      <td>
+                        <span className={`status-pill ${emp.isActiveToday ? 'pill-active' : 'pill-inactive'}`}>
+                          <span className="status-dot" />
+                          {emp.isActiveToday ? 'Active today' : 'Not active today'}
+                        </span>
+                      </td>
+                      <td>
+                        <div className="table-progress-cell">
+                          <div className="cell-progress-track">
+                            <div className="cell-progress-fill" style={{ width: `${emp.onboardingProgress}%` }} />
+                          </div>
+                          <span className="cell-progress-text">{emp.onboardingProgress}% ({emp.completedTasks}/{emp.totalTasks})</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
         </div>
       )}
 
-      {/* TAB 3: DEPARTMENTS */}
+      {/* TAB 3: DEPARTMENTS (Requirement 14) */}
       {activeTab === 'departments' && (
         <div className="dashboard-content">
           <div className="section-header-card">
             <div>
-              <h2>Department Headcount & Activity Analytics</h2>
-              <p>Real-time department distribution and daily employee login tracking.</p>
+              <h2>📊 Department Headcount & Activity Analytics</h2>
+              <p>Real-time department distribution and daily employee login tracking from backend database.</p>
             </div>
           </div>
 
@@ -394,17 +582,20 @@ export function HrDashboard() {
             {departments.map(dept => (
               <div key={dept.department} className="dept-summary-card">
                 <div className="dept-card-top">
-                  <h3>{dept.department}</h3>
+                  <div className="dept-card-title-row">
+                    <span className="dept-large-emoji">{getDeptIcon(dept.department)}</span>
+                    <h3>{dept.department}</h3>
+                  </div>
                   <span className="dept-headcount-badge">{dept.total} {dept.total === 1 ? 'employee' : 'employees'}</span>
                 </div>
 
                 <div className="dept-breakdown-row">
                   <div className="breakdown-stat">
-                    <span className="stat-label">Active today</span>
+                    <span className="stat-label">🟢 Active today</span>
                     <b className="text-green">{dept.activeToday}</b>
                   </div>
                   <div className="breakdown-stat">
-                    <span className="stat-label">Not active today</span>
+                    <span className="stat-label">⚪ Not active today</span>
                     <b className="text-muted">{dept.notActiveToday}</b>
                   </div>
                 </div>
@@ -428,32 +619,52 @@ export function HrDashboard() {
         <div className="dashboard-content">
           <div className="section-header-card">
             <div>
-              <h2>HR Escalations Queue</h2>
-              <p>Answer employee questions that the AI assistant could not confidently answer from documents.</p>
+              <h2>🚨 Pending HR Questions Queue</h2>
+              <p>Review and answer employee inquiries that require official human HR confirmation.</p>
             </div>
             <span className="badge badge-amber">{pendingEscalations.length} Pending Actions</span>
           </div>
 
+          {/* Search Bar for Queue */}
+          <div className="table-search-bar">
+            <div className="search-input-wrap">
+              <Search size={16} className="search-icon" />
+              <input
+                type="text"
+                className="search-input"
+                placeholder="🔎 Search questions by keyword, employee, or department..."
+                value={queueSearch}
+                onChange={(e) => setQueueSearch(e.target.value)}
+              />
+              {queueSearch && (
+                <button className="clear-search-btn" onClick={() => setQueueSearch('')}>
+                  <X size={14} />
+                </button>
+              )}
+            </div>
+          </div>
+
           <div className="queue-list">
-            {!escalations.length ? (
+            {!filteredEscalations.length ? (
               <div className="empty-state">
-                <CheckCircle2 size={36} className="text-green" />
-                <p>No escalations in queue.</p>
+                <span className="empty-emoji">🎉</span>
+                <p>No pending HR questions.</p>
+                <small>All employee questions are resolved and up to date.</small>
               </div>
             ) : (
-              escalations.map(esc => (
+              filteredEscalations.map(esc => (
                 <div key={esc.id} className={`queue-card ${esc.status === 'Resolved' ? 'resolved-card' : 'pending-card'}`}>
                   <div className="queue-card-top">
                     <div className="queue-emp-meta">
                       <b>{esc.employeeName}</b>
-                      <span className="badge badge-dept">{esc.department}</span>
+                      <span className="badge badge-dept">{getDeptIcon(esc.department)} {esc.department}</span>
                       <span className="esc-time">
                         <Clock size={12} />
-                        {new Date(esc.timestamp).toLocaleString()}
+                        {getRelativeTime(esc.timestamp)}
                       </span>
                     </div>
                     <span className={`status-badge ${esc.status === 'Resolved' ? 'badge-resolved' : 'badge-pending'}`}>
-                      {esc.status}
+                      {esc.status === 'Resolved' ? '✅ Resolved' : '🔴 Pending HR'}
                     </span>
                   </div>
 
@@ -497,7 +708,7 @@ export function HrDashboard() {
         <div className="dashboard-content">
           <div className="section-header-card">
             <div>
-              <h2>Frequently Asked Questions & Semantic Trends</h2>
+              <h2>📈 Frequently Asked Questions & Semantic Trends</h2>
               <p>Clustered question analytics grouping related inquiries across departments to identify policy gaps.</p>
             </div>
           </div>
@@ -538,7 +749,7 @@ export function HrDashboard() {
                         <div className="dept-chips-wrap">
                           {Object.entries(trend.departments || {}).map(([dept, c]) => (
                             <span key={dept} className="dept-chip-count">
-                              {dept}: <b>{c}</b>
+                              {getDeptIcon(dept)} {dept}: <b>{c}</b>
                             </span>
                           ))}
                         </div>
@@ -560,12 +771,12 @@ export function HrDashboard() {
         </div>
       )}
 
-      {/* TAB 6: DOCUMENTS */}
+      {/* TAB 6: DOCUMENTS (Requirement 19) */}
       {activeTab === 'documents' && (
         <div className="dashboard-content">
           <div className="section-header-card">
             <div>
-              <h2>Company Document Management</h2>
+              <h2>📚 Company Document Management</h2>
               <p>Upload PDF, Markdown, or TXT policy documents. Documents are parsed and indexed into searchable chunks.</p>
             </div>
             <label className="btn btn-primary upload-btn-label">
@@ -584,6 +795,50 @@ export function HrDashboard() {
           {uploadSuccess && <div className="form-alert success">{uploadSuccess}</div>}
           {uploadError && <div className="form-alert error">{uploadError}</div>}
 
+          {/* Drag & Drop Upload Zone (Requirement 19) */}
+          <div className="drag-drop-upload-zone">
+            <input
+              type="file"
+              id="file-drop-input"
+              className="file-drop-hidden"
+              accept=".pdf,.md,.txt"
+              onChange={handleFileUpload}
+              disabled={uploadingDoc}
+            />
+            <label htmlFor="file-drop-input" className="drop-zone-label">
+              <div className="upload-icon-circle">
+                <Upload size={28} />
+              </div>
+              <h3>📤 Drag & Drop your company document</h3>
+              <p>or browse from your local device</p>
+              <div className="supported-formats-pills">
+                <span className="format-pill">PDF</span>
+                <span className="format-pill">Markdown (.md)</span>
+                <span className="format-pill">Plain Text (.txt)</span>
+              </div>
+              <small className="file-size-note">Maximum file size: 8 MB</small>
+            </label>
+          </div>
+
+          {/* Search Bar for Documents */}
+          <div className="table-search-bar">
+            <div className="search-input-wrap">
+              <Search size={16} className="search-icon" />
+              <input
+                type="text"
+                className="search-input"
+                placeholder="🔎 Search documents by title, category, or file format..."
+                value={docSearch}
+                onChange={(e) => setDocSearch(e.target.value)}
+              />
+              {docSearch && (
+                <button className="clear-search-btn" onClick={() => setDocSearch('')}>
+                  <X size={14} />
+                </button>
+              )}
+            </div>
+          </div>
+
           <div className="table-wrapper">
             <table className="enterprise-table">
               <thead>
@@ -598,12 +853,15 @@ export function HrDashboard() {
                 </tr>
               </thead>
               <tbody>
-                {!documents.length ? (
+                {!filteredDocs.length ? (
                   <tr>
-                    <td colSpan={7} className="empty-table-cell">No documents uploaded yet.</td>
+                    <td colSpan={7} className="empty-table-cell">
+                      <span className="empty-search-emoji">📚</span>
+                      <p>No company documents uploaded yet.</p>
+                    </td>
                   </tr>
                 ) : (
-                  documents.map(doc => (
+                  filteredDocs.map(doc => (
                     <tr key={doc.id}>
                       <td><b>{doc.title}</b></td>
                       <td>{doc.category || 'Company Knowledge'}</td>
@@ -639,7 +897,7 @@ export function HrDashboard() {
         <div className="dashboard-content">
           <div className="section-header-card">
             <div>
-              <h2>Approved Knowledge Base</h2>
+              <h2>📖 Approved Knowledge Base</h2>
               <p>Central repository of officially approved HR answers and company policies used for AI answering.</p>
             </div>
             <button className="btn btn-primary" onClick={() => setShowAddKb(!showAddKb)}>
@@ -701,7 +959,10 @@ export function HrDashboard() {
 
           <div className="kb-cards-grid">
             {!knowledgeItems.length ? (
-              <div className="empty-state">No knowledge base entries yet.</div>
+              <div className="empty-state">
+                <span className="empty-emoji">📖</span>
+                <p>No knowledge base entries yet.</p>
+              </div>
             ) : (
               knowledgeItems.map(item => (
                 <div key={item.id} className="kb-entry-card">

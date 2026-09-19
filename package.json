@@ -8,7 +8,7 @@
     "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
     "build": "npm --prefix frontend install && npm --prefix frontend run build",
     "start": "node backend/src/server.js",
-    "test": "node backend/test_api.js && node backend/test_server_http.js",
+    "test": "node backend/test_api.js && node backend/test_server_http.js && node backend/test_employee_count.js",
     "test:unit": "node backend/test_api.js",
     "test:e2e": "node backend/test_server_http.js"
   },
