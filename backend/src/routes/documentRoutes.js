@@ -20,12 +20,33 @@ function clean(value) {
     .trim();
 }
 
+// Closes CWE-73 / CWE-116: Sanitize uploaded filenames to prevent header/log injection or XSS
+function sanitizeFilename(rawName) {
+  if (!rawName || typeof rawName !== 'string') return 'document.txt';
+  const base = path.basename(rawName);
+  const cleaned = base.replace(/[^A-Za-z0-9._ -]/g, '').trim();
+  return cleaned.slice(0, 150) || 'document.txt';
+}
+
 async function extractText(file) {
   const ext = path.extname(file.originalname).toLowerCase();
   if (ext === '.pdf') {
-    const buffer = fs.readFileSync(file.path);
-    const parsed = await pdfParse(buffer);
-    return clean(parsed.text || '');
+    try {
+      const buffer = fs.readFileSync(file.path);
+      const parsed = await pdfParse(buffer);
+      const text = clean(parsed.text || '');
+      if (!text) {
+        const err = new Error('The uploaded PDF contains no extractable text. Scanned documents require OCR.');
+        err.status = 400;
+        throw err;
+      }
+      return text;
+    } catch (err) {
+      // Closes CWE-703: Return 400 for corrupted, encrypted, or unreadable PDFs rather than crashing with 500
+      const error = new Error(err.status === 400 ? err.message : 'Unable to read PDF file. It may be corrupt, password-protected, or unscannable.');
+      error.status = 400;
+      throw error;
+    }
   }
   return clean(fs.readFileSync(file.path, 'utf8'));
 }
@@ -68,6 +89,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       throw new Error('Uploaded document contains no readable text.');
     }
 
+    const safeTitle = sanitizeFilename(req.file.originalname);
     const parts = sectionText(text);
     const documentId = id();
     const chunks = [];
@@ -77,7 +99,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       chunks.push({
         id: id(),
         documentId,
-        documentTitle: req.file.originalname,
+        documentTitle: safeTitle,
         section: group[0][0] || 'General',
         text: group.map(item => item[1]).join('\n')
       });
@@ -85,10 +107,10 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 
     const doc = {
       id: documentId,
-      title: req.file.originalname,
+      title: safeTitle,
       category: req.body.category || 'Company Knowledge',
       uploadDate: new Date().toISOString(),
-      type: path.extname(req.file.originalname).slice(1).toUpperCase(),
+      type: path.extname(req.file.originalname).slice(1).toUpperCase() || 'TXT',
       chunks: chunks.length,
       status: 'Indexed'
     };
@@ -114,9 +136,10 @@ router.post('/upload', upload.single('file'), async (req, res) => {
   } catch (error) {
     console.error('Document upload error:', error);
     if (req.file?.path && fs.existsSync(req.file.path)) {
-      fs.unlinkSync(req.file.path);
+      try { fs.unlinkSync(req.file.path); } catch {}
     }
-    res.status(500).json({
+    const status = (typeof error.status === 'number' && error.status >= 400 && error.status < 500) ? error.status : 400;
+    res.status(status).json({
       error: error.message || 'Failed to parse and index the document.'
     });
   }

@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "type": "module",
   "private": true,
+  "engines": {
+    "node": ">=18.18.0"
+  },
   "scripts": {
     "install:all": "npm install && npm --prefix frontend install && npm --prefix backend install",
     "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
     "build": "npm --prefix frontend install && npm --prefix frontend run build",
     "start": "node backend/src/server.js",
-    "test": "node backend/test_api.js && node backend/test_server_http.js && node backend/test_employee_count.js",
+    "test": "node backend/test_api.js && node backend/test_server_http.js && node backend/test_security.js && node backend/test_employee_count.js",
     "test:unit": "node backend/test_api.js",
-    "test:e2e": "node backend/test_server_http.js"
+    "test:http": "node backend/test_server_http.js",
+    "test:security": "node backend/test_security.js",
+    "test:employee-count": "node backend/test_employee_count.js"
   },
   "dependencies": {
     "@google/genai": "^2.23.0",
@@ -18,7 +23,6 @@
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "multer": "^2.0.2",
-    "openai": "^5.16.0",
     "pdf-parse": "^1.1.1"
   },
   "devDependencies": {

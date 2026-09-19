@@ -6,6 +6,20 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [authState, setAuthState] = useState(() => getStoredAuth());
   const [loading, setLoading] = useState(true);
+  const [sessionMessage, setSessionMessage] = useState(null);
+
+  useEffect(() => {
+    const handleSessionExpired = (event) => {
+      clearStoredAuth();
+      setAuthState({ token: null, user: null });
+      setSessionMessage(event?.detail?.message || 'Your session has expired. Please sign in again.');
+    };
+
+    window.addEventListener('onboardai:session-expired', handleSessionExpired);
+    return () => {
+      window.removeEventListener('onboardai:session-expired', handleSessionExpired);
+    };
+  }, []);
 
   useEffect(() => {
     async function verifySession() {
@@ -35,10 +49,11 @@ export function AuthProvider({ children }) {
     verifySession();
   }, []);
 
-  const login = async ({ role, employeeId, password, department }) => {
+  const login = async ({ role, employeeId, password, department, name }) => {
+    setSessionMessage(null);
     const data = await apiRequest('/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ role, employeeId, password, department })
+      body: JSON.stringify({ role, employeeId, password, department, name })
     });
 
     if (data.token && data.user) {
@@ -68,6 +83,8 @@ export function AuthProvider({ children }) {
         role: authState.user?.role || null,
         isAuthenticated: Boolean(authState.token && authState.user),
         loading,
+        sessionMessage,
+        clearSessionMessage: () => setSessionMessage(null),
         login,
         logout
       }}

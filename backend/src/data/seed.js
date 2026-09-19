@@ -3,6 +3,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { getDB, saveDB } from '../models/db.js';
+import { hashPassword } from '../utils/password.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -163,8 +164,12 @@ export function seedDemoData(force = false) {
     return { status: 'already_seeded', users: db.users.length };
   }
 
-  // 1. Users
-  db.users = structuredClone(DEFAULT_USERS);
+  // 1. Users — Hash passwords with salted scrypt
+  // Closes CWE-256 / CWE-312: Prevents storing plaintext credentials in the database.
+  db.users = DEFAULT_USERS.map(u => ({
+    ...u,
+    password: hashPassword(u.password)
+  }));
 
   // 2. Onboarding Plans
   db.onboardingPlans = [

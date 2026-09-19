@@ -103,16 +103,27 @@ router.get('/notifications', (req, res) => {
 });
 
 // PATCH /api/employee/notifications/:id/read
+// Closes CWE-639: Insecure Direct Object Reference (IDOR) - enforce notification recipient match
 router.patch('/notifications/:id/read', (req, res) => {
   const db = getDB();
   const notification = db.notifications.find(n => n.id === req.params.id);
 
-  if (notification) {
-    notification.read = true;
-    saveDB();
+  if (!notification) {
+    return res.status(404).json({ error: 'Notification not found' });
   }
 
-  res.json({ ok: true });
+  const isRecipient = notification.employeeId === req.user.employeeId ||
+    notification.employeeId === req.user.name ||
+    notification.userId === req.user.id;
+
+  if (!isRecipient && req.user.role !== 'hr') {
+    return res.status(403).json({ error: "Access denied. You cannot modify another employee's notifications." });
+  }
+
+  notification.read = true;
+  saveDB();
+
+  res.json({ ok: true, notification });
 });
 
 // GET /api/employee/escalations

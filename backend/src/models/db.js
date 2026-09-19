@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
+import { migratePlaintextPasswords } from '../utils/password.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -85,6 +86,13 @@ export function loadDB() {
           : [],
       activities: Array.isArray(parsed.activities) ? parsed.activities : []
     };
+
+    // Security: Automatically upgrade legacy plaintext password records to salted scrypt hashes.
+    // Closes CWE-256 / CWE-312: Prevents persistent plaintext credentials on disk.
+    const migrated = migratePlaintextPasswords(dbInstance.users);
+    if (migrated > 0) {
+      saveDB();
+    }
 
     return dbInstance;
   } catch (error) {

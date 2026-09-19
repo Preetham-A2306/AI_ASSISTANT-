@@ -1,1 +1,26 @@
-{"type":"module","scripts":{"dev":"node --watch src/server.js","start":"node src/server.js"},"dependencies":{"@google/genai":"^2.23.0","cors":"^2.8.5","dotenv":"^17.2.2","express":"^5.1.0","multer":"^2.0.2","openai":"^5.16.0","pdf-parse":"^1.1.1"}}
+{
+  "name": "onboard-ai-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node test_api.js && node test_server_http.js && node test_security.js && node test_employee_count.js",
+    "test:unit": "node test_api.js",
+    "test:http": "node test_server_http.js",
+    "test:security": "node test_security.js",
+    "test:employee-count": "node test_employee_count.js"
+  },
+  "dependencies": {
+    "@google/genai": "^2.23.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "pdf-parse": "^1.1.1"
+  }
+}

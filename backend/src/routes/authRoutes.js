@@ -2,9 +2,18 @@ import express from 'express';
 import crypto from 'crypto';
 import { getDB, saveDB } from '../models/db.js';
 import { EMPLOYEE_DEPARTMENTS, HR_DEPARTMENTS, DEFAULT_ROLE_TASKS } from '../config/constants.js';
-import { createToken, authenticate } from '../middleware/auth.js';
+import { createToken, authenticate, revokeToken } from '../middleware/auth.js';
+import { verifyPassword, hashPassword, burnPasswordTiming } from '../utils/password.js';
+import { rateLimit, boundedString } from '../middleware/security.js';
 
 const router = express.Router();
+
+// Closes CWE-307: Rate limit login attempts to 8 requests per 15 minutes per IP
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 8,
+  message: 'Too many login attempts. Please try again in 15 minutes.'
+});
 
 // GET /api/auth/departments
 router.get('/departments', (_req, res) => {
@@ -42,8 +51,12 @@ router.get('/demo-accounts', (_req, res) => {
 });
 
 // POST /api/auth/login
-router.post('/login', (req, res) => {
-  const { role, employeeId, password, department, name } = req.body;
+router.post('/login', loginLimiter, (req, res) => {
+  const role = boundedString(req.body.role, 20);
+  const employeeId = boundedString(req.body.employeeId, 50);
+  const password = boundedString(req.body.password, 200);
+  const department = boundedString(req.body.department, 80);
+  const name = boundedString(req.body.name, 100);
 
   if (!role || !['employee', 'hr'].includes(role)) {
     return res.status(400).json({ error: 'Valid role (New Employee or HR) must be specified.' });
@@ -74,18 +87,19 @@ router.post('/login', (req, res) => {
   let isNewRegistration = false;
 
   if (!user) {
-    if (role === 'hr') {
+    if (role === 'hr' || !name || !name.trim()) {
+      // Security: Burn equivalent scrypt timing on non-existent accounts and return identical error string
+      // Closes CWE-208: Prevents account enumeration via timing discrepancy or distinct error messages
+      burnPasswordTiming(password.trim());
       return res.status(401).json({
-        error: `No HR Administrator account found with ID "${employeeId}".`
+        error: 'Incorrect employee ID or password.'
       });
     }
 
-    // Role is employee: Auto-register new employee upon first login/onboarding
+    // Role is employee with name: Auto-register new employee upon first onboarding
     isNewRegistration = true;
     const formattedId = employeeId.trim().toUpperCase();
-    const displayName = (name && name.trim()) 
-      ? name.trim() 
-      : (formattedId.startsWith('EMP') ? `Employee ${formattedId}` : employeeId.trim());
+    const displayName = name.trim();
     
     const initials = displayName
       .split(' ')
@@ -104,7 +118,7 @@ router.post('/login', (req, res) => {
       jobTitle: `${department.trim()} Specialist`,
       startDate: today,
       createdDate: now,
-      password: password.trim(),
+      password: hashPassword(password.trim()),
       avatar: initials,
       loginCount: 1,
       firstLogin: now,
@@ -133,9 +147,11 @@ router.post('/login', (req, res) => {
     };
     db.onboardingPlans.push(plan);
   } else {
-    // Existing user: check credentials
-    if (user.password !== password.trim()) {
-      return res.status(401).json({ error: 'Incorrect password.' });
+    // Existing user: check credentials using timing-safe scrypt verification
+    // Closes CWE-208 / CWE-385: Prevents side-channel timing attacks
+    const isValid = verifyPassword(password.trim(), user.password);
+    if (!isValid) {
+      return res.status(401).json({ error: 'Incorrect employee ID or password.' });
     }
 
     // Validate department compatibility
@@ -202,8 +218,10 @@ router.get('/me', authenticate, (req, res) => {
 });
 
 // POST /api/auth/logout
-router.post('/logout', (_req, res) => {
-  res.json({ ok: true });
+// Closes CWE-613: Authenticate and genuinely revoke presented session token
+router.post('/logout', authenticate, (req, res) => {
+  revokeToken(req.token);
+  res.json({ ok: true, message: 'Successfully logged out and session revoked.' });
 });
 
 export default router;

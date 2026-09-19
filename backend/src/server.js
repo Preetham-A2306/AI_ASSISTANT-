@@ -1,7 +1,11 @@
+/**
+ * Main Application Server — OnboardAI
+ * Production hardened with Node built-ins (zero runtime dependencies).
+ */
 import 'dotenv/config';
 import express from 'express';
-import cors from 'cors';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 
 import { loadDB, getDB, saveDB } from './models/db.js';
@@ -15,6 +19,7 @@ import chatRoutes from './routes/chatRoutes.js';
 import escalationRoutes from './routes/escalationRoutes.js';
 import knowledgeRoutes from './routes/knowledgeRoutes.js';
 import { authenticate, requireHR, requireSelfOrHR } from './middleware/auth.js';
+import { securityHeaders, rateLimit, corsPolicy } from './middleware/security.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,21 +27,26 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = Number(process.env.PORT || 5000);
 
-// Basic middleware
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (e.g. mobile apps, same-origin, curl, serverless)
-      if (!origin) return callback(null, true);
-      // In development or production on vercel or localhost, allow all matching
-      return callback(null, true);
-    },
-    credentials: true
-  })
-);
+// Closes CWE-200: Prevent Express technology fingerprinting via X-Powered-By
+app.disable('x-powered-by');
 
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+// Closes CWE-693 / CWE-1021 / CWE-16: Enforce strict security headers (CSP, nosniff, DENY, etc.)
+app.use(securityHeaders);
+
+// Closes CWE-942: Strict CORS allowlist policy for trusted origins
+app.use(corsPolicy);
+
+// Closes CWE-770: Global DoS protection with 240 requests/minute per IP
+const globalLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 240,
+  message: 'Too many requests from this address. Please slow down.'
+});
+app.use(globalLimiter);
+
+// Closes CWE-400: Limit payload size to 1MB to prevent memory exhaustion attacks
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
 // Serverless route prefix normalization:
 // If request arrives as /auth/login instead of /api/auth/login, prepend /api
@@ -79,15 +89,25 @@ app.get('/api/health', (_req, res) => {
 // =====================================================
 // BACKWARD COMPATIBLE ONBOARDING ENDPOINTS
 // =====================================================
-app.post('/api/onboarding/generate', (req, res) => {
+// Closes CWE-306 / CWE-284: Require authentication and restrict plan generation to self or HR
+app.post('/api/onboarding/generate', authenticate, (req, res) => {
   const db = getDB();
-  const { name = 'Alex', startDate = new Date().toISOString().slice(0, 10), role = 'Engineer', department = 'Engineering' } = req.body;
+  const requestedEmployeeId = req.body.employeeId || req.body.name || req.user.employeeId;
 
-  let existing = db.onboardingPlans.find(p => p.name === name || p.employeeId === name);
+  if (req.user.role !== 'hr' && requestedEmployeeId !== req.user.employeeId && requestedEmployeeId !== req.user.name) {
+    return res.status(403).json({ error: 'Access denied. You can only generate onboarding plans for yourself.' });
+  }
+
+  const name = req.body.name || req.user.name;
+  const startDate = req.body.startDate || new Date().toISOString().slice(0, 10);
+  const role = req.body.role || req.user.jobTitle || 'Engineer';
+  const department = req.body.department || req.user.department || 'Engineering';
+
+  let existing = db.onboardingPlans.find(p => p.name === name || p.employeeId === requestedEmployeeId);
   if (!existing) {
     existing = {
       id: crypto.randomUUID(),
-      employeeId: name,
+      employeeId: requestedEmployeeId,
       name,
       role,
       department,
@@ -116,11 +136,17 @@ app.get('/api/onboarding/:employeeId', authenticate, requireSelfOrHR('employeeId
   res.json({ plan: hire || null });
 });
 
+// Closes CWE-639: IDOR vulnerability — check onboarding plan ownership before allowing task modifications
 app.patch('/api/onboarding/tasks/:taskId', authenticate, (req, res) => {
   const db = getDB();
   for (const plan of db.onboardingPlans) {
     const task = plan.tasks.find(t => t.id === req.params.taskId);
     if (task) {
+      if (req.user.role !== 'hr' && plan.employeeId !== req.user.employeeId && plan.name !== req.user.name) {
+        return res.status(403).json({
+          error: "Access denied. You cannot modify another employee's onboarding tasks."
+        });
+      }
       task.done = Boolean(req.body.done);
       saveDB();
       return res.json({ plan });
@@ -172,24 +198,46 @@ app.get('/api/analytics/questions', authenticate, requireHR, (_req, res) => {
 // =====================================================
 // DEMO SEED / RESET ENDPOINT
 // =====================================================
-app.post('/api/demo/seed', (_req, res) => {
+// Closes CWE-284: Require HR authentication and honor ALLOW_DEMO_RESET to prevent unauthenticated data wipes
+app.post('/api/demo/seed', authenticate, requireHR, (_req, res) => {
+  if (process.env.ALLOW_DEMO_RESET === 'false') {
+    return res.status(403).json({ error: 'Demo reset is disabled in this environment.', code: 'seed_disabled' });
+  }
   try {
     const result = seedDemoData(true);
     res.json({ ok: true, result });
   } catch (error) {
     console.error('Seed reset error:', error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: 'Failed to reset demo database.' });
   }
+});
+
+// Closes CWE-200: Return clean JSON 404 for unknown API endpoints instead of Express default HTML
+app.use((req, res) => {
+  if (req.originalUrl && req.originalUrl.startsWith('/api')) {
+    return res.status(404).json({ error: 'API endpoint not found', code: 'not_found' });
+  }
+  res.status(404).json({ error: 'Resource not found', code: 'not_found' });
 });
 
 // =====================================================
 // ERROR HANDLING MIDDLEWARE
 // =====================================================
+// Closes CWE-209: Prevent stack traces, system paths, and dependency internals from leaking in 5xx errors
 app.use((err, _req, res, _next) => {
-  console.error('[Server Error]', err);
-  const status = err.status || 500;
-  res.status(status).json({
-    error: err.message || 'An unexpected server error occurred.'
+  if (err.code === 'LIMIT_FILE_SIZE' || err.type === 'entity.too.large') {
+    return res.status(413).json({ error: 'Payload too large. Max limit is 1MB.', code: 'payload_too_large' });
+  }
+
+  const status = typeof err.status === 'number' ? err.status : 500;
+  if (status >= 500) {
+    console.error('[Internal Server Error]', err);
+    return res.status(500).json({ error: 'An internal server error occurred.', code: 'internal_error' });
+  }
+
+  return res.status(status).json({
+    error: err.message || 'Request failed.',
+    code: err.code || 'request_error'
   });
 });
 

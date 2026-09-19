@@ -5,6 +5,7 @@ import { authenticate, requireSelfOrHR } from '../middleware/auth.js';
 import { retrieveKnowledge, isSensitive } from '../services/retrievalService.js';
 import { generateGroundedAnswer } from '../services/aiService.js';
 import { createNotification } from '../services/notificationService.js';
+import { rateLimit, boundedString } from '../middleware/security.js';
 
 const router = express.Router();
 
@@ -12,10 +13,18 @@ function id() {
   return crypto.randomUUID();
 }
 
-// POST /api/chat - Strictly authenticated to prevent cross-employee identity spoofing
-router.post('/', authenticate, async (req, res) => {
+// Closes CWE-770: Rate limit chat questions to 20 per minute per user to prevent AI API cost exhaustion
+const chatLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 20,
+  message: 'Too many chat requests. Please wait a moment before sending another message.',
+  keyGenerator: (req) => req.user?.employeeId || req.ip || 'anonymous'
+});
+
+// POST /api/chat - Strictly authenticated and rate-limited
+router.post('/', authenticate, chatLimiter, async (req, res) => {
   try {
-    const rawQuestion = (req.body.question || '').trim();
+    const rawQuestion = boundedString(req.body.question, 2000);
     if (!rawQuestion) {
       return res.status(400).json({ error: 'Question is required.' });
     }
@@ -172,12 +181,13 @@ router.post('/', authenticate, async (req, res) => {
 });
 
 // GET /api/chat/history/:employeeId - Protected with requireSelfOrHR
+// Closes CWE-200 / CWE-284: Strictly filter on target employee's messages without mixing caller history
 router.get('/history/:employeeId', authenticate, requireSelfOrHR('employeeId'), (req, res) => {
   const db = getDB();
   const targetId = req.params.employeeId;
 
   const messages = (db.chatMessages || []).filter(
-    m => m.employeeId === targetId || m.employeeId === req.user.name
+    m => m.employeeId === targetId
   );
 
   res.json({ messages });

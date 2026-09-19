@@ -56,6 +56,15 @@ export async function apiRequest(path, options = {}) {
   }
 
   if (!response.ok) {
+    if (response.status === 401 && !path.includes('/auth/login')) {
+      clearStoredAuth();
+      if (typeof window !== 'undefined') {
+        const message = data.error || 'Your session has expired. Please log in again.';
+        window.dispatchEvent(new CustomEvent('onboardai:session-expired', {
+          detail: { message }
+        }));
+      }
+    }
     const error = new Error(data.error || `Request failed with status ${response.status}`);
     error.status = response.status;
     error.data = data;

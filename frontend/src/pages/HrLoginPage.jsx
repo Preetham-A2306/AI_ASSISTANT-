@@ -4,7 +4,7 @@ import { useAuth } from '../services/authContext.jsx';
 import { apiRequest } from '../services/api.js';
 
 export function HrLoginPage({ onBack }) {
-  const { login } = useAuth();
+  const { login, sessionMessage } = useAuth();
 
   const [employeeId, setEmployeeId] = useState('HR-001');
   const [password, setPassword] = useState('password123');
@@ -86,15 +86,22 @@ export function HrLoginPage({ onBack }) {
 
         <div className="login-header">
           <div className="login-badge hr-badge">
-            <span className="login-emoji">👋</span>
+            <span className="login-emoji" aria-hidden="true">👋</span>
           </div>
           <h2>Welcome HR!</h2>
           <p className="login-subtext">Manage your people, knowledge and onboarding experience.</p>
         </div>
 
+        {sessionMessage && (
+          <div className="form-alert warning" role="alert" aria-live="polite">
+            <AlertCircle size={16} aria-hidden="true" />
+            <span>{sessionMessage}</span>
+          </div>
+        )}
+
         {error && (
-          <div className="form-alert error">
-            <AlertCircle size={16} />
+          <div className="form-alert error" role="alert" aria-live="assertive">
+            <AlertCircle size={16} aria-hidden="true" />
             <span>{error}</span>
           </div>
         )}

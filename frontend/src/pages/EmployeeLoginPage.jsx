@@ -4,7 +4,7 @@ import { useAuth } from '../services/authContext.jsx';
 import { apiRequest } from '../services/api.js';
 
 export function EmployeeLoginPage({ onBack }) {
-  const { login } = useAuth();
+  const { login, sessionMessage } = useAuth();
 
   const [employeeId, setEmployeeId] = useState('EMP-001');
   const [name, setName] = useState('');
@@ -94,15 +94,22 @@ export function EmployeeLoginPage({ onBack }) {
 
         <div className="login-header">
           <div className="login-badge emp-badge">
-            <span className="login-emoji">👋</span>
+            <span className="login-emoji" aria-hidden="true">👋</span>
           </div>
           <h2>Welcome Back!</h2>
           <p className="login-subtext">Let's continue your onboarding journey.</p>
         </div>
 
+        {sessionMessage && (
+          <div className="form-alert warning" role="alert" aria-live="polite">
+            <AlertCircle size={16} aria-hidden="true" />
+            <span>{sessionMessage}</span>
+          </div>
+        )}
+
         {error && (
-          <div className="form-alert error">
-            <AlertCircle size={16} />
+          <div className="form-alert error" role="alert" aria-live="assertive">
+            <AlertCircle size={16} aria-hidden="true" />
             <span>{error}</span>
           </div>
         )}

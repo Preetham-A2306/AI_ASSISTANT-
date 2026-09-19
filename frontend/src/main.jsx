@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 
 import { AuthProvider, useAuth } from './services/authContext.jsx';
+import { ErrorBoundary } from './components/ErrorBoundary.jsx';
 import { RoleSelectPage } from './pages/RoleSelectPage.jsx';
 import { EmployeeLoginPage } from './pages/EmployeeLoginPage.jsx';
 import { HrLoginPage } from './pages/HrLoginPage.jsx';
@@ -18,8 +18,8 @@ function AppContent() {
 
   if (loading) {
     return (
-      <div className="app-loading-screen">
-        <div className="spinner" />
+      <div className="app-loading-screen" role="status" aria-live="polite">
+        <div className="spinner" aria-hidden="true" />
         <p>Loading OnboardAI...</p>
       </div>
     );
@@ -29,15 +29,16 @@ function AppContent() {
   if (isAuthenticated) {
     return (
       <div className="app-layout">
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         <Navbar />
-        <main className="app-main">
+        <main id="main-content" tabIndex={-1} className="app-main">
           {role === 'hr' ? <HrDashboard /> : <EmployeeDashboard />}
         </main>
       </div>
     );
   }
 
-  // Unauthenticated State: Requirement 2 ("Who are you?" first screen)
+  // Unauthenticated State: Role selection screen
   if (!selectedRole) {
     return <RoleSelectPage onSelectRole={setSelectedRole} />;
   }
@@ -51,7 +52,7 @@ function AppContent() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <ErrorBoundary>
       <AuthProvider>
         <div className="ambient-bg" aria-hidden="true">
           <div className="ambient-orb ambient-orb-1" />
@@ -61,7 +62,7 @@ export default function App() {
         </div>
         <AppContent />
       </AuthProvider>
-    </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 
