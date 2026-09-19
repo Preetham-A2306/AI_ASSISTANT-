@@ -203,12 +203,12 @@ Verifies:
 - Question clustering across departments
 - "Active today" vs "Not active today" calculations
 
-### 2. HTTP End-to-End API Test Suite
+### 2. HTTP End-to-End API & Security Test Suite
 ```bash
 cd backend
 node test_server_http.js
 ```
-Verifies live Express HTTP endpoints:
+Verifies 13 live Express HTTP endpoints and security constraints:
 - Health check
 - Department mismatch rejection (400 Bad Request)
 - Employee login & token issuance
@@ -218,6 +218,9 @@ Verifies live Express HTTP endpoints:
 - Automatic zero-click HR escalation
 - HR resolution & Knowledge Base saving
 - Future employee retrieval from newly approved knowledge
+- Security Audit: No passwords returned in `/api/auth/demo-accounts`
+- Security Audit: Employee blocked from HR `/api/documents` with 403 Forbidden
+- Privacy Audit: Employee blocked from accessing another employee's private chat history (403 Forbidden)
 
 ---
 

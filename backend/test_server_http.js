@@ -148,7 +148,81 @@ async function runHttpTests() {
       }
       console.log('✓ HTTP 10: Future employee question successfully answered from newly approved HR Knowledge Base!');
 
-      console.log('\n--- ALL HTTP API TESTS PASSED SUCCESSFULLY ---');
+      // 11. Security Audit: No passwords returned in demo accounts
+      const demoRes = await fetch(`${BASE}/auth/demo-accounts`);
+      const demoData = await demoRes.json();
+      const hasPassword = [...(demoData.employees || []), ...(demoData.hr || [])].some(acc => 'password' in acc);
+      if (hasPassword) {
+        throw new Error('Security violation: /api/auth/demo-accounts leaked password fields!');
+      }
+      console.log('✓ HTTP 11: Security check passed — No passwords exposed in /api/auth/demo-accounts');
+
+      // 12. Security Audit: Employee blocked from HR document endpoints
+      const docForbiddenRes = await fetch(`${BASE}/documents`, {
+        headers: { Authorization: `Bearer ${empToken}` }
+      });
+      if (docForbiddenRes.status !== 403) {
+        throw new Error(`Expected 403 for employee accessing /api/documents, got ${docForbiddenRes.status}`);
+      }
+      console.log('✓ HTTP 12: Backend blocked employee from HR /api/documents with 403 Forbidden');
+
+      // 13. Privacy Audit: Employee blocked from accessing another employee's chat history
+      const crossHistoryRes = await fetch(`${BASE}/chat/history/EMP-002`, {
+        headers: { Authorization: `Bearer ${empToken}` } // EMP-001 trying to access EMP-002
+      });
+      if (crossHistoryRes.status !== 403) {
+        throw new Error(`Expected 403 for cross-employee chat history access, got ${crossHistoryRes.status}`);
+      }
+      console.log('✓ HTTP 13: Privacy check passed — Employee blocked from accessing another employee\'s private chat history (403 Forbidden)');
+
+      // 14. Do Not Save Privacy Workflow (TEST G)
+      const escPrivateRes = await fetch(`${BASE}/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${empToken}` },
+        body: JSON.stringify({ question: 'Can I work from a submarine during my probation period?' })
+      });
+      const escPrivateData = await escPrivateRes.json();
+      const privateEscId = escPrivateData.escalationId;
+
+      const resolvePrivateRes = await fetch(`${BASE}/escalations/${privateEscId}/answer`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${hrToken}` },
+        body: JSON.stringify({
+          answer: 'Working from submarines is strictly forbidden for security reasons.',
+          saveToKB: false
+        })
+      });
+      const resolvePrivateData = await resolvePrivateRes.json();
+      if (resolvePrivateData.savedToKB || resolvePrivateData.knowledgeItem !== null) {
+        throw new Error('Expected Do Not Save to prevent global knowledge base addition');
+      }
+      console.log('✓ HTTP 14: HR answered with "Do Not Save" — Not added to global knowledge base');
+
+      // 15. Chat History Persistence (TEST K)
+      const historyRes = await fetch(`${BASE}/chat/history/EMP-001`, {
+        headers: { Authorization: `Bearer ${empToken}` }
+      });
+      const historyData = await historyRes.json();
+      if (!Array.isArray(historyData.messages) || historyData.messages.length === 0) {
+        throw new Error('Expected persisted chat messages for employee');
+      }
+      console.log(`✓ HTTP 15: Chat history verified — Persisted ${historyData.messages.length} messages for EMP-001`);
+
+      // 16. Dynamic Department Analytics (TEST I & H)
+      const deptRes = await fetch(`${BASE}/hr/departments`, {
+        headers: { Authorization: `Bearer ${hrToken}` }
+      });
+      const deptData = await deptRes.json();
+      if (!deptData.departments || deptData.departments.length === 0) {
+        throw new Error('Department analytics empty');
+      }
+      const engDept = deptData.departments.find(d => d.department === 'Engineering');
+      if (!engDept || engDept.total === 0) {
+        throw new Error('Engineering department count missing');
+      }
+      console.log(`✓ HTTP 16: Department analytics verified — Engineering: ${engDept.total} total, ${engDept.activeToday} active today`);
+
+      console.log('\n--- ALL HTTP API & SECURITY TESTS PASSED SUCCESSFULLY (16/16) ---');
       server.close();
       process.exit(0);
     } catch (err) {

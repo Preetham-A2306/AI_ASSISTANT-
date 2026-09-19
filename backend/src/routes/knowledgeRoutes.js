@@ -9,8 +9,8 @@ function id() {
   return crypto.randomUUID();
 }
 
-// GET /api/knowledge - Retrieve approved knowledge base items
-router.get('/', (_req, res) => {
+// GET /api/knowledge - Retrieve approved knowledge base items (authenticated)
+router.get('/', authenticate, (_req, res) => {
   const db = getDB();
   res.json({
     items: (db.knowledgeBase || []).filter(item => item.status === 'Approved')

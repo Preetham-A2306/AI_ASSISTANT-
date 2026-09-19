@@ -326,6 +326,54 @@ export function EmployeeDashboard() {
               </div>
             </div>
           </div>
+
+          {/* Recent Inquiries & HR Responses Panel */}
+          <div className="panel-card" style={{ marginTop: '1.5rem' }}>
+            <div className="panel-header">
+              <div>
+                <h3>Recent Questions & HR Responses</h3>
+                <p className="panel-subtitle">Track the status of your policy inquiries and official HR answers</p>
+              </div>
+              <button className="btn-link" onClick={() => setActiveTab('escalations')}>
+                All HR Questions ({escalations.length}) →
+              </button>
+            </div>
+
+            <div className="compact-escalation-list">
+              {!escalations.length ? (
+                <div className="empty-panel" style={{ padding: '1.5rem', textAlign: 'center', color: '#64748b' }}>
+                  <HelpCircle size={24} style={{ margin: '0 auto 0.5rem', color: '#94a3b8' }} />
+                  <p style={{ margin: 0, fontSize: '0.9rem' }}>No questions escalated yet. Ask the AI Assistant above anytime you have a question!</p>
+                </div>
+              ) : (
+                escalations.slice(0, 3).map(esc => (
+                  <div key={esc.id} className="compact-esc-item" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.85rem 1rem', borderBottom: '1px solid #f1f5f9' }}>
+                    <div className="compact-esc-info" style={{ flex: 1, marginRight: '1rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                        <span className={`status-badge ${esc.status === 'Resolved' ? 'badge-resolved' : 'badge-pending'}`} style={{ fontSize: '0.75rem', padding: '0.15rem 0.5rem' }}>
+                          {esc.status === 'Resolved' ? '✓ HR Answered' : '⏳ Pending HR'}
+                        </span>
+                        <small style={{ color: '#94a3b8' }}>{new Date(esc.timestamp).toLocaleDateString()}</small>
+                      </div>
+                      <p style={{ margin: '0 0 0.25rem', fontWeight: '500', color: '#1e293b', fontSize: '0.925rem' }}>"{esc.question}"</p>
+                      {esc.status === 'Resolved' && esc.hrAnswer && (
+                        <p style={{ margin: 0, fontSize: '0.85rem', color: '#059669', fontStyle: 'italic' }}>
+                          <b>HR:</b> {esc.hrAnswer.slice(0, 100)}{esc.hrAnswer.length > 100 ? '...' : ''}
+                        </p>
+                      )}
+                    </div>
+                    <button
+                      className="btn btn-sm btn-secondary"
+                      onClick={() => setActiveTab('escalations')}
+                      style={{ whiteSpace: 'nowrap' }}
+                    >
+                      View Details
+                    </button>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
         </div>
       )}
 

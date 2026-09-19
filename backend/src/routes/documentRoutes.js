@@ -47,6 +47,9 @@ function sectionText(text) {
   return parts;
 }
 
+// Enforce strict HR authorization on all document management routes
+router.use(authenticate, requireHR);
+
 // GET /api/documents
 router.get('/', (_req, res) => {
   const db = getDB();

@@ -12,8 +12,8 @@ function id() {
   return crypto.randomUUID();
 }
 
-// POST /api/chat
-router.post('/', async (req, res) => {
+// POST /api/chat - Strictly authenticated to prevent cross-employee identity spoofing
+router.post('/', authenticate, async (req, res) => {
   try {
     const rawQuestion = (req.body.question || '').trim();
     if (!rawQuestion) {
@@ -22,26 +22,10 @@ router.post('/', async (req, res) => {
 
     const db = getDB();
 
-    // Determine employee context
-    let employeeId = req.body.employeeId || 'EMP-001';
-    let employeeName = req.body.employee || 'Alex Chen';
-    let department = req.body.department || 'Engineering';
-
-    // If request has auth token, override with authenticated user details
-    const authHeader = req.headers.authorization;
-    if (authHeader && authHeader.startsWith('Bearer ')) {
-      try {
-        const { verifyToken } = await import('../middleware/auth.js');
-        const payload = verifyToken(authHeader.split(' ')[1]);
-        if (payload) {
-          employeeId = payload.employeeId;
-          employeeName = payload.name;
-          department = payload.department;
-        }
-      } catch {
-        // Fall back to request body values
-      }
-    }
+    // Authenticated user context
+    const employeeId = req.user.employeeId;
+    const employeeName = req.user.name;
+    const department = req.user.department;
 
     const sensitive = isSensitive(rawQuestion);
     let results = [];

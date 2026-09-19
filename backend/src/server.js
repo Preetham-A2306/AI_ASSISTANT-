@@ -14,6 +14,7 @@ import documentRoutes from './routes/documentRoutes.js';
 import chatRoutes from './routes/chatRoutes.js';
 import escalationRoutes from './routes/escalationRoutes.js';
 import knowledgeRoutes from './routes/knowledgeRoutes.js';
+import { authenticate, requireHR, requireSelfOrHR } from './middleware/auth.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -96,7 +97,7 @@ app.post('/api/onboarding/generate', (req, res) => {
   res.json({ plan: existing });
 });
 
-app.get('/api/onboarding/:employeeId', (req, res) => {
+app.get('/api/onboarding/:employeeId', authenticate, requireSelfOrHR('employeeId'), (req, res) => {
   const db = getDB();
   const hire = db.onboardingPlans.find(
     p => p.employeeId === req.params.employeeId || p.name === req.params.employeeId
@@ -104,7 +105,7 @@ app.get('/api/onboarding/:employeeId', (req, res) => {
   res.json({ plan: hire || null });
 });
 
-app.patch('/api/onboarding/tasks/:taskId', (req, res) => {
+app.patch('/api/onboarding/tasks/:taskId', authenticate, (req, res) => {
   const db = getDB();
   for (const plan of db.onboardingPlans) {
     const task = plan.tasks.find(t => t.id === req.params.taskId);
@@ -120,7 +121,7 @@ app.patch('/api/onboarding/tasks/:taskId', (req, res) => {
 // =====================================================
 // BACKWARD COMPATIBLE DASHBOARD & ANALYTICS
 // =====================================================
-app.get('/api/dashboard/stats', (_req, res) => {
+app.get('/api/dashboard/stats', authenticate, requireHR, (_req, res) => {
   const db = getDB();
   res.json({
     stats: {
@@ -133,7 +134,7 @@ app.get('/api/dashboard/stats', (_req, res) => {
   });
 });
 
-app.get('/api/analytics/questions', (_req, res) => {
+app.get('/api/analytics/questions', authenticate, requireHR, (_req, res) => {
   const db = getDB();
   const map = {};
 

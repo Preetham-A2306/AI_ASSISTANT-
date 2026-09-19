@@ -14,7 +14,7 @@ router.get('/departments', (_req, res) => {
   });
 });
 
-// GET /api/auth/demo-accounts - For hackathon testing and demo fill buttons
+// GET /api/auth/demo-accounts - For hackathon testing and demo fill buttons (no passwords returned)
 router.get('/demo-accounts', (_req, res) => {
   const db = getDB();
   const demoEmployees = db.users
@@ -23,8 +23,7 @@ router.get('/demo-accounts', (_req, res) => {
       employeeId: u.employeeId,
       name: u.name,
       department: u.department,
-      jobTitle: u.jobTitle,
-      password: 'password123'
+      jobTitle: u.jobTitle
     }));
 
   const demoHR = db.users
@@ -33,8 +32,7 @@ router.get('/demo-accounts', (_req, res) => {
       employeeId: u.employeeId,
       name: u.name,
       department: u.department,
-      jobTitle: u.jobTitle,
-      password: 'password123'
+      jobTitle: u.jobTitle
     }));
 
   res.json({

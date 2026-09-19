@@ -91,27 +91,97 @@
   ],
   "loginActivities": [
     {
-      "id": "878b2449-9239-405d-90e9-1c0f5b6cae50",
-      "userId": "usr-hr-001",
-      "employeeId": "HR-001",
-      "name": "Rachel Green",
-      "role": "hr",
-      "department": "Human Resources",
-      "timestamp": "2026-09-19T09:53:22.163Z",
-      "date": "2026-09-19"
-    },
-    {
-      "id": "6d0d781f-b4fa-488f-817b-7b2397dd3da7",
+      "id": "2e0e35c9-5a76-47bc-a1d6-f3486387f06c",
       "userId": "usr-emp-001",
       "employeeId": "EMP-001",
       "name": "Alex Chen",
       "role": "employee",
       "department": "Engineering",
-      "timestamp": "2026-09-19T09:53:22.130Z",
+      "timestamp": "2026-09-19T10:20:35.204Z",
       "date": "2026-09-19"
     },
     {
-      "id": "43441630-b954-47ac-a8d2-a529d5b4f4c8",
+      "id": "a656e84b-afaa-41f6-a95d-ad2c1a0959e5",
+      "userId": "usr-hr-001",
+      "employeeId": "HR-001",
+      "name": "Rachel Green",
+      "role": "hr",
+      "department": "Human Resources",
+      "timestamp": "2026-09-19T10:19:09.862Z",
+      "date": "2026-09-19"
+    },
+    {
+      "id": "f9c55cbf-b24b-444b-88ad-b51172dcf2b3",
+      "userId": "usr-emp-001",
+      "employeeId": "EMP-001",
+      "name": "Alex Chen",
+      "role": "employee",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T10:16:53.997Z",
+      "date": "2026-09-19"
+    },
+    {
+      "id": "fa3a6247-033d-46cc-9490-5d881de3cccb",
+      "userId": "usr-hr-001",
+      "employeeId": "HR-001",
+      "name": "Rachel Green",
+      "role": "hr",
+      "department": "Human Resources",
+      "timestamp": "2026-09-19T09:44:18.862Z",
+      "date": "2026-09-19"
+    },
+    {
+      "id": "2bc4cd87-fa68-4180-b055-39be6a20c935",
+      "userId": "usr-emp-001",
+      "employeeId": "EMP-001",
+      "name": "Alex Chen",
+      "role": "employee",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T09:43:20.061Z",
+      "date": "2026-09-19"
+    },
+    {
+      "id": "dc20f8d6-72f1-4add-824d-826570c1566f",
+      "userId": "usr-hr-001",
+      "employeeId": "HR-001",
+      "name": "Rachel Green",
+      "role": "hr",
+      "department": "Human Resources",
+      "timestamp": "2026-09-19T09:32:43.515Z",
+      "date": "2026-09-19"
+    },
+    {
+      "id": "64e3739a-b86d-47d8-b2ee-0da53566c3e3",
+      "userId": "usr-emp-001",
+      "employeeId": "EMP-001",
+      "name": "Alex Chen",
+      "role": "employee",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T09:32:43.493Z",
+      "date": "2026-09-19"
+    },
+    {
+      "id": "76a8b8e4-9e74-4357-8179-000f9b290416",
+      "userId": "usr-hr-001",
+      "employeeId": "HR-001",
+      "name": "Rachel Green",
+      "role": "hr",
+      "department": "Human Resources",
+      "timestamp": "2026-09-19T09:32:23.977Z",
+      "date": "2026-09-19"
+    },
+    {
+      "id": "87cc29ec-691a-47df-8d0c-83d915aaea14",
+      "userId": "usr-emp-001",
+      "employeeId": "EMP-001",
+      "name": "Alex Chen",
+      "role": "employee",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T09:32:23.953Z",
+      "date": "2026-09-19"
+    },
+    {
+      "id": "9c8796e5-be65-4b91-a8be-d17dd9c77651",
       "userId": "usr-emp-001",
       "employeeId": "EMP-001",
       "name": "Alex Chen",
@@ -121,7 +191,7 @@
       "date": "2026-09-19"
     },
     {
-      "id": "b3111a30-9d29-4784-bcfa-8e66063c410e",
+      "id": "0daaf095-e5f1-41f3-9a43-0bb644e1c415",
       "userId": "usr-emp-002",
       "employeeId": "EMP-002",
       "name": "Maya Patel",
@@ -131,7 +201,7 @@
       "date": "2026-09-19"
     },
     {
-      "id": "ea99f88c-548e-426d-9801-a6aa1fc2d67c",
+      "id": "80a23e9a-6efe-430d-8240-8eec921703d4",
       "userId": "usr-emp-003",
       "employeeId": "EMP-003",
       "name": "David Kim",
@@ -141,7 +211,7 @@
       "date": "2026-09-18"
     },
     {
-      "id": "f0d3b402-cb9f-407d-93ce-aa45ad5f3d3f",
+      "id": "67c35ef3-dd39-4702-a10b-62fb3d84ae1a",
       "userId": "usr-emp-004",
       "employeeId": "EMP-004",
       "name": "Sarah Jones",
@@ -153,46 +223,55 @@
   ],
   "documents": [
     {
-      "id": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+      "id": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "title": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "category": "Company Policies",
+      "uploadDate": "2026-09-19T10:19:20.654Z",
+      "type": "PDF",
+      "chunks": 71,
+      "status": "Indexed"
+    },
+    {
+      "id": "f0e73b3e-157d-4b93-ba4e-9b4dc4127712",
       "title": "Engineering_Code_Review_Process.md",
       "category": "Company Policies",
-      "uploadDate": "2026-09-19T09:53:20.087Z",
+      "uploadDate": "2026-09-19T09:31:57.542Z",
       "type": "MD",
       "chunks": 3,
       "status": "Indexed"
     },
     {
-      "id": "928c67a4-0562-4f93-8a5f-03f5dc51609d",
+      "id": "4079db4f-2b43-4320-aaf2-8558e1049102",
       "title": "Expense_Reimbursement_Policy.md",
       "category": "Company Policies",
-      "uploadDate": "2026-09-19T09:53:20.089Z",
+      "uploadDate": "2026-09-19T09:31:57.542Z",
       "type": "MD",
       "chunks": 3,
       "status": "Indexed"
     },
     {
-      "id": "64b548b4-8f3a-4890-bbc0-a62234321d51",
+      "id": "d1e56487-a453-4e3f-8956-c4b79810ab95",
       "title": "Onboarding_Guide.md",
       "category": "Company Policies",
-      "uploadDate": "2026-09-19T09:53:20.091Z",
+      "uploadDate": "2026-09-19T09:31:57.542Z",
       "type": "MD",
       "chunks": 3,
       "status": "Indexed"
     },
     {
-      "id": "8b8d51d8-8aaf-4a7d-acf4-5b2173a4a533",
+      "id": "bc82bbda-137c-44f4-b692-931bd1e3f9d7",
       "title": "Team_Structure.md",
       "category": "Company Policies",
-      "uploadDate": "2026-09-19T09:53:20.094Z",
+      "uploadDate": "2026-09-19T09:31:57.542Z",
       "type": "MD",
       "chunks": 3,
       "status": "Indexed"
     },
     {
-      "id": "5452e4e4-eafb-4b81-aefd-5fbdedbe8dcc",
+      "id": "b73db14d-bebd-4ac8-8901-67120e34cef3",
       "title": "Work_From_Home_Policy.md",
       "category": "Company Policies",
-      "uploadDate": "2026-09-19T09:53:20.095Z",
+      "uploadDate": "2026-09-19T09:31:57.542Z",
       "type": "MD",
       "chunks": 2,
       "status": "Indexed"
@@ -200,107 +279,604 @@
   ],
   "chunks": [
     {
-      "id": "c31a1712-b1a1-4a12-9117-d0ade5f54b59",
-      "documentId": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+      "id": "ea47ae2f-85b8-47a7-bdc3-29ca7d8b456f",
+      "documentId": "f0e73b3e-157d-4b93-ba4e-9b4dc4127712",
       "documentTitle": "Engineering_Code_Review_Process.md",
       "section": "Branch Naming",
       "text": "# Branch Naming\nEngineering branches use the format `type/short-description`, for example `feature/profile-search` or `fix/login-timeout`.\n# Pull Request Submission"
     },
     {
-      "id": "609f3a7d-b83e-4b67-ab63-da620d3372ea",
-      "documentId": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+      "id": "1eb09524-3c75-4c26-a3d5-a1dcfba223b8",
+      "documentId": "f0e73b3e-157d-4b93-ba4e-9b4dc4127712",
       "documentTitle": "Engineering_Code_Review_Process.md",
       "section": "Pull Request Submission",
       "text": "Push your branch to the company Git repository and open a pull request against the `main` branch. Include a clear summary, testing notes, and screenshots when the change affects the UI.\n# Reviewer Requirements\nEvery production-bound pull request requires at least one reviewer from the owning engineering team. Changes affecting security or data access require an additional reviewer familiar with the affected area."
     },
     {
-      "id": "68062fb6-2646-4f86-a021-d9ca3f388f2f",
-      "documentId": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+      "id": "ff761abd-addc-4b35-95ef-711682359f4d",
+      "documentId": "f0e73b3e-157d-4b93-ba4e-9b4dc4127712",
       "documentTitle": "Engineering_Code_Review_Process.md",
       "section": "Approval and Merge",
       "text": "# Approval and Merge\nAddress reviewer comments before merging. A pull request may be merged after required approvals and successful CI checks. The author should use squash merge unless the team manager documents another strategy."
     },
     {
-      "id": "a16a81d9-40b1-472b-a072-207c8070549a",
-      "documentId": "928c67a4-0562-4f93-8a5f-03f5dc51609d",
+      "id": "2ad2460f-eaf8-4394-92c8-6b7e5f9151b8",
+      "documentId": "4079db4f-2b43-4320-aaf2-8558e1049102",
       "documentTitle": "Expense_Reimbursement_Policy.md",
       "section": "Eligible Expenses",
       "text": "# Eligible Expenses\nReasonable business travel, approved client meals, and pre-approved work expenses may be reimbursed when supported by receipts.\n# Reimbursement Process"
     },
     {
-      "id": "ee0cefc5-7003-4e46-b097-ce066dc278a7",
-      "documentId": "928c67a4-0562-4f93-8a5f-03f5dc51609d",
+      "id": "d51d2052-ef1d-46c2-98c0-10836073fb6c",
+      "documentId": "4079db4f-2b43-4320-aaf2-8558e1049102",
       "documentTitle": "Expense_Reimbursement_Policy.md",
       "section": "Reimbursement Process",
       "text": "Submit the expense through the company expense portal. Select the appropriate category, attach the receipt, and add a short business purpose.\n# Submission Deadline\nExpenses should be submitted within 15 calendar days after the expense date."
     },
     {
-      "id": "8c59a5c2-204e-427d-b4d6-299b9b514289",
-      "documentId": "928c67a4-0562-4f93-8a5f-03f5dc51609d",
+      "id": "23c30d4b-4bac-4a82-b123-4befa023d8c9",
+      "documentId": "4079db4f-2b43-4320-aaf2-8558e1049102",
       "documentTitle": "Expense_Reimbursement_Policy.md",
       "section": "Required Receipts",
       "text": "# Required Receipts\nReceipts are required for reimbursable expenses. If a receipt is unavailable, contact Finance before submitting the claim."
     },
     {
-      "id": "d86cd015-7b7b-44dd-b608-3d1485774a22",
-      "documentId": "64b548b4-8f3a-4890-bbc0-a62234321d51",
+      "id": "5108c167-78bf-4827-a2ad-f043c412294d",
+      "documentId": "d1e56487-a453-4e3f-8956-c4b79810ab95",
       "documentTitle": "Onboarding_Guide.md",
       "section": "First Day Arrival",
       "text": "# First Day Arrival\nNew employees should arrive at the Vijayawada office by 9:30 AM on their first day. Reception will issue a temporary visitor badge.\n# WiFi and IT Support"
     },
     {
-      "id": "2f04b468-f7a1-4715-a265-7dfac6c24770",
-      "documentId": "64b548b4-8f3a-4890-bbc0-a62234321d51",
+      "id": "7f75c0fd-deb7-433f-a49a-a5bf102a8cbf",
+      "documentId": "d1e56487-a453-4e3f-8956-c4b79810ab95",
       "documentTitle": "Onboarding_Guide.md",
       "section": "WiFi and IT Support",
       "text": "Connect to the company network named Company-Guest on day one. For IT issues, open a ticket through the internal IT Help Desk and include your device name and a short description.\n# First-Day Checklist\nComplete HR onboarding, activate company email, collect your employee badge, attend the office tour, and meet your manager."
     },
     {
-      "id": "026010b9-8c57-4823-a172-6d1a552214db",
-      "documentId": "64b548b4-8f3a-4890-bbc0-a62234321d51",
+      "id": "a4668d44-8399-4fc4-a1d5-0df4d8dfe75b",
+      "documentId": "d1e56487-a453-4e3f-8956-c4b79810ab95",
       "documentTitle": "Onboarding_Guide.md",
       "section": "Office Tour",
       "text": "# Office Tour\nThe office tour covers reception, meeting rooms, engineering workspace, pantry, and the emergency assembly point."
     },
     {
-      "id": "97384072-e13d-4596-ba40-75249fb4de3a",
-      "documentId": "8b8d51d8-8aaf-4a7d-acf4-5b2173a4a533",
+      "id": "2ecac3ec-bfe8-491c-a959-018530c073a8",
+      "documentId": "bc82bbda-137c-44f4-b692-931bd1e3f9d7",
       "documentTitle": "Team_Structure.md",
       "section": "Departments",
       "text": "# Departments\nThe company has Engineering, Design, Sales, Finance, People Operations, and Customer Success departments.\n# Engineering Team"
     },
     {
-      "id": "7d64a8ef-36e0-4d01-a644-c2e12016b24e",
-      "documentId": "8b8d51d8-8aaf-4a7d-acf4-5b2173a4a533",
+      "id": "2cdb38d2-b397-4eba-9ec0-709b076902ac",
+      "documentId": "bc82bbda-137c-44f4-b692-931bd1e3f9d7",
       "documentTitle": "Team_Structure.md",
       "section": "Engineering Team",
       "text": "Engineering owns product development, reliability, internal tooling, and technical quality.\n# Engineering Manager\nThe Engineering Manager coordinates engineering priorities, team rituals, and onboarding support."
     },
     {
-      "id": "c1dc1246-62d9-4260-b82f-31112ae111d8",
-      "documentId": "8b8d51d8-8aaf-4a7d-acf4-5b2173a4a533",
+      "id": "21e8f01a-2b6c-4521-a5a9-9b2c6906d0b3",
+      "documentId": "bc82bbda-137c-44f4-b692-931bd1e3f9d7",
       "documentTitle": "Team_Structure.md",
       "section": "Team Responsibilities",
       "text": "# Team Responsibilities\nProduct teams work cross-functionally with design and sales. Engineers participate in standups, reviews, planning, and incident response as relevant to their team."
     },
     {
-      "id": "c3d1fada-2ec4-4f51-8dff-10f90d4576ab",
-      "documentId": "5452e4e4-eafb-4b81-aefd-5fbdedbe8dcc",
+      "id": "0be61056-8d79-4fa7-b180-44896e9ae486",
+      "documentId": "b73db14d-bebd-4ac8-8901-67120e34cef3",
       "documentTitle": "Work_From_Home_Policy.md",
       "section": "Remote Work Rules",
       "text": "# Remote Work Rules\nEmployees may work remotely on approved days according to their team arrangement. Keep your calendar and working location current.\n# Meeting Expectations"
     },
     {
-      "id": "dc71d13a-6cb7-437b-96bb-6aa44c35f7c5",
-      "documentId": "5452e4e4-eafb-4b81-aefd-5fbdedbe8dcc",
+      "id": "719f4aa1-2d2c-457e-a816-fd55e0a067a1",
+      "documentId": "b73db14d-bebd-4ac8-8901-67120e34cef3",
       "documentTitle": "Work_From_Home_Policy.md",
       "section": "Meeting Expectations",
       "text": "Join scheduled meetings on time, keep your status current, and communicate early when you cannot attend.\n# Communication Guidelines\nUse company chat for quick coordination, the issue tracker for work items, and documented channels for decisions that teammates may need later."
+    },
+    {
+      "id": "aba46c0c-c54d-420a-a129-62b85b25fa78",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "PVPSIT  ·  FRONTEND HACKATHON  ·  PARTICIPANT PACK\nHow You\nWill Be\nJudged"
+    },
+    {
+      "id": "d43623b8-3c7e-4bae-af62-bc6c371d81e0",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "The complete rubric. Nothing is hidden — judges score from\nthese exact tables.\nBUILD TIME\n4h 45m"
+    },
+    {
+      "id": "dfe36cad-773e-48c2-9042-04a4148fd396",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "09:45 – 14:30\nHARD FREEZE\n14:30\nNo exceptions"
+    },
+    {
+      "id": "8564ef0f-75b7-494e-a2d6-8a6001ac512d",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "TEAM SIZE\n4\nAll members judged\nAI TOOLS"
+    },
+    {
+      "id": "1dff43e4-3c05-46d5-a5ef-596a15925d55",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Allowed\nMust be disclosed\nRead pages 2 and 3 before you write a single line of code. The two things that cost teams the most marks\n— over-scoping, and skipping the stress test — are both entirely avoidable and both are explained here. "
+    },
+    {
+      "id": "a4fa1026-e4b3-40d2-9daa-d92608065906",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Workshop finale  ·  Frontend onlyKeep this at your table\nSECTION 01\nThe short version\nIf you read nothing else, read these six lines."
+    },
+    {
+      "id": "0aca1166-c26c-4129-8dd7-b0d1adecb465",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "WHAT ACTUALLY WINS THIS\nNot the prettiest UI — polish is 20 points out of 100. 65 points sit on shipping what you promised, structuring your code\nsensibly, and being able to explain and modify it. A modest app that is finished, robust and understood beats an\nambitious app that is half-built and unexplained. Every single time."
+    },
+    {
+      "id": "c53eb7a7-8346-49e2-ad29-d3ba582d19b0",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "You are judged against your own Scope Card, which you submit in the first 45 minutes. Promise three screens and\ndeliver three polished screens, and you beat a team that promised ten and delivered six broken ones. Scope small.\nFinish it. Then extend.\n1"
+    },
+    {
+      "id": "377d9d5c-f810-4872-9fe3-fb7e0dd28969",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Your deployed URL is the submission. Not localhost. Not a laptop. If the URL does not load at 14:30, you score zero\non the largest criterion.\n2\nA judge will resize your site to 375 px wide. Every team, every time. Build mobile-first or you will lose these marks."
+    },
+    {
+      "id": "1ed55f9a-6d72-4186-85a0-bbdaf4eb957c",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "3\nA judge will spend sixty seconds actively trying to break your app. The exact list of what they will do is printed on\npage 4. There are no surprises — use it as a checklist.\n4"
+    },
+    {
+      "id": "cdb945a2-f2e9-4412-b656-8d3723234923",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "AI tools are fully allowed. No marks are deducted for using them. But a randomly chosen team member will be asked\nto explain a file and make a live change to it.\n5\nEmpty states, loading states and error messages carry real weight. They are the fastest marks available and almost"
+    },
+    {
+      "id": "e1e2e507-988b-418a-8436-38954f2589af",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "every team forgets them.\n6\n2\nYour Scope Card — due 09:45, then locked"
+    },
+    {
+      "id": "bb21bfe2-b8a2-48c1-8241-5d28b71e640b",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Seventy-five words maximum, submitted through the form. Once locked, it does not change. Judges score your delivery\nagainst it.\nProblemOne sentence. What is broken and for whom.\nTarget userOne line. Be specific — \"second-year students booking lab slots\", not \"everyone\"."
+    },
+    {
+      "id": "c1b735fb-758f-4490-933e-715aef4c8d56",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Core featuresThree to five, that must work by 14:30. This is what you are graded on.\nStretch featuresTwo. Only these count toward a top score on scope delivery.\nData sourceWhich option from page 6 you are using.\nTHE MOST COMMON WAY TEAMS LOSE"
+    },
+    {
+      "id": "cd3b530f-ccb7-44e0-8ede-edfa090f7d42",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Declaring eight core features at 09:45 because it sounds impressive, then delivering four of them badly. Judges see the\ncard. Ambition on paper that you do not ship costs you marks — it does not earn them.\nSECTION 02  ·  SCREENING ROUND\nHow Round 1 is scored"
+    },
+    {
+      "id": "b26ebd6e-1325-40a2-8f97-79e45ee424e3",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Every team is judged by a pod of two judges: 4 minutes to demo, 2 minutes of questions. Three criteria,\n0–4 each. The top teams from each pod go to the finals.\nC1   Does your declared core flow work\n0"
+    },
+    {
+      "id": "89a9bcf8-0b70-4740-9fb2-f5afd5eadbd3",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Blank screen, build error, or the URL is dead.\n1\nPage loads, but the core flow breaks partway through.\n2"
+    },
+    {
+      "id": "15531174-2db0-44c4-9f1e-f814922adb96",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Core flow completes end to end, with visible bugs along the way.\n3\nCore flow plus at least one secondary declared feature work cleanly.\n4"
+    },
+    {
+      "id": "c3d09891-0928-4a00-8d5d-4d0aae069f8e",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Everything on your Scope Card works. No bugs found in four minutes.\nC2   UI craft and responsiveness\n0\nUnstyled or genuinely unreadable."
+    },
+    {
+      "id": "3dd0725a-d112-478a-8d83-5087d43a2e39",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "1\nStyled, but inconsistent spacing and type. Breaks badly at mobile width.\n2\nClean but generic — a template or default AI output, left unmodified."
+    },
+    {
+      "id": "9be9bf8f-a1f1-475b-93f7-0f5f009f545d",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "3\nConsistent spacing and type scale, clear hierarchy, works at 375 px.\n4\nAll of the above, plus deliberate decisions: considered colour, hover and focus states on interactive elements, no layout"
+    },
+    {
+      "id": "c4bf4853-673a-4565-8ea4-a024edfa5a0c",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "shift.\n3\nC3   Does it survive the stress test\n0"
+    },
+    {
+      "id": "d8519d7f-3333-43ed-ae20-67464cac5b93",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Crashes or white-screens on the first thing tried.\n1\nSurvives a refresh but breaks on bad input.\n2"
+    },
+    {
+      "id": "244b786f-6004-4aea-b8f7-435e5be81e40",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Handles bad input, but all your state resets on refresh.\n3\nState persists, empty and loading states present, nothing crashes.\n4"
+    },
+    {
+      "id": "0b97c8bc-6342-4c8e-8cbd-1a7c4c31c2bf",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "All of the above, plus real error handling — a failed request shows a message, not a frozen spinner.\nREAD THE 2S CAREFULLY\nNotice that \"clean but generic, unmodified template output\" is a 2 out of 4, not a 3. A good-looking default is exactly\nwhat everyone will arrive with. The marks are in what you changed and why you changed it — be ready to say so."
+    },
+    {
+      "id": "9b42ce04-1aa2-4478-a015-6856212cad87",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "SECTION 03\nThe stress test — published in full\nA judge will do these seven things to your app, in this order, while you watch. Run them on yourself at\n13:00 and fix what breaks. This is the single best use of an hour you will find today."
+    },
+    {
+      "id": "4a1e409b-7ace-4b4b-a220-a74efb3b93fc",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "WHAT THE JUDGE DOESWHAT YOU NEED TO HAVE BUILT\n1Resizes to 375 px wide.Layout reflows. No horizontal scroll, no overlapping text,\nnavigation still usable.\n2Refreshes mid-flow — halfway through your main"
+    },
+    {
+      "id": "ab3b7094-c626-43de-b83f-20265997e3ab",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "task, hits reload.\nState survives via localStorage or URL params, or falls back\ngracefully to a sensible start.\n3Submits an empty form.An inline validation message. Not a crash. Not silence."
+    },
+    {
+      "id": "90672ae0-7358-468e-8808-2684707a147e",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "4Pastes 400 characters into a short text field.Truncate, wrap, or reject. Your layout must not explode.\n5Double-clicks submit rapidly.Button disables while working, or duplicates are prevented.\n6Searches for something that does not exist.An empty state with a message. Not a blank white area.\n7Goes offline and triggers a request.An error message. Not an infinite spinner."
+    },
+    {
+      "id": "6ca4a552-5b34-4a9a-8440-683f5f258d55",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "WHY THIS EXISTS\nEmpty states, loading states, error handling and input validation are the parts of frontend work that get skipped under\ntime pressure, and that generative tools do not produce unless you specifically ask. They are cheap to add and they are\nworth 15–20% of your score. Budget forty minutes for them."
+    },
+    {
+      "id": "70e182b9-736c-48f0-a688-a91418618eb6",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "4\nFastest marks available today\nSECTION 04  ·  FINALS\nIf you reach the finals"
+    },
+    {
+      "id": "e43542c1-4646-4a84-8c47-1e9b342b4f5a",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Five criteria, weighted to 100, judged by the full panel. Same 0–4 anchors as Round 1 for the overlapping\ncriteria, plus two new ones.\nScope delivery\n25"
+    },
+    {
+      "id": "0c54716c-627a-4211-9637-bd3b2854ca99",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Did you ship what you promised\nFrontend engineering\n20\nState, structure, data layer"
+    },
+    {
+      "id": "fa578b2b-dc10-4014-93b7-5f55c989bf11",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "UI / UX craft\n20\nDesign decisions, responsiveness\nCode ownership"
+    },
+    {
+      "id": "22384b64-727e-4360-aca1-0a72686ba00b",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "20\nCan you explain and change it\nRobustness\n15"
+    },
+    {
+      "id": "1a1f23bf-f1be-4bb7-96c7-7be7d52cd3ec",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Behaviour under abuse\nFrontend engineering — 20 points, the one you can prepare for\n0\nOne file. Everything hardcoded."
+    },
+    {
+      "id": "bf91535b-2e66-4e33-8f80-2c371f7ce4d6",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "1\nSome components, but props drilled four levels deep, or twelve useState calls that should have been one object.\n2\nSensible component split. One real data source."
+    },
+    {
+      "id": "2ffc16e3-c694-4e49-bd3f-445219a6fd92",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "3\nClean decomposition, deliberate state design, loading / empty / error states handled, custom hooks where they earn\ntheir place.\n4"
+    },
+    {
+      "id": "745cf5ea-0de2-4057-9d4b-875fee659b7d",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "All of the above plus a realistic data layer — json-server, MSW, MockAPI or Supabase used properly, with genuine\nasync handling rather than a fake setTimeout.\nSECTION 05\nThe AI policy"
+    },
+    {
+      "id": "1dcef39e-b99c-4bc2-8260-6e14137cab69",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "You may use any AI tool. ChatGPT, Claude, Copilot, Cursor, v0, Lovable, Bolt — all permitted. No marks are\ndeducted for using them.\nTwo conditions. First, list every tool you used in your README. Second, be able to explain and modify any code you\nsubmit."
+    },
+    {
+      "id": "d866b163-61d7-4e9c-af63-1807bda957f3",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "The code-ownership check\nIn Round 1 a judge picks one team member at random — not the presenter — and asks them to open a file and explain it. In\nthe finals this becomes a full 20-point criterion with a live task: three minutes, your machine, judges watching.\nA loading spinner or skeleton on every fetch"
+    },
+    {
+      "id": "96716f6b-86ab-4180-a06d-99ea9c8089ac",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "An empty state with a message and an action\nAn error message on failed requests\nDisable submit buttons while in flight\nBasic form validation with inline messages"
+    },
+    {
+      "id": "b72cbd95-3597-45ea-91f0-8671a61d11eb",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Save key state to localStorage\nTest at 375 px before you test anything else\nA visible focus state on buttons and inputs\n5"
+    },
+    {
+      "id": "e047b030-235e-4678-8524-27a4ec48b95c",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "What a judge might ask you to change\nMake this list sort newest-first.\nShow a message when search returns nothing.\nDisable this button while loading."
+    },
+    {
+      "id": "fe0cf7ce-15c6-4f55-ae09-7f48180b6767",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Add a confirmation before this delete.\nMake this count update when an item is removed.\nPersist this filter across a refresh.\nTruncate this text at 60 characters."
+    },
+    {
+      "id": "bc43577a-044c-437e-9f92-9738225d2bae",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Show a total at the bottom of this list.\nUSING AI DURING THE LIVE TASK IS FINE\nUsing an assistant fluently to make a change you clearly understand scores a 2 or 3. Pasting the whole file in and hoping\nscores a 0. The difference is whether you know where the change goes before you ask for help. So: whatever you"
+    },
+    {
+      "id": "fc4b0ade-d96a-4a11-9af5-75a2610b9b4d",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "generate today, read it. Ten minutes spent understanding your own state logic is worth more than another feature.\nNON-DISCLOSURE IS THE ONLY VIOLATION\nHeavy AI use, declared honestly, costs you nothing. Heavy AI use, undeclared, is grounds for disqualification. Just write\nthe list in your README."
+    },
+    {
+      "id": "4bb888c0-00ec-48ec-9c04-3bd45160a44d",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "• \n• \n• \n• "
+    },
+    {
+      "id": "bdc7ca12-98c9-4cf6-919f-2675f3528380",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "• \n• \n• \n• "
+    },
+    {
+      "id": "a0a4718f-44c1-40be-a758-704b85683389",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "6\nSECTION 06\nFrontend without a backend\nYou are not expected to build a server. Pick one of these and declare it on your Scope Card. Do not spend"
+    },
+    {
+      "id": "d3f11769-050d-461c-88e0-46bce062efa0",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "an hour deciding — pick in the first ten minutes.\nOPTION\nUSE IT WHEN — AND HOW FAR IT TAKES\nYOU"
+    },
+    {
+      "id": "ae190919-6633-49c0-b32c-7abe05a501e2",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Static data.jsonYour app is mostly display and filtering. The\nfastest possible start, and completely\nlegitimate. Caps your engineering score at\n2 — fine, but it will not top the criterion."
+    },
+    {
+      "id": "4d8bf45d-598a-45d9-91c1-48558a39f38d",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "localStorage / IndexedDBYou need data to survive a refresh, which\nthe stress test explicitly checks. Combine it\nwith any other option here. Reaches 3.\nPublic free APIs"
+    },
+    {
+      "id": "3c9112a6-c18a-4877-9a8a-bce2ad879798",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "RestCountries, Open Library, TMDB, OpenWeather, Hacker News, JSONPlaceholder\nYou want real async behaviour — genuine\nloading, errors and rate limits to handle.\nCheck CORS before you commit an hour to"
+    },
+    {
+      "id": "9fa53b8b-b1bf-4143-a498-0a429fb281a6",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "one. Reaches 4 if loading and error states\nare handled properly.\njson-server / MockAPIYou need real CRUD with zero backend\ncode. A strong choice for any dashboard,"
+    },
+    {
+      "id": "1eee996c-f104-4ee0-b316-c8bcb9abda85",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "tracker or admin panel. Reaches 4.\nMSW(Mock Service Worker)You already know it. Intercepts requests at\nthe network layer, so your app code is\nwritten exactly as it would be against a real"
+    },
+    {
+      "id": "43e45d0e-bc11-44b8-b069-79314544b012",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "API. Reaches 4, and judges will notice.\nSupabase / FirebaseYou genuinely need auth or shared state.\nNote there are no backend marks in this\nrubric — reaching for a BaaS buys you"
+    },
+    {
+      "id": "2bd653f6-0d63-4222-bd8c-5a1ff9bd9c18",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "nothing on its own. Reaches 4 if the\nfrontend around it is good.\nFAKE ASYNC IS VISIBLE\nA setTimeout pretending to be a network request caps you at 2 on engineering. Judges throttle the network and go"
+    },
+    {
+      "id": "1a749ba2-bee4-4404-a948-b02749f6b0de",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "offline — a real data layer behaves differently under both, and it shows in about five seconds.\nDeployment is mandatory\nVercel, Netlify or GitHub Pages. All free, all fine. Deploy something broken by 11:00 rather than something perfect at 14:29\n— first deploys fail in ways you cannot debug in ten minutes. There is a deploy checkpoint at 13:30 specifically to catch this"
+    },
+    {
+      "id": "79772f00-c0f9-440f-a50a-40f82f58de11",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "while there is still time to fix it. Hit your own URL once just before the freeze, so it is warm when judges open it.\nSECTION 07\n7\nYour day"
+    },
+    {
+      "id": "b385e218-c5ec-455f-9588-6fcc9b0c6d2f",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "TIMEWHAT HAPPENS\n09:00 – 09:20Kickoff. Rules, rubric and AI policy read out.\n09:20 – 09:45Scope Card due. Locked at 09:45.\n09:45 – 12:15Build."
+    },
+    {
+      "id": "646be042-6d3a-47c9-8385-54e2db8acf58",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "12:15 – 12:50Lunch. Keep building if you want.\n13:30Deploy checkpoint. Your URL must load. Unscored, but organisers will check.\n13:00 – 13:45Suggested: run the stress test on yourselves. Fix what breaks.\n14:30Hard freeze. Submission form closes. Last commit timestamp is the proof."
+    },
+    {
+      "id": "7b2eb097-efe1-4c0c-866d-f4c94f2d84b3",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "14:45 – 15:55Round 1 judging. Stay at your table.\n16:05 – 16:45Finals.\n16:45 – 17:00Results.\nSECTION 08"
+    },
+    {
+      "id": "9fd8cdd5-a949-4912-89c7-4ac31fada4eb",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Before 14:30 — final checklist\nSUBMISSION\nTEAM READINESS\nTHE BUILD"
+    },
+    {
+      "id": "e5a484c0-3986-466a-8bc9-579b75dcb2de",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "NINE WAYS TEAMS LOSE MARKS THEY COULD HAVE KEPT\nOver-scoping the card · never deploying until the last hour · no empty states · no mobile testing · a beautiful landing page\nand a broken core flow · a spinner that never resolves · no one on the team can explain the state logic · demoing from\nlocalhost · spending the last hour adding a feature instead of fixing bugs."
+    },
+    {
+      "id": "9ef54b76-9f26-41c0-bfc6-e3ca5c86a5f6",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "A closing note. This rubric is built so that a team who scoped honestly, finished their work, handled the unglamorous\nstates and understood their own code will beat a team who generated something impressive-looking and could not explain\nit. That is a deliberate choice, and it is the same choice that gets made about your work after you graduate.\nDeployed URL loads in a private window"
+    },
+    {
+      "id": "6c406904-914a-42d6-809f-21e221533dcc",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Public GitHub repo, commits spread across the day\nREADME with your AI-tool disclosure\nSubmission form completed\nAll four names on the entry"
+    },
+    {
+      "id": "978bbfd0-bf9b-46df-8af0-7d01c5e68b8f",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Every member can explain one file\nDemo rehearsed once, under four minutes\nYou know which features on your card did not ship\nTested at 375 px width"
+    },
+    {
+      "id": "3341c496-72cf-4960-a8e6-f9fc1ddd9290",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Refresh mid-flow does not lose everything\nEmpty form shows a validation message\n400 characters does not break the layout\nEmpty search shows an empty state"
+    },
+    {
+      "id": "1acb9f33-61ff-4a78-bc56-d5162d56f5c4",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "Offline shows an error, not a spinner\nNo console errors on load\nEvery fetch has a loading state\nURL hit once to warm it"
+    },
+    {
+      "id": "3c5f8249-57a7-489f-98e3-c718e78f2971",
+      "documentId": "45c3f5ca-a561-4d52-ae77-7e45d72fc277",
+      "documentTitle": "Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "section": "Document Overview",
+      "text": "8"
     }
   ],
   "knowledgeBase": [
     {
-      "id": "e9cdec36-421a-4548-bfcb-3b559251e10b",
+      "id": "ae43438b-1e69-44e6-a417-8c42d417df0d",
       "title": "What is the company policy for pet alligators in the office?",
       "content": "Pet alligators and exotic animals are strictly prohibited on company premises for safety reasons.",
       "category": "Office Safety & Pets",
@@ -308,8 +884,8 @@
       "sourceDocument": "HR Resolution (Rachel Green)",
       "department": "Engineering",
       "approvedBy": "Rachel Green",
-      "createdAt": "2026-09-19T09:53:23.807Z",
-      "updatedAt": "2026-09-19T09:53:23.807Z",
+      "createdAt": "2026-09-19T09:32:43.553Z",
+      "updatedAt": "2026-09-19T09:32:43.553Z",
       "status": "Approved"
     },
     {
@@ -341,70 +917,70 @@
   ],
   "questions": [
     {
-      "id": "b4d0e5a3-dcdd-4f7a-93c7-5214323670bf",
+      "id": "644e2630-67e3-46b1-8952-7c3c423f1af6",
       "question": "How do I submit a code review?",
       "employeeId": "EMP-001",
       "employeeName": "Alex Chen",
       "department": "Engineering",
-      "timestamp": "2026-09-19T07:53:20.095Z",
+      "timestamp": "2026-09-19T07:31:57.542Z",
       "escalated": false,
       "sourceDocuments": [
         "Engineering_Code_Review_Process.md"
       ]
     },
     {
-      "id": "ed796a83-0ade-4622-bbfc-d90fc9c01ac3",
+      "id": "147128d0-6802-4a14-a3ba-7ac94851d5ef",
       "question": "Where can I read the code review process?",
       "employeeId": "EMP-001",
       "employeeName": "Alex Chen",
       "department": "Engineering",
-      "timestamp": "2026-09-19T07:55:00.095Z",
+      "timestamp": "2026-09-19T07:33:37.542Z",
       "escalated": false,
       "sourceDocuments": [
         "Engineering_Code_Review_Process.md"
       ]
     },
     {
-      "id": "3097e1ef-9554-4f7f-b75e-c552760f3848",
+      "id": "5ee9a9e0-0212-480a-807d-9044b5c04a9f",
       "question": "How do I claim expense reimbursement?",
       "employeeId": "EMP-002",
       "employeeName": "Maya Patel",
       "department": "Design",
-      "timestamp": "2026-09-19T08:05:00.095Z",
+      "timestamp": "2026-09-19T07:43:37.542Z",
       "escalated": false,
       "sourceDocuments": [
         "Expense_Reimbursement_Policy.md"
       ]
     },
     {
-      "id": "46f3c343-5be2-41ac-a489-a0cf4d748635",
+      "id": "9dbf9bd6-a51c-4789-8030-3acc66f4e498",
       "question": "Can I claim conference expenses?",
       "employeeId": "EMP-003",
       "employeeName": "David Kim",
       "department": "Sales",
-      "timestamp": "2026-09-19T08:23:20.095Z",
+      "timestamp": "2026-09-19T08:01:57.542Z",
       "escalated": false,
       "sourceDocuments": [
         "Expense_Reimbursement_Policy.md"
       ]
     },
     {
-      "id": "eed7405e-e4d6-4853-a9c9-c41a84a475ea",
+      "id": "3597fe30-9ef6-43c2-bbb5-0a34ad13eca9",
       "question": "Can I work remotely from another country during my trial period?",
       "employeeId": "EMP-001",
       "employeeName": "Alex Chen",
       "department": "Engineering",
-      "timestamp": "2026-09-19T08:53:20.095Z",
+      "timestamp": "2026-09-19T08:31:57.542Z",
       "escalated": true,
       "sourceDocuments": []
     },
     {
-      "id": "d797e537-16a7-447d-9b81-624b8847027d",
+      "id": "0dbc36a0-010a-46ed-a273-065ea198ee80",
       "question": "How do I submit a code review?",
       "employeeId": "EMP-001",
       "employeeName": "Alex Chen",
       "department": "Engineering",
-      "timestamp": "2026-09-19T09:53:23.780Z",
+      "timestamp": "2026-09-19T09:32:24.000Z",
       "escalated": false,
       "sourceDocuments": [
         "Engineering_Code_Review_Process.md",
@@ -413,26 +989,64 @@
       ]
     },
     {
-      "id": "bf34f637-017c-4ac7-9401-6bf1d010e68e",
+      "id": "a88048a7-de08-429e-8a03-02b0e78aadde",
+      "question": "What is the company policy on remote work from Antarctica?",
+      "employeeId": "EMP-001",
+      "employeeName": "Alex Chen",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T09:32:24.014Z",
+      "escalated": false,
+      "sourceDocuments": [
+        "Work_From_Home_Policy.md",
+        "Expense_Reimbursement_Policy.md",
+        "Work_From_Home_Policy.md"
+      ]
+    },
+    {
+      "id": "1db9cb96-5648-4fb1-ac82-fe7f63ee60af",
+      "question": "How do I submit a code review?",
+      "employeeId": "EMP-001",
+      "employeeName": "Alex Chen",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T09:32:43.530Z",
+      "escalated": false,
+      "sourceDocuments": [
+        "Engineering_Code_Review_Process.md",
+        "Engineering_Code_Review_Process.md",
+        "Engineering_Code_Review_Process.md"
+      ]
+    },
+    {
+      "id": "83b0887e-1eb2-4be9-bc70-646d81ee17e1",
       "question": "What is the company policy for pet alligators in the office?",
       "employeeId": "EMP-001",
       "employeeName": "Alex Chen",
       "department": "Engineering",
-      "timestamp": "2026-09-19T09:53:23.794Z",
+      "timestamp": "2026-09-19T09:32:43.547Z",
       "escalated": true,
       "sourceDocuments": []
     },
     {
-      "id": "14632a39-75d0-4ff9-9b34-9fa2bcc03c65",
+      "id": "1d1cbb2d-a0d7-4cca-ba2b-c07529665321",
       "question": "Can I bring pet alligators to the office?",
       "employeeId": "EMP-001",
       "employeeName": "Alex Chen",
       "department": "Engineering",
-      "timestamp": "2026-09-19T09:53:25.000Z",
+      "timestamp": "2026-09-19T09:32:43.556Z",
       "escalated": false,
       "sourceDocuments": [
         "HR Approved: Office Safety & Pets"
       ]
+    },
+    {
+      "id": "3f682e95-780f-4572-a137-092c03b5b52c",
+      "question": "hi",
+      "employeeId": "EMP-001",
+      "employeeName": "Alex Chen",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T09:43:51.358Z",
+      "escalated": true,
+      "sourceDocuments": []
     }
   ],
   "escalations": [
@@ -442,43 +1056,58 @@
       "employeeId": "EMP-001",
       "employeeName": "Alex Chen",
       "department": "Engineering",
-      "timestamp": "2026-09-19T08:53:20.095Z",
+      "timestamp": "2026-09-19T08:31:57.542Z",
       "reason": "Cross-border remote work policy requires HR approval",
-      "status": "Pending",
+      "status": "Resolved",
       "priority": "Normal",
-      "hrAnswer": null,
-      "resolvedAt": null,
-      "resolvedBy": null,
+      "hrAnswer": "yes",
+      "resolvedAt": "2026-09-19T10:20:19.826Z",
+      "resolvedBy": "Rachel Green",
       "savedToKB": false
     },
     {
-      "id": "e38620ae-ef41-4842-ba45-f4416be86d49",
+      "id": "6ad48d70-3407-4881-bc3e-0a83de5391eb",
       "question": "What is the company policy for pet alligators in the office?",
       "employeeId": "EMP-001",
       "employeeName": "Alex Chen",
       "department": "Engineering",
-      "timestamp": "2026-09-19T09:53:23.791Z",
+      "timestamp": "2026-09-19T09:32:43.546Z",
       "reason": "No matching information found in current approved company documents or HR knowledge base.",
       "status": "Resolved",
       "priority": "Normal",
       "hrAnswer": "Pet alligators and exotic animals are strictly prohibited on company premises for safety reasons.",
-      "resolvedAt": "2026-09-19T09:53:23.807Z",
+      "resolvedAt": "2026-09-19T09:32:43.553Z",
       "resolvedBy": "Rachel Green",
       "savedToKB": true
+    },
+    {
+      "id": "6244734d-eb46-4e3d-a172-e363da6033f0",
+      "question": "hi",
+      "employeeId": "EMP-001",
+      "employeeName": "Alex Chen",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T09:43:51.349Z",
+      "reason": "No matching information found in current approved company documents or HR knowledge base.",
+      "status": "Resolved",
+      "priority": "Normal",
+      "hrAnswer": "hello",
+      "resolvedAt": "2026-09-19T10:20:09.506Z",
+      "resolvedBy": "Rachel Green",
+      "savedToKB": false
     }
   ],
   "chatMessages": [
     {
-      "id": "e5dfcfcf-0ca4-4947-9acc-860f1c340847",
+      "id": "6dd33bfa-5a0f-448f-8637-10cf35d07545",
       "employeeId": "EMP-001",
       "role": "user",
       "content": "How do I submit a code review?",
       "sources": [],
       "escalation": false,
-      "timestamp": "2026-09-19T07:53:20.095Z"
+      "timestamp": "2026-09-19T07:31:57.542Z"
     },
     {
-      "id": "6f0dfbca-5549-4bca-a7da-a576e36651b6",
+      "id": "bd708e5e-7483-459b-b626-342ef3cec4c3",
       "employeeId": "EMP-001",
       "role": "assistant",
       "content": "According to the Engineering Code Review Process, pull requests require at least one approving review before merging. Ensure your branch is rebased on main and all CI checks pass.",
@@ -490,37 +1119,37 @@
         }
       ],
       "escalation": false,
-      "timestamp": "2026-09-19T07:53:25.095Z"
+      "timestamp": "2026-09-19T07:32:02.542Z"
     },
     {
-      "id": "7d9ab756-1394-4b12-9920-5aa3916b86eb",
+      "id": "12137d70-6de3-48d4-b9fc-e12a9b661199",
       "employeeId": "EMP-001",
       "role": "user",
       "content": "How do I submit a code review?",
-      "timestamp": "2026-09-19T09:53:23.780Z"
+      "timestamp": "2026-09-19T09:32:24.000Z"
     },
     {
-      "id": "0002ca5f-c7f3-424d-8d35-725d37f5f019",
+      "id": "c9293509-3b85-415d-bbfb-db9b543ff199",
       "employeeId": "EMP-001",
       "role": "assistant",
-      "content": "To submit a pull request for code review, push your branch to the company Git repository and open a pull request against the `main` branch. Be sure to include a clear summary, testing notes, and screenshots if the change affects the UI (Source 2: *Engineering_Code_Review_Process.md*, Section: Pull Request Submission).",
+      "content": "Based on Engineering_Code_Review_Process.md (Branch Naming):\n\n# Branch Naming Engineering branches use the format `type/short-description`, for example `feature/profile-search` or `fix/login-timeout`. # Pull Request Submission",
       "sources": [
         {
-          "documentId": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+          "documentId": "f0e73b3e-157d-4b93-ba4e-9b4dc4127712",
           "documentTitle": "Engineering_Code_Review_Process.md",
           "section": "Branch Naming",
           "sourceType": "Document",
           "score": 0.567
         },
         {
-          "documentId": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+          "documentId": "f0e73b3e-157d-4b93-ba4e-9b4dc4127712",
           "documentTitle": "Engineering_Code_Review_Process.md",
           "section": "Pull Request Submission",
           "sourceType": "Document",
           "score": 0.567
         },
         {
-          "documentId": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+          "documentId": "f0e73b3e-157d-4b93-ba4e-9b4dc4127712",
           "documentTitle": "Engineering_Code_Review_Process.md",
           "section": "Approval and Merge",
           "sourceType": "Document",
@@ -530,57 +1159,137 @@
       "escalation": false,
       "escalationId": null,
       "reason": "",
-      "timestamp": "2026-09-19T09:53:23.780Z"
+      "timestamp": "2026-09-19T09:32:24.000Z"
     },
     {
-      "id": "601ab5ab-634f-4bdf-a54b-50214b346644",
+      "id": "d61b48ac-6662-43d2-a66a-17c9af0c46fb",
+      "employeeId": "EMP-001",
+      "role": "user",
+      "content": "What is the company policy on remote work from Antarctica?",
+      "timestamp": "2026-09-19T09:32:24.014Z"
+    },
+    {
+      "id": "30820076-378d-4288-92aa-f913c3a077c3",
+      "employeeId": "EMP-001",
+      "role": "assistant",
+      "content": "Based on Work_From_Home_Policy.md (Remote Work Rules):\n\n# Remote Work Rules Employees may work remotely on approved days according to their team arrangement. Keep your calendar and working location current. # Meeting Expectations",
+      "sources": [
+        {
+          "documentId": "b73db14d-bebd-4ac8-8901-67120e34cef3",
+          "documentTitle": "Work_From_Home_Policy.md",
+          "section": "Remote Work Rules",
+          "sourceType": "Document",
+          "score": 0.637
+        },
+        {
+          "documentId": "4079db4f-2b43-4320-aaf2-8558e1049102",
+          "documentTitle": "Expense_Reimbursement_Policy.md",
+          "section": "Eligible Expenses",
+          "sourceType": "Document",
+          "score": 0.425
+        },
+        {
+          "documentId": "b73db14d-bebd-4ac8-8901-67120e34cef3",
+          "documentTitle": "Work_From_Home_Policy.md",
+          "section": "Meeting Expectations",
+          "sourceType": "Document",
+          "score": 0.425
+        }
+      ],
+      "escalation": false,
+      "escalationId": null,
+      "reason": "",
+      "timestamp": "2026-09-19T09:32:24.014Z"
+    },
+    {
+      "id": "f0c47ac1-e025-4836-a645-5947ac2129a9",
+      "employeeId": "EMP-001",
+      "role": "user",
+      "content": "How do I submit a code review?",
+      "timestamp": "2026-09-19T09:32:43.530Z"
+    },
+    {
+      "id": "2750c215-50d8-42d7-acf8-3d5199ac4ca3",
+      "employeeId": "EMP-001",
+      "role": "assistant",
+      "content": "Based on Engineering_Code_Review_Process.md (Branch Naming):\n\n# Branch Naming Engineering branches use the format `type/short-description`, for example `feature/profile-search` or `fix/login-timeout`. # Pull Request Submission",
+      "sources": [
+        {
+          "documentId": "f0e73b3e-157d-4b93-ba4e-9b4dc4127712",
+          "documentTitle": "Engineering_Code_Review_Process.md",
+          "section": "Branch Naming",
+          "sourceType": "Document",
+          "score": 0.567
+        },
+        {
+          "documentId": "f0e73b3e-157d-4b93-ba4e-9b4dc4127712",
+          "documentTitle": "Engineering_Code_Review_Process.md",
+          "section": "Pull Request Submission",
+          "sourceType": "Document",
+          "score": 0.567
+        },
+        {
+          "documentId": "f0e73b3e-157d-4b93-ba4e-9b4dc4127712",
+          "documentTitle": "Engineering_Code_Review_Process.md",
+          "section": "Approval and Merge",
+          "sourceType": "Document",
+          "score": 0.567
+        }
+      ],
+      "escalation": false,
+      "escalationId": null,
+      "reason": "",
+      "timestamp": "2026-09-19T09:32:43.530Z"
+    },
+    {
+      "id": "315bc31b-dc87-4889-baac-aa66b10b0dad",
       "employeeId": "EMP-001",
       "role": "user",
       "content": "What is the company policy for pet alligators in the office?",
-      "timestamp": "2026-09-19T09:53:23.794Z"
+      "timestamp": "2026-09-19T09:32:43.547Z"
     },
     {
-      "id": "f8cfe240-85d2-4260-b64f-a51cf13c21d4",
+      "id": "a6ae95e2-0046-4b21-9755-5a51d14f7be5",
       "employeeId": "EMP-001",
       "role": "assistant",
       "content": "I couldn't find an approved company policy that answers this question. I've automatically forwarded your question to HR so they can provide an accurate answer.",
       "sources": [],
       "escalation": true,
-      "escalationId": "e38620ae-ef41-4842-ba45-f4416be86d49",
+      "escalationId": "6ad48d70-3407-4881-bc3e-0a83de5391eb",
       "reason": "No matching information found in current approved company documents or HR knowledge base.",
-      "timestamp": "2026-09-19T09:53:23.794Z"
+      "timestamp": "2026-09-19T09:32:43.547Z"
     },
     {
-      "id": "8f75602f-21ac-4c2d-98ef-f98bfac19656",
+      "id": "5b2ce1c9-5121-4a30-9323-6050e4ca1a9f",
       "employeeId": "EMP-001",
       "role": "assistant",
       "content": "[HR Response from Rachel Green]: Pet alligators and exotic animals are strictly prohibited on company premises for safety reasons.",
       "sources": [
         {
           "documentTitle": "HR Approved Direct Response",
-          "section": "Escalation #e38620ae",
+          "section": "Escalation #6ad48d70",
           "sourceType": "HR Direct Answer",
           "score": 1
         }
       ],
       "escalation": false,
-      "timestamp": "2026-09-19T09:53:23.807Z"
+      "timestamp": "2026-09-19T09:32:43.553Z"
     },
     {
-      "id": "a78cdada-779a-49e7-aaea-72a5b95e1dd3",
+      "id": "4d562069-bec4-4c9a-96dd-bee2b1cee16e",
       "employeeId": "EMP-001",
       "role": "user",
       "content": "Can I bring pet alligators to the office?",
-      "timestamp": "2026-09-19T09:53:25.000Z"
+      "timestamp": "2026-09-19T09:32:43.556Z"
     },
     {
-      "id": "3df616d0-b6a4-4009-a7aa-14cdacceb182",
+      "id": "92031997-7eb7-44dc-a49b-8209c7c19333",
       "employeeId": "EMP-001",
       "role": "assistant",
-      "content": "Based on the Office Safety & Pets policy, pet alligators and exotic animals are strictly prohibited on company premises for safety reasons. You cannot bring pet alligators to the office.",
+      "content": "Based on HR Approved: Office Safety & Pets (What is the company policy for pet alligators in the office?):\n\nPet alligators and exotic animals are strictly prohibited on company premises for safety reasons.",
       "sources": [
         {
-          "documentId": "e9cdec36-421a-4548-bfcb-3b559251e10b",
+          "documentId": "ae43438b-1e69-44e6-a417-8c42d417df0d",
           "documentTitle": "HR Approved: Office Safety & Pets",
           "section": "What is the company policy for pet alligators in the office?",
           "sourceType": "HR Approved",
@@ -590,63 +1299,157 @@
       "escalation": false,
       "escalationId": null,
       "reason": "",
-      "timestamp": "2026-09-19T09:53:25.000Z"
+      "timestamp": "2026-09-19T09:32:43.556Z"
+    },
+    {
+      "id": "6ac89ac6-603c-420b-9956-c90d39747d42",
+      "employeeId": "EMP-001",
+      "role": "user",
+      "content": "hi",
+      "timestamp": "2026-09-19T09:43:51.358Z"
+    },
+    {
+      "id": "7f09b758-d7a1-4348-bdbe-e4af64bdf483",
+      "employeeId": "EMP-001",
+      "role": "assistant",
+      "content": "I couldn't find an approved company policy that answers this question. I've automatically forwarded your question to HR so they can provide an accurate answer.",
+      "sources": [],
+      "escalation": true,
+      "escalationId": "6244734d-eb46-4e3d-a172-e363da6033f0",
+      "reason": "No matching information found in current approved company documents or HR knowledge base.",
+      "timestamp": "2026-09-19T09:43:51.358Z"
+    },
+    {
+      "id": "81aaa8e9-95e9-4579-a036-10edb2dac92e",
+      "employeeId": "EMP-001",
+      "role": "assistant",
+      "content": "[HR Response from Rachel Green]: hello",
+      "sources": [
+        {
+          "documentTitle": "HR Approved Direct Response",
+          "section": "Escalation #6244734d",
+          "sourceType": "HR Direct Answer",
+          "score": 1
+        }
+      ],
+      "escalation": false,
+      "timestamp": "2026-09-19T10:20:09.506Z"
+    },
+    {
+      "id": "fe22dc3c-5199-43c3-9eae-5781ecb3cd6f",
+      "employeeId": "EMP-001",
+      "role": "assistant",
+      "content": "[HR Response from Rachel Green]: yes",
+      "sources": [
+        {
+          "documentTitle": "HR Approved Direct Response",
+          "section": "Escalation #esc-001",
+          "sourceType": "HR Direct Answer",
+          "score": 1
+        }
+      ],
+      "escalation": false,
+      "timestamp": "2026-09-19T10:20:19.826Z"
     }
   ],
   "notifications": [
     {
-      "id": "ab306d4b-aec7-4c62-a0d4-d38c1c87c464",
+      "id": "a1203e48-6fe5-4e06-8400-66f7c8afa8da",
+      "recipientId": "EMP-001",
+      "recipientRole": "employee",
+      "title": "HR Answered Your Question",
+      "message": "HR responded to your question: \"Can I work remotely from another country...\"",
+      "type": "escalation_resolved",
+      "read": false,
+      "timestamp": "2026-09-19T10:20:19.826Z",
+      "relatedId": "esc-001"
+    },
+    {
+      "id": "6b4faca0-25b5-4f86-938b-f74ceabfb41c",
+      "recipientId": "EMP-001",
+      "recipientRole": "employee",
+      "title": "HR Answered Your Question",
+      "message": "HR responded to your question: \"hi...\"",
+      "type": "escalation_resolved",
+      "read": true,
+      "timestamp": "2026-09-19T10:20:09.506Z",
+      "relatedId": "6244734d-eb46-4e3d-a172-e363da6033f0"
+    },
+    {
+      "id": "6b25f1f3-5be4-4261-94d4-327d4165a2b3",
+      "recipientId": "EMP-001",
+      "recipientRole": "employee",
+      "title": "Question Forwarded to HR",
+      "message": "Your inquiry (\"hi...\") has been escalated to HR for review.",
+      "type": "escalation_created",
+      "read": true,
+      "timestamp": "2026-09-19T09:43:51.357Z",
+      "relatedId": "6244734d-eb46-4e3d-a172-e363da6033f0"
+    },
+    {
+      "id": "82d0cc1c-741f-43c2-bd37-980d34bc0d97",
+      "recipientId": "HR",
+      "recipientRole": "hr",
+      "title": "New Escalation: Alex Chen (Engineering)",
+      "message": "Employee asked: \"hi\"",
+      "type": "escalation_created",
+      "read": false,
+      "timestamp": "2026-09-19T09:43:51.349Z",
+      "relatedId": "6244734d-eb46-4e3d-a172-e363da6033f0"
+    },
+    {
+      "id": "218f5276-fd0b-40d0-8842-87a1231a7207",
       "recipientId": "EMP-001",
       "recipientRole": "employee",
       "title": "HR Answered Your Question",
       "message": "HR responded to your question: \"What is the company policy for pet allig...\"",
       "type": "escalation_resolved",
-      "read": false,
-      "timestamp": "2026-09-19T09:53:23.807Z",
-      "relatedId": "e38620ae-ef41-4842-ba45-f4416be86d49"
+      "read": true,
+      "timestamp": "2026-09-19T09:32:43.553Z",
+      "relatedId": "6ad48d70-3407-4881-bc3e-0a83de5391eb"
     },
     {
-      "id": "a7b05214-b157-4296-aa6f-92e8cf8659b0",
+      "id": "866b8fa9-86f6-4020-9fa8-d188d29a8c2a",
       "recipientId": "EMP-001",
       "recipientRole": "employee",
       "title": "Question Forwarded to HR",
       "message": "Your inquiry (\"What is the company policy for pet alligators...\") has been escalated to HR for review.",
       "type": "escalation_created",
-      "read": false,
-      "timestamp": "2026-09-19T09:53:23.793Z",
-      "relatedId": "e38620ae-ef41-4842-ba45-f4416be86d49"
+      "read": true,
+      "timestamp": "2026-09-19T09:32:43.547Z",
+      "relatedId": "6ad48d70-3407-4881-bc3e-0a83de5391eb"
     },
     {
-      "id": "e4b4b5ce-6f62-48c4-8606-e994380a5865",
+      "id": "a3403246-014a-45b3-b4ef-c64aac0a4aab",
       "recipientId": "HR",
       "recipientRole": "hr",
       "title": "New Escalation: Alex Chen (Engineering)",
       "message": "Employee asked: \"What is the company policy for pet alligators in the office?\"",
       "type": "escalation_created",
       "read": false,
-      "timestamp": "2026-09-19T09:53:23.791Z",
-      "relatedId": "e38620ae-ef41-4842-ba45-f4416be86d49"
+      "timestamp": "2026-09-19T09:32:43.546Z",
+      "relatedId": "6ad48d70-3407-4881-bc3e-0a83de5391eb"
     },
     {
-      "id": "e571c8e5-3888-4b81-b6f1-b440525799cb",
+      "id": "d7d1f41f-f50a-4df7-af46-b351a93b7a12",
       "recipientId": "EMP-001",
       "recipientRole": "employee",
       "title": "Question forwarded to HR",
       "message": "Your question regarding working remotely from another country has been forwarded to HR.",
       "type": "escalation_created",
-      "read": false,
-      "timestamp": "2026-09-19T08:53:20.095Z",
+      "read": true,
+      "timestamp": "2026-09-19T08:31:57.542Z",
       "relatedId": "esc-001"
     },
     {
-      "id": "f0a86234-9f27-4fc1-a262-4c8a54133c0f",
+      "id": "10ab2c18-1224-4e36-af1e-fd7f91baddb3",
       "recipientId": "HR-001",
       "recipientRole": "hr",
       "title": "New escalation from Alex Chen",
       "message": "Alex Chen (Engineering) asked: \"Can I work remotely from another country during my trial period?\"",
       "type": "escalation_created",
       "read": false,
-      "timestamp": "2026-09-19T08:53:20.095Z",
+      "timestamp": "2026-09-19T08:31:57.542Z",
       "relatedId": "esc-001"
     }
   ],
@@ -660,55 +1463,56 @@
       "startDate": "2026-09-15",
       "tasks": [
         {
-          "id": "f0b9c233-f5ab-4aac-8e2f-65abee020eab",
+          "id": "9b8112d6-f544-4a85-8786-477113f22fe8",
           "day": 1,
           "title": "Complete HR onboarding and identity verification",
           "done": true
         },
         {
-          "id": "1e475d0d-b8dd-4f44-ae02-03c8d816fc45",
+          "id": "f670b2ca-765c-495d-96d8-a648ab8a5ed2",
           "day": 1,
           "title": "Set up company email, Slack, and 1Password",
           "done": true
         },
         {
-          "id": "d39f3074-4601-4f1a-aa48-e52f8ce61f45",
+          "id": "0eb56abf-9b1e-4065-a643-f65f2799792f",
           "day": 2,
           "title": "Obtain GitHub repository and AWS sandbox access",
           "done": true
         },
         {
-          "id": "3565c113-9ce5-4131-855a-d44aa61c0308",
+          "id": "20124b14-7f6d-46e6-8756-5db0155c0f80",
           "day": 2,
           "title": "Meet engineering manager for 30-day expectation alignment",
-          "done": false
+          "done": true,
+          "completedAt": "2026-09-19T09:43:39.889Z"
         },
         {
-          "id": "9e996a5b-8873-4c99-a2f4-f6aa3909cef6",
+          "id": "a8e0fb0c-4c53-425b-b197-c14af7f9b344",
           "day": 3,
           "title": "Attend daily engineering standup and introduction",
           "done": false
         },
         {
-          "id": "e5c5a0b1-5e6f-43b8-9388-3cead34586c5",
+          "id": "66837975-1fd1-4e95-8fae-3bb5f6a597c5",
           "day": 3,
           "title": "Review engineering standards and coding conventions",
           "done": false
         },
         {
-          "id": "6d4aca5b-8ad3-4014-acd3-d42ce528efb2",
+          "id": "cbb638f0-3bd4-4066-bb8d-b0ee37cb9c33",
           "day": 4,
           "title": "Read the Code Review and Pull Request Process guide",
           "done": false
         },
         {
-          "id": "27f04542-58f7-4ce3-89bc-e5c3f3d52675",
+          "id": "f75326c9-26f8-4d29-b63d-d2d460608209",
           "day": 4,
           "title": "Set up local development container and run unit tests",
           "done": false
         },
         {
-          "id": "e2268211-52a1-477b-8d0a-da3760332d9d",
+          "id": "a9e03f9c-3b26-43d0-911b-77636f532095",
           "day": 5,
           "title": "Pair with onboarding buddy to submit first test PR",
           "done": false
@@ -724,37 +1528,37 @@
       "startDate": "2026-09-16",
       "tasks": [
         {
-          "id": "dea71de0-b951-4747-8f36-5c632da86275",
+          "id": "7777291e-f312-43ab-8b8f-93a0b8db0994",
           "day": 1,
           "title": "Complete HR onboarding and compliance training",
           "done": true
         },
         {
-          "id": "44ca2e35-2dcb-475d-b3f6-f69592d6b60b",
+          "id": "86d522c3-d9a1-45ee-97a2-6d7671f207e7",
           "day": 1,
           "title": "Set up Figma workspace and Design System library",
           "done": true
         },
         {
-          "id": "6b94d399-2fe5-4252-8d5b-e74a0b073fb4",
+          "id": "063f6fd1-5c4a-4a90-a7d8-0a826b01996a",
           "day": 2,
           "title": "Meet with Lead Product Designer for design roadmap review",
           "done": false
         },
         {
-          "id": "2b5297e5-ee6d-482e-b470-30b7067599d5",
+          "id": "881e9e20-c70e-474c-9300-671eb8540c86",
           "day": 3,
           "title": "Join weekly design critique session",
           "done": false
         },
         {
-          "id": "e16a4caf-3e61-415a-91ec-e71a4ba7abdd",
+          "id": "d629fdb6-e604-47b7-8534-3097bb86e0a1",
           "day": 4,
           "title": "Review brand documentation and component guidelines",
           "done": false
         },
         {
-          "id": "01142317-ddd6-4be6-bee4-fd06e8ed197b",
+          "id": "22967013-1c2c-492e-a37c-416109e2df22",
           "day": 5,
           "title": "Complete initial UX audit of assigned feature area",
           "done": false
@@ -770,37 +1574,37 @@
       "startDate": "2026-09-17",
       "tasks": [
         {
-          "id": "40758698-0abf-4415-95e9-1b0ab1583e1a",
+          "id": "dd27c40f-1f39-442c-a902-13973d700d98",
           "day": 1,
           "title": "Complete HR paperwork and benefits overview",
           "done": true
         },
         {
-          "id": "160cb607-1c56-4ad3-9e3d-fe419c19fca7",
+          "id": "90f2fa48-14b8-44e8-a91c-9c3a60715a3b",
           "day": 1,
           "title": "Set up Salesforce CRM and outreach tooling",
           "done": false
         },
         {
-          "id": "26096d48-4c83-45f4-b6d3-e359e5d09a1e",
+          "id": "2a85ad4d-5ac9-4743-ba53-d7b5194518a3",
           "day": 2,
           "title": "Shadow senior account executive on customer discovery call",
           "done": false
         },
         {
-          "id": "bd11814a-339a-4fda-8202-c75cb6990c80",
+          "id": "f555775e-20a4-43c1-be07-421eccae2c59",
           "day": 3,
           "title": "Complete product catalog and pricing matrix training",
           "done": false
         },
         {
-          "id": "ff67eed7-9aa0-45d0-ae76-03c63053757f",
+          "id": "22823902-bbb4-417e-866e-9144d625d452",
           "day": 4,
           "title": "Review lead qualification workflow and pitch deck",
           "done": false
         },
         {
-          "id": "b326b246-ecd7-4667-84bd-6b245aa5cf2d",
+          "id": "dc67ac65-88ea-4ca8-9f4c-0533ab03a629",
           "day": 5,
           "title": "Conduct mock product demo with sales manager",
           "done": false
@@ -816,55 +1620,55 @@
       "startDate": "2026-09-18",
       "tasks": [
         {
-          "id": "1a338b9e-eea9-4cd9-8656-7818ef2e2967",
+          "id": "5a3dde78-f3ec-471a-86d5-bd1b758bc0d7",
           "day": 1,
           "title": "Complete HR onboarding and identity verification",
           "done": true
         },
         {
-          "id": "a32b2338-f88d-4e13-9bdc-09fda53639b3",
+          "id": "9617c976-1e02-42ba-8e91-12618f4a34be",
           "day": 1,
           "title": "Set up company email, Slack, and 1Password",
           "done": true
         },
         {
-          "id": "30bb6e9b-451d-401b-b59b-eb53605002af",
+          "id": "6aaa14ed-830a-4f62-af28-663563ffb321",
           "day": 2,
           "title": "Obtain GitHub repository and AWS sandbox access",
           "done": true
         },
         {
-          "id": "8ac5439c-570d-4b0f-8204-e34e01ec034e",
+          "id": "a68628ff-f7d2-4fe3-b0aa-3d3dfc1c59a3",
           "day": 2,
           "title": "Meet marketing manager for 30-day expectation alignment",
           "done": false
         },
         {
-          "id": "bf207cfd-d27d-491f-bd1a-9ee1820b5ce3",
+          "id": "ff6e3a65-5a18-4429-bb45-402ab558148d",
           "day": 3,
           "title": "Attend daily marketing standup and introduction",
           "done": false
         },
         {
-          "id": "291309d5-ec64-481d-b545-e1210a9034a4",
+          "id": "01a68981-4e9e-43ce-9ac1-39246ff11211",
           "day": 3,
           "title": "Review marketing standards and coding conventions",
           "done": false
         },
         {
-          "id": "631d1240-b974-495f-8898-3275d0309320",
+          "id": "5d9012d9-0649-4ee3-9380-d327e9e3754f",
           "day": 4,
           "title": "Read the Code Review and Pull Request Process guide",
           "done": false
         },
         {
-          "id": "b57c4c04-bb2b-41aa-84a4-a265014ae8df",
+          "id": "e7da6689-8223-4be0-a81a-51517e383a18",
           "day": 4,
           "title": "Set up local development container and run unit tests",
           "done": false
         },
         {
-          "id": "e6b85847-ea3c-49d7-b12d-5b1fa1aeb042",
+          "id": "149a460d-e818-4d8a-805f-688b2b4a4ad0",
           "day": 5,
           "title": "Pair with onboarding buddy to submit first test PR",
           "done": false
@@ -880,37 +1684,37 @@
       "startDate": "2026-09-18",
       "tasks": [
         {
-          "id": "930d931c-e57f-480c-84be-75628af7d4ce",
+          "id": "7cd3b853-b9b9-4611-8086-2efde51bdc13",
           "day": 1,
           "title": "Complete HR paperwork and benefits overview",
           "done": true
         },
         {
-          "id": "1445004d-224e-445b-8714-23c85deb2df2",
+          "id": "91f507d4-292c-49a8-b67e-33582fc8153d",
           "day": 1,
           "title": "Set up Financeforce CRM and outreach tooling",
           "done": false
         },
         {
-          "id": "0a7025b7-5951-489f-8988-77703b3dc73b",
+          "id": "e88a4e9e-01e5-44e2-8237-8d6a0cbba692",
           "day": 2,
           "title": "Shadow senior account executive on customer discovery call",
           "done": false
         },
         {
-          "id": "90f7f07d-24a4-4b1c-9336-5cf74136c1d2",
+          "id": "30cf58d5-9403-4d91-838e-bf2c7abfddd7",
           "day": 3,
           "title": "Complete product catalog and pricing matrix training",
           "done": false
         },
         {
-          "id": "f4c43c28-0689-4d0a-a5f2-2e8da7ab17ce",
+          "id": "ec08f075-7cea-40ad-9a1d-e4a8fe13c3d9",
           "day": 4,
           "title": "Review lead qualification workflow and pitch deck",
           "done": false
         },
         {
-          "id": "9cf82de1-49af-4e48-bfe7-9d6ced5a2981",
+          "id": "a9e1ba26-dfdd-4cde-afbd-4083e7d41de1",
           "day": 5,
           "title": "Conduct mock product demo with sales manager",
           "done": false
@@ -926,37 +1730,37 @@
       "startDate": "2026-09-19",
       "tasks": [
         {
-          "id": "9ca4ad50-1c68-499f-add0-b061a2169460",
+          "id": "e31398e4-e193-4678-b719-3d6389da7dea",
           "day": 1,
           "title": "Complete HR paperwork and benefits overview",
           "done": true
         },
         {
-          "id": "232158b3-7b5d-494c-babf-48c64856903a",
+          "id": "175bff0b-5304-4da7-8fa9-2c774b55a0df",
           "day": 1,
           "title": "Set up Salesforce CRM and outreach tooling",
           "done": false
         },
         {
-          "id": "2eeb2149-683e-438e-8c20-8ee50154cbaa",
+          "id": "78853a48-2374-4071-8e86-b946f65573ee",
           "day": 2,
           "title": "Shadow senior account executive on customer discovery call",
           "done": false
         },
         {
-          "id": "7985abcd-4886-4e9b-8e0b-9e239b66ad69",
+          "id": "391d713b-e828-4c2d-ba95-4d9d0cde9b54",
           "day": 3,
           "title": "Complete product catalog and pricing matrix training",
           "done": false
         },
         {
-          "id": "20e807e4-1c60-45a5-8f6c-b8be36d62345",
+          "id": "138446f8-433b-4871-b5e5-d70d29b20425",
           "day": 4,
           "title": "Review lead qualification workflow and pitch deck",
           "done": false
         },
         {
-          "id": "21f3e9ea-ec62-4af9-97be-571abb00a1b0",
+          "id": "dfbbb03d-1bd6-457e-8a07-2dcfb4658e04",
           "day": 5,
           "title": "Conduct mock product demo with operations manager",
           "done": false
@@ -966,42 +1770,97 @@
   ],
   "activities": [
     {
-      "id": "32819bfa-d3bf-4a55-add9-2508fcf62a41",
-      "text": "Escalation resolved by Rachel Green for Alex Chen",
-      "timestamp": "2026-09-19T09:53:23.807Z"
-    },
-    {
-      "id": "afd89173-3c40-47cc-b0f7-1a6ae3475fac",
-      "text": "HR Knowledge Base updated: \"What is the company policy for pet alligators\"",
-      "timestamp": "2026-09-19T09:53:23.807Z"
-    },
-    {
-      "id": "cdeb3ee1-38c0-40f4-943c-55f84f22368a",
-      "text": "Question escalated: What is the company policy for pet alligators in the office?",
-      "timestamp": "2026-09-19T09:53:23.794Z"
-    },
-    {
-      "id": "631a4bbd-91da-4175-b895-84c3e165f05f",
-      "text": "Rachel Green (Human Resources) logged in",
-      "timestamp": "2026-09-19T09:53:22.163Z"
-    },
-    {
-      "id": "07b90e60-2ad0-42a9-b728-97f5a22af7dd",
+      "id": "6d1332cf-3e1c-46e6-8717-4ee8646808b4",
       "text": "Alex Chen (Engineering) logged in",
-      "timestamp": "2026-09-19T09:53:22.130Z"
+      "timestamp": "2026-09-19T10:20:35.204Z"
     },
     {
-      "id": "37c715e8-cd48-4bb0-a71a-5436f6e65b42",
+      "id": "6f3016fa-4831-4755-bc7f-55ee9f145cf8",
+      "text": "Escalation resolved by Rachel Green for Alex Chen",
+      "timestamp": "2026-09-19T10:20:19.826Z"
+    },
+    {
+      "id": "605b756a-0677-4e45-a3a4-6b5cc3fcd160",
+      "text": "Escalation resolved by Rachel Green for Alex Chen",
+      "timestamp": "2026-09-19T10:20:09.506Z"
+    },
+    {
+      "id": "481efe61-6be4-4429-b5d4-00ac839638a9",
+      "text": "Document uploaded: Hackathon-Participant-Pack-How-You-Will-Be-Judged.pdf",
+      "timestamp": "2026-09-19T10:19:20.654Z"
+    },
+    {
+      "id": "3c0473ff-9551-4e76-b23e-cafecfec9417",
+      "text": "Rachel Green (Human Resources) logged in",
+      "timestamp": "2026-09-19T10:19:09.862Z"
+    },
+    {
+      "id": "1de55de7-3753-456d-8091-badcc685bb94",
+      "text": "Alex Chen (Engineering) logged in",
+      "timestamp": "2026-09-19T10:16:53.997Z"
+    },
+    {
+      "id": "739fcc71-c590-44b0-ab75-702a5a2c6c22",
+      "text": "Rachel Green (Human Resources) logged in",
+      "timestamp": "2026-09-19T09:44:18.862Z"
+    },
+    {
+      "id": "a7f970b4-1852-42e6-98e5-c03eaff74df5",
+      "text": "Question escalated: hi",
+      "timestamp": "2026-09-19T09:43:51.358Z"
+    },
+    {
+      "id": "fd0487bc-ada0-4898-8a6b-9ee00125155b",
+      "text": "Alex Chen (Engineering) logged in",
+      "timestamp": "2026-09-19T09:43:20.061Z"
+    },
+    {
+      "id": "3d722676-b4e6-46bf-9622-3e48fa97438c",
+      "text": "Escalation resolved by Rachel Green for Alex Chen",
+      "timestamp": "2026-09-19T09:32:43.553Z"
+    },
+    {
+      "id": "e07412c9-9e4e-4ac9-a669-25478305ba58",
+      "text": "HR Knowledge Base updated: \"What is the company policy for pet alligators\"",
+      "timestamp": "2026-09-19T09:32:43.553Z"
+    },
+    {
+      "id": "00f95e5b-78fa-4aa1-b463-8f09d14d42cc",
+      "text": "Question escalated: What is the company policy for pet alligators in the office?",
+      "timestamp": "2026-09-19T09:32:43.547Z"
+    },
+    {
+      "id": "fc23b6c7-4e51-4b80-8804-3330fb5121b4",
+      "text": "Rachel Green (Human Resources) logged in",
+      "timestamp": "2026-09-19T09:32:43.515Z"
+    },
+    {
+      "id": "8824fed4-5c5a-4305-bef0-671102af2795",
+      "text": "Alex Chen (Engineering) logged in",
+      "timestamp": "2026-09-19T09:32:43.493Z"
+    },
+    {
+      "id": "c24d67fd-e545-402a-ba6a-0db511ab84e8",
+      "text": "Rachel Green (Human Resources) logged in",
+      "timestamp": "2026-09-19T09:32:23.977Z"
+    },
+    {
+      "id": "bb5ead1b-4eed-4897-b13c-7a722a6ac73d",
+      "text": "Alex Chen (Engineering) logged in",
+      "timestamp": "2026-09-19T09:32:23.953Z"
+    },
+    {
+      "id": "8d5f8e24-bb75-42da-85a6-838e6421dc92",
       "text": "Question escalated: Can I work remotely from another country during my trial period?",
-      "timestamp": "2026-09-19T08:53:20.095Z"
+      "timestamp": "2026-09-19T08:31:57.542Z"
     },
     {
-      "id": "8cb96a20-ed59-40d6-bfdc-f522a3fd46af",
+      "id": "96b843b2-08cb-4e13-be43-b4a691a183cb",
       "text": "Alex Chen (Engineering) logged in",
       "timestamp": "2026-09-19T08:30:00.000Z"
     },
     {
-      "id": "45743b7b-8209-419c-a221-78d7c963dfc4",
+      "id": "4700ee77-a36d-4996-a666-2cac818005e8",
       "text": "Maya Patel (Design) logged in",
       "timestamp": "2026-09-19T09:15:00.000Z"
     }

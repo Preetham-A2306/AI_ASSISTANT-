@@ -1,1 +1,15 @@
-{"name":"ai-onboarding-assistant","private":true,"scripts":{"install:all":"npm --prefix frontend install && npm --prefix backend install","dev":"concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\""},"devDependencies":{"concurrently":"^9.2.1"}}
+{
+  "name": "ai-onboarding-assistant",
+  "private": true,
+  "scripts": {
+    "install:all": "npm --prefix frontend install && npm --prefix backend install",
+    "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "build": "npm --prefix frontend run build",
+    "test": "node backend/test_api.js && node backend/test_server_http.js",
+    "test:unit": "node backend/test_api.js",
+    "test:e2e": "node backend/test_server_http.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

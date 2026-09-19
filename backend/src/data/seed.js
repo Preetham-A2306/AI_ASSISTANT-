@@ -1,7 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import { fileURLToPath } from 'url';
 import { getDB, saveDB } from '../models/db.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function id() {
   return crypto.randomUUID();
@@ -268,8 +272,14 @@ export function seedDemoData(force = false) {
   ];
 
   // 4. Sample Documents Ingestion
-  const sampleDocsPath = path.resolve('../sample-documents');
-  if (fs.existsSync(sampleDocsPath)) {
+  const candidatePaths = [
+    path.resolve(__dirname, '../../../sample-documents'),
+    path.resolve(__dirname, '../../sample-documents'),
+    path.resolve('../sample-documents'),
+    path.resolve('sample-documents')
+  ];
+  const sampleDocsPath = candidatePaths.find(p => fs.existsSync(p));
+  if (sampleDocsPath && fs.existsSync(sampleDocsPath)) {
     db.documents = [];
     db.chunks = [];
 

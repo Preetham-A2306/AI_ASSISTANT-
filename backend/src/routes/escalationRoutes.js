@@ -25,17 +25,17 @@ router.get('/', authenticate, (req, res) => {
   res.json({ escalations: personal });
 });
 
-// POST /api/escalations - Create escalation
-router.post('/', (req, res) => {
+// POST /api/escalations - Create escalation (authenticated)
+router.post('/', authenticate, (req, res) => {
   const db = getDB();
-  const { question, employee, employeeId, department, reason } = req.body;
+  const { question, reason } = req.body;
 
   const escalation = {
     id: id(),
     question: question || '',
-    employeeId: employeeId || 'EMP-001',
-    employeeName: employee || 'Alex Chen',
-    department: department || 'Engineering',
+    employeeId: req.user.employeeId,
+    employeeName: req.user.name,
+    department: req.user.department,
     timestamp: new Date().toISOString(),
     reason: reason || 'Information unavailable in company documentation',
     status: 'Pending',
@@ -154,8 +154,8 @@ router.post('/:id/answer', authenticate, requireHR, (req, res) => {
   });
 });
 
-// PATCH /api/escalations/:id - Generic status update (backward compatibility)
-router.patch('/:id', authenticate, (req, res) => {
+// PATCH /api/escalations/:id - Generic status update (HR only)
+router.patch('/:id', authenticate, requireHR, (req, res) => {
   const db = getDB();
   const escalation = (db.escalations || []).find(item => item.id === req.params.id);
 
