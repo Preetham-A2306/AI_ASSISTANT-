@@ -2,8 +2,13 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 
-const UPLOAD_DIR = path.resolve('uploads');
-fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+import os from 'os';
+
+const isVercel = Boolean(process.env.VERCEL);
+const UPLOAD_DIR = isVercel ? path.join(os.tmpdir(), 'uploads') : path.resolve('uploads');
+try {
+  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+} catch {}
 
 export const upload = multer({
   dest: UPLOAD_DIR,

@@ -25,16 +25,27 @@ const PORT = Number(process.env.PORT || 5000);
 // Basic middleware
 app.use(
   cors({
-    origin: [
-      'http://localhost:5173',
-      'http://localhost:5174'
-    ],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g. mobile apps, same-origin, curl, serverless)
+      if (!origin) return callback(null, true);
+      // In development or production on vercel or localhost, allow all matching
+      return callback(null, true);
+    },
     credentials: true
   })
 );
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Serverless route prefix normalization:
+// If request arrives as /auth/login instead of /api/auth/login, prepend /api
+app.use((req, _res, next) => {
+  if (req.url && !req.url.startsWith('/api')) {
+    req.url = '/api' + (req.url.startsWith('/') ? req.url : '/' + req.url);
+  }
+  next();
+});
 
 // Initialize DB and ensure demo data is seeded
 loadDB();

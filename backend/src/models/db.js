@@ -5,10 +5,14 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const DATA_DIR = path.resolve(__dirname, '../data');
-const DB_FILE = path.join(DATA_DIR, 'db.json');
+const BUNDLED_DB_FILE = path.resolve(__dirname, '../data/db.json');
+const isVercel = Boolean(process.env.VERCEL);
+const DATA_DIR = isVercel ? '/tmp' : path.resolve(__dirname, '../data');
+const DB_FILE = isVercel ? '/tmp/db.json' : path.join(DATA_DIR, 'db.json');
 
-fs.mkdirSync(DATA_DIR, { recursive: true });
+try {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+} catch {}
 
 const EMPTY_DB = {
   users: [],
@@ -28,8 +32,21 @@ let dbInstance = null;
 
 export function loadDB() {
   try {
+    if (isVercel && !fs.existsSync(DB_FILE) && fs.existsSync(BUNDLED_DB_FILE)) {
+      try {
+        fs.copyFileSync(BUNDLED_DB_FILE, DB_FILE);
+      } catch {}
+    }
+
     if (!fs.existsSync(DB_FILE)) {
-      fs.writeFileSync(DB_FILE, JSON.stringify(EMPTY_DB, null, 2));
+      if (fs.existsSync(BUNDLED_DB_FILE)) {
+        const raw = fs.readFileSync(BUNDLED_DB_FILE, 'utf8');
+        dbInstance = JSON.parse(raw);
+        return dbInstance;
+      }
+      try {
+        fs.writeFileSync(DB_FILE, JSON.stringify(EMPTY_DB, null, 2));
+      } catch {}
       dbInstance = structuredClone(EMPTY_DB);
       return dbInstance;
     }
