@@ -1,0 +1,1009 @@
+{
+  "users": [
+    {
+      "id": "usr-emp-001",
+      "employeeId": "EMP-001",
+      "name": "Alex Chen",
+      "role": "employee",
+      "department": "Engineering",
+      "jobTitle": "Frontend Engineer",
+      "startDate": "2026-09-15",
+      "password": "password123",
+      "avatar": "AC"
+    },
+    {
+      "id": "usr-emp-002",
+      "employeeId": "EMP-002",
+      "name": "Maya Patel",
+      "role": "employee",
+      "department": "Design",
+      "jobTitle": "Product Designer",
+      "startDate": "2026-09-16",
+      "password": "password123",
+      "avatar": "MP"
+    },
+    {
+      "id": "usr-emp-003",
+      "employeeId": "EMP-003",
+      "name": "David Kim",
+      "role": "employee",
+      "department": "Sales",
+      "jobTitle": "Account Executive",
+      "startDate": "2026-09-17",
+      "password": "password123",
+      "avatar": "DK"
+    },
+    {
+      "id": "usr-emp-004",
+      "employeeId": "EMP-004",
+      "name": "Sarah Jones",
+      "role": "employee",
+      "department": "Marketing",
+      "jobTitle": "Growth Specialist",
+      "startDate": "2026-09-18",
+      "password": "password123",
+      "avatar": "SJ"
+    },
+    {
+      "id": "usr-emp-005",
+      "employeeId": "EMP-005",
+      "name": "James Wilson",
+      "role": "employee",
+      "department": "Finance",
+      "jobTitle": "Financial Analyst",
+      "startDate": "2026-09-18",
+      "password": "password123",
+      "avatar": "JW"
+    },
+    {
+      "id": "usr-emp-006",
+      "employeeId": "EMP-006",
+      "name": "Elena Rostova",
+      "role": "employee",
+      "department": "Operations",
+      "jobTitle": "Operations Specialist",
+      "startDate": "2026-09-19",
+      "password": "password123",
+      "avatar": "ER"
+    },
+    {
+      "id": "usr-hr-001",
+      "employeeId": "HR-001",
+      "name": "Rachel Green",
+      "role": "hr",
+      "department": "Human Resources",
+      "jobTitle": "Head of People Operations",
+      "startDate": "2025-01-10",
+      "password": "password123",
+      "avatar": "RG"
+    },
+    {
+      "id": "usr-hr-002",
+      "employeeId": "HR-002",
+      "name": "Michael Scott",
+      "role": "hr",
+      "department": "People Operations",
+      "jobTitle": "People Ops Partner",
+      "startDate": "2025-03-01",
+      "password": "password123",
+      "avatar": "MS"
+    }
+  ],
+  "loginActivities": [
+    {
+      "id": "878b2449-9239-405d-90e9-1c0f5b6cae50",
+      "userId": "usr-hr-001",
+      "employeeId": "HR-001",
+      "name": "Rachel Green",
+      "role": "hr",
+      "department": "Human Resources",
+      "timestamp": "2026-09-19T09:53:22.163Z",
+      "date": "2026-09-19"
+    },
+    {
+      "id": "6d0d781f-b4fa-488f-817b-7b2397dd3da7",
+      "userId": "usr-emp-001",
+      "employeeId": "EMP-001",
+      "name": "Alex Chen",
+      "role": "employee",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T09:53:22.130Z",
+      "date": "2026-09-19"
+    },
+    {
+      "id": "43441630-b954-47ac-a8d2-a529d5b4f4c8",
+      "userId": "usr-emp-001",
+      "employeeId": "EMP-001",
+      "name": "Alex Chen",
+      "role": "employee",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T08:30:00.000Z",
+      "date": "2026-09-19"
+    },
+    {
+      "id": "b3111a30-9d29-4784-bcfa-8e66063c410e",
+      "userId": "usr-emp-002",
+      "employeeId": "EMP-002",
+      "name": "Maya Patel",
+      "role": "employee",
+      "department": "Design",
+      "timestamp": "2026-09-19T09:15:00.000Z",
+      "date": "2026-09-19"
+    },
+    {
+      "id": "ea99f88c-548e-426d-9801-a6aa1fc2d67c",
+      "userId": "usr-emp-003",
+      "employeeId": "EMP-003",
+      "name": "David Kim",
+      "role": "employee",
+      "department": "Sales",
+      "timestamp": "2026-09-18T10:00:00.000Z",
+      "date": "2026-09-18"
+    },
+    {
+      "id": "f0d3b402-cb9f-407d-93ce-aa45ad5f3d3f",
+      "userId": "usr-emp-004",
+      "employeeId": "EMP-004",
+      "name": "Sarah Jones",
+      "role": "employee",
+      "department": "Marketing",
+      "timestamp": "2026-09-18T11:20:00.000Z",
+      "date": "2026-09-18"
+    }
+  ],
+  "documents": [
+    {
+      "id": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+      "title": "Engineering_Code_Review_Process.md",
+      "category": "Company Policies",
+      "uploadDate": "2026-09-19T09:53:20.087Z",
+      "type": "MD",
+      "chunks": 3,
+      "status": "Indexed"
+    },
+    {
+      "id": "928c67a4-0562-4f93-8a5f-03f5dc51609d",
+      "title": "Expense_Reimbursement_Policy.md",
+      "category": "Company Policies",
+      "uploadDate": "2026-09-19T09:53:20.089Z",
+      "type": "MD",
+      "chunks": 3,
+      "status": "Indexed"
+    },
+    {
+      "id": "64b548b4-8f3a-4890-bbc0-a62234321d51",
+      "title": "Onboarding_Guide.md",
+      "category": "Company Policies",
+      "uploadDate": "2026-09-19T09:53:20.091Z",
+      "type": "MD",
+      "chunks": 3,
+      "status": "Indexed"
+    },
+    {
+      "id": "8b8d51d8-8aaf-4a7d-acf4-5b2173a4a533",
+      "title": "Team_Structure.md",
+      "category": "Company Policies",
+      "uploadDate": "2026-09-19T09:53:20.094Z",
+      "type": "MD",
+      "chunks": 3,
+      "status": "Indexed"
+    },
+    {
+      "id": "5452e4e4-eafb-4b81-aefd-5fbdedbe8dcc",
+      "title": "Work_From_Home_Policy.md",
+      "category": "Company Policies",
+      "uploadDate": "2026-09-19T09:53:20.095Z",
+      "type": "MD",
+      "chunks": 2,
+      "status": "Indexed"
+    }
+  ],
+  "chunks": [
+    {
+      "id": "c31a1712-b1a1-4a12-9117-d0ade5f54b59",
+      "documentId": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+      "documentTitle": "Engineering_Code_Review_Process.md",
+      "section": "Branch Naming",
+      "text": "# Branch Naming\nEngineering branches use the format `type/short-description`, for example `feature/profile-search` or `fix/login-timeout`.\n# Pull Request Submission"
+    },
+    {
+      "id": "609f3a7d-b83e-4b67-ab63-da620d3372ea",
+      "documentId": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+      "documentTitle": "Engineering_Code_Review_Process.md",
+      "section": "Pull Request Submission",
+      "text": "Push your branch to the company Git repository and open a pull request against the `main` branch. Include a clear summary, testing notes, and screenshots when the change affects the UI.\n# Reviewer Requirements\nEvery production-bound pull request requires at least one reviewer from the owning engineering team. Changes affecting security or data access require an additional reviewer familiar with the affected area."
+    },
+    {
+      "id": "68062fb6-2646-4f86-a021-d9ca3f388f2f",
+      "documentId": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+      "documentTitle": "Engineering_Code_Review_Process.md",
+      "section": "Approval and Merge",
+      "text": "# Approval and Merge\nAddress reviewer comments before merging. A pull request may be merged after required approvals and successful CI checks. The author should use squash merge unless the team manager documents another strategy."
+    },
+    {
+      "id": "a16a81d9-40b1-472b-a072-207c8070549a",
+      "documentId": "928c67a4-0562-4f93-8a5f-03f5dc51609d",
+      "documentTitle": "Expense_Reimbursement_Policy.md",
+      "section": "Eligible Expenses",
+      "text": "# Eligible Expenses\nReasonable business travel, approved client meals, and pre-approved work expenses may be reimbursed when supported by receipts.\n# Reimbursement Process"
+    },
+    {
+      "id": "ee0cefc5-7003-4e46-b097-ce066dc278a7",
+      "documentId": "928c67a4-0562-4f93-8a5f-03f5dc51609d",
+      "documentTitle": "Expense_Reimbursement_Policy.md",
+      "section": "Reimbursement Process",
+      "text": "Submit the expense through the company expense portal. Select the appropriate category, attach the receipt, and add a short business purpose.\n# Submission Deadline\nExpenses should be submitted within 15 calendar days after the expense date."
+    },
+    {
+      "id": "8c59a5c2-204e-427d-b4d6-299b9b514289",
+      "documentId": "928c67a4-0562-4f93-8a5f-03f5dc51609d",
+      "documentTitle": "Expense_Reimbursement_Policy.md",
+      "section": "Required Receipts",
+      "text": "# Required Receipts\nReceipts are required for reimbursable expenses. If a receipt is unavailable, contact Finance before submitting the claim."
+    },
+    {
+      "id": "d86cd015-7b7b-44dd-b608-3d1485774a22",
+      "documentId": "64b548b4-8f3a-4890-bbc0-a62234321d51",
+      "documentTitle": "Onboarding_Guide.md",
+      "section": "First Day Arrival",
+      "text": "# First Day Arrival\nNew employees should arrive at the Vijayawada office by 9:30 AM on their first day. Reception will issue a temporary visitor badge.\n# WiFi and IT Support"
+    },
+    {
+      "id": "2f04b468-f7a1-4715-a265-7dfac6c24770",
+      "documentId": "64b548b4-8f3a-4890-bbc0-a62234321d51",
+      "documentTitle": "Onboarding_Guide.md",
+      "section": "WiFi and IT Support",
+      "text": "Connect to the company network named Company-Guest on day one. For IT issues, open a ticket through the internal IT Help Desk and include your device name and a short description.\n# First-Day Checklist\nComplete HR onboarding, activate company email, collect your employee badge, attend the office tour, and meet your manager."
+    },
+    {
+      "id": "026010b9-8c57-4823-a172-6d1a552214db",
+      "documentId": "64b548b4-8f3a-4890-bbc0-a62234321d51",
+      "documentTitle": "Onboarding_Guide.md",
+      "section": "Office Tour",
+      "text": "# Office Tour\nThe office tour covers reception, meeting rooms, engineering workspace, pantry, and the emergency assembly point."
+    },
+    {
+      "id": "97384072-e13d-4596-ba40-75249fb4de3a",
+      "documentId": "8b8d51d8-8aaf-4a7d-acf4-5b2173a4a533",
+      "documentTitle": "Team_Structure.md",
+      "section": "Departments",
+      "text": "# Departments\nThe company has Engineering, Design, Sales, Finance, People Operations, and Customer Success departments.\n# Engineering Team"
+    },
+    {
+      "id": "7d64a8ef-36e0-4d01-a644-c2e12016b24e",
+      "documentId": "8b8d51d8-8aaf-4a7d-acf4-5b2173a4a533",
+      "documentTitle": "Team_Structure.md",
+      "section": "Engineering Team",
+      "text": "Engineering owns product development, reliability, internal tooling, and technical quality.\n# Engineering Manager\nThe Engineering Manager coordinates engineering priorities, team rituals, and onboarding support."
+    },
+    {
+      "id": "c1dc1246-62d9-4260-b82f-31112ae111d8",
+      "documentId": "8b8d51d8-8aaf-4a7d-acf4-5b2173a4a533",
+      "documentTitle": "Team_Structure.md",
+      "section": "Team Responsibilities",
+      "text": "# Team Responsibilities\nProduct teams work cross-functionally with design and sales. Engineers participate in standups, reviews, planning, and incident response as relevant to their team."
+    },
+    {
+      "id": "c3d1fada-2ec4-4f51-8dff-10f90d4576ab",
+      "documentId": "5452e4e4-eafb-4b81-aefd-5fbdedbe8dcc",
+      "documentTitle": "Work_From_Home_Policy.md",
+      "section": "Remote Work Rules",
+      "text": "# Remote Work Rules\nEmployees may work remotely on approved days according to their team arrangement. Keep your calendar and working location current.\n# Meeting Expectations"
+    },
+    {
+      "id": "dc71d13a-6cb7-437b-96bb-6aa44c35f7c5",
+      "documentId": "5452e4e4-eafb-4b81-aefd-5fbdedbe8dcc",
+      "documentTitle": "Work_From_Home_Policy.md",
+      "section": "Meeting Expectations",
+      "text": "Join scheduled meetings on time, keep your status current, and communicate early when you cannot attend.\n# Communication Guidelines\nUse company chat for quick coordination, the issue tracker for work items, and documented channels for decisions that teammates may need later."
+    }
+  ],
+  "knowledgeBase": [
+    {
+      "id": "e9cdec36-421a-4548-bfcb-3b559251e10b",
+      "title": "What is the company policy for pet alligators in the office?",
+      "content": "Pet alligators and exotic animals are strictly prohibited on company premises for safety reasons.",
+      "category": "Office Safety & Pets",
+      "sourceType": "HR Approved",
+      "sourceDocument": "HR Resolution (Rachel Green)",
+      "department": "Engineering",
+      "approvedBy": "Rachel Green",
+      "createdAt": "2026-09-19T09:53:23.807Z",
+      "updatedAt": "2026-09-19T09:53:23.807Z",
+      "status": "Approved"
+    },
+    {
+      "id": "kb-001",
+      "title": "Company Core Working Hours",
+      "content": "Core business hours across all offices are 10:00 AM to 4:00 PM local time. Flexible arrival between 8:00 AM and 10:00 AM is supported with manager alignment.",
+      "category": "Workplace Guidelines",
+      "sourceType": "HR Approved",
+      "sourceDocument": "HR Handbook FAQ",
+      "department": "All",
+      "approvedBy": "Rachel Green",
+      "createdAt": "2026-09-01T10:00:00.000Z",
+      "updatedAt": "2026-09-01T10:00:00.000Z",
+      "status": "Approved"
+    },
+    {
+      "id": "kb-002",
+      "title": "Health & Wellness Stipend Eligibility",
+      "content": "All full-time employees are eligible for a $75/month wellness subsidy reimbursable through Expensify under the \"Health & Wellness\" category.",
+      "category": "Benefits",
+      "sourceType": "HR Approved",
+      "sourceDocument": "HR Benefits Summary",
+      "department": "All",
+      "approvedBy": "Rachel Green",
+      "createdAt": "2026-09-05T12:00:00.000Z",
+      "updatedAt": "2026-09-05T12:00:00.000Z",
+      "status": "Approved"
+    }
+  ],
+  "questions": [
+    {
+      "id": "b4d0e5a3-dcdd-4f7a-93c7-5214323670bf",
+      "question": "How do I submit a code review?",
+      "employeeId": "EMP-001",
+      "employeeName": "Alex Chen",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T07:53:20.095Z",
+      "escalated": false,
+      "sourceDocuments": [
+        "Engineering_Code_Review_Process.md"
+      ]
+    },
+    {
+      "id": "ed796a83-0ade-4622-bbfc-d90fc9c01ac3",
+      "question": "Where can I read the code review process?",
+      "employeeId": "EMP-001",
+      "employeeName": "Alex Chen",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T07:55:00.095Z",
+      "escalated": false,
+      "sourceDocuments": [
+        "Engineering_Code_Review_Process.md"
+      ]
+    },
+    {
+      "id": "3097e1ef-9554-4f7f-b75e-c552760f3848",
+      "question": "How do I claim expense reimbursement?",
+      "employeeId": "EMP-002",
+      "employeeName": "Maya Patel",
+      "department": "Design",
+      "timestamp": "2026-09-19T08:05:00.095Z",
+      "escalated": false,
+      "sourceDocuments": [
+        "Expense_Reimbursement_Policy.md"
+      ]
+    },
+    {
+      "id": "46f3c343-5be2-41ac-a489-a0cf4d748635",
+      "question": "Can I claim conference expenses?",
+      "employeeId": "EMP-003",
+      "employeeName": "David Kim",
+      "department": "Sales",
+      "timestamp": "2026-09-19T08:23:20.095Z",
+      "escalated": false,
+      "sourceDocuments": [
+        "Expense_Reimbursement_Policy.md"
+      ]
+    },
+    {
+      "id": "eed7405e-e4d6-4853-a9c9-c41a84a475ea",
+      "question": "Can I work remotely from another country during my trial period?",
+      "employeeId": "EMP-001",
+      "employeeName": "Alex Chen",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T08:53:20.095Z",
+      "escalated": true,
+      "sourceDocuments": []
+    },
+    {
+      "id": "d797e537-16a7-447d-9b81-624b8847027d",
+      "question": "How do I submit a code review?",
+      "employeeId": "EMP-001",
+      "employeeName": "Alex Chen",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T09:53:23.780Z",
+      "escalated": false,
+      "sourceDocuments": [
+        "Engineering_Code_Review_Process.md",
+        "Engineering_Code_Review_Process.md",
+        "Engineering_Code_Review_Process.md"
+      ]
+    },
+    {
+      "id": "bf34f637-017c-4ac7-9401-6bf1d010e68e",
+      "question": "What is the company policy for pet alligators in the office?",
+      "employeeId": "EMP-001",
+      "employeeName": "Alex Chen",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T09:53:23.794Z",
+      "escalated": true,
+      "sourceDocuments": []
+    },
+    {
+      "id": "14632a39-75d0-4ff9-9b34-9fa2bcc03c65",
+      "question": "Can I bring pet alligators to the office?",
+      "employeeId": "EMP-001",
+      "employeeName": "Alex Chen",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T09:53:25.000Z",
+      "escalated": false,
+      "sourceDocuments": [
+        "HR Approved: Office Safety & Pets"
+      ]
+    }
+  ],
+  "escalations": [
+    {
+      "id": "esc-001",
+      "question": "Can I work remotely from another country during my trial period?",
+      "employeeId": "EMP-001",
+      "employeeName": "Alex Chen",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T08:53:20.095Z",
+      "reason": "Cross-border remote work policy requires HR approval",
+      "status": "Pending",
+      "priority": "Normal",
+      "hrAnswer": null,
+      "resolvedAt": null,
+      "resolvedBy": null,
+      "savedToKB": false
+    },
+    {
+      "id": "e38620ae-ef41-4842-ba45-f4416be86d49",
+      "question": "What is the company policy for pet alligators in the office?",
+      "employeeId": "EMP-001",
+      "employeeName": "Alex Chen",
+      "department": "Engineering",
+      "timestamp": "2026-09-19T09:53:23.791Z",
+      "reason": "No matching information found in current approved company documents or HR knowledge base.",
+      "status": "Resolved",
+      "priority": "Normal",
+      "hrAnswer": "Pet alligators and exotic animals are strictly prohibited on company premises for safety reasons.",
+      "resolvedAt": "2026-09-19T09:53:23.807Z",
+      "resolvedBy": "Rachel Green",
+      "savedToKB": true
+    }
+  ],
+  "chatMessages": [
+    {
+      "id": "e5dfcfcf-0ca4-4947-9acc-860f1c340847",
+      "employeeId": "EMP-001",
+      "role": "user",
+      "content": "How do I submit a code review?",
+      "sources": [],
+      "escalation": false,
+      "timestamp": "2026-09-19T07:53:20.095Z"
+    },
+    {
+      "id": "6f0dfbca-5549-4bca-a7da-a576e36651b6",
+      "employeeId": "EMP-001",
+      "role": "assistant",
+      "content": "According to the Engineering Code Review Process, pull requests require at least one approving review before merging. Ensure your branch is rebased on main and all CI checks pass.",
+      "sources": [
+        {
+          "documentTitle": "Engineering_Code_Review_Process.md",
+          "section": "Pull Request Review",
+          "score": 0.85
+        }
+      ],
+      "escalation": false,
+      "timestamp": "2026-09-19T07:53:25.095Z"
+    },
+    {
+      "id": "7d9ab756-1394-4b12-9920-5aa3916b86eb",
+      "employeeId": "EMP-001",
+      "role": "user",
+      "content": "How do I submit a code review?",
+      "timestamp": "2026-09-19T09:53:23.780Z"
+    },
+    {
+      "id": "0002ca5f-c7f3-424d-8d35-725d37f5f019",
+      "employeeId": "EMP-001",
+      "role": "assistant",
+      "content": "To submit a pull request for code review, push your branch to the company Git repository and open a pull request against the `main` branch. Be sure to include a clear summary, testing notes, and screenshots if the change affects the UI (Source 2: *Engineering_Code_Review_Process.md*, Section: Pull Request Submission).",
+      "sources": [
+        {
+          "documentId": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+          "documentTitle": "Engineering_Code_Review_Process.md",
+          "section": "Branch Naming",
+          "sourceType": "Document",
+          "score": 0.567
+        },
+        {
+          "documentId": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+          "documentTitle": "Engineering_Code_Review_Process.md",
+          "section": "Pull Request Submission",
+          "sourceType": "Document",
+          "score": 0.567
+        },
+        {
+          "documentId": "952ed0e1-20a2-46b0-87e9-63d23869fb8d",
+          "documentTitle": "Engineering_Code_Review_Process.md",
+          "section": "Approval and Merge",
+          "sourceType": "Document",
+          "score": 0.567
+        }
+      ],
+      "escalation": false,
+      "escalationId": null,
+      "reason": "",
+      "timestamp": "2026-09-19T09:53:23.780Z"
+    },
+    {
+      "id": "601ab5ab-634f-4bdf-a54b-50214b346644",
+      "employeeId": "EMP-001",
+      "role": "user",
+      "content": "What is the company policy for pet alligators in the office?",
+      "timestamp": "2026-09-19T09:53:23.794Z"
+    },
+    {
+      "id": "f8cfe240-85d2-4260-b64f-a51cf13c21d4",
+      "employeeId": "EMP-001",
+      "role": "assistant",
+      "content": "I couldn't find an approved company policy that answers this question. I've automatically forwarded your question to HR so they can provide an accurate answer.",
+      "sources": [],
+      "escalation": true,
+      "escalationId": "e38620ae-ef41-4842-ba45-f4416be86d49",
+      "reason": "No matching information found in current approved company documents or HR knowledge base.",
+      "timestamp": "2026-09-19T09:53:23.794Z"
+    },
+    {
+      "id": "8f75602f-21ac-4c2d-98ef-f98bfac19656",
+      "employeeId": "EMP-001",
+      "role": "assistant",
+      "content": "[HR Response from Rachel Green]: Pet alligators and exotic animals are strictly prohibited on company premises for safety reasons.",
+      "sources": [
+        {
+          "documentTitle": "HR Approved Direct Response",
+          "section": "Escalation #e38620ae",
+          "sourceType": "HR Direct Answer",
+          "score": 1
+        }
+      ],
+      "escalation": false,
+      "timestamp": "2026-09-19T09:53:23.807Z"
+    },
+    {
+      "id": "a78cdada-779a-49e7-aaea-72a5b95e1dd3",
+      "employeeId": "EMP-001",
+      "role": "user",
+      "content": "Can I bring pet alligators to the office?",
+      "timestamp": "2026-09-19T09:53:25.000Z"
+    },
+    {
+      "id": "3df616d0-b6a4-4009-a7aa-14cdacceb182",
+      "employeeId": "EMP-001",
+      "role": "assistant",
+      "content": "Based on the Office Safety & Pets policy, pet alligators and exotic animals are strictly prohibited on company premises for safety reasons. You cannot bring pet alligators to the office.",
+      "sources": [
+        {
+          "documentId": "e9cdec36-421a-4548-bfcb-3b559251e10b",
+          "documentTitle": "HR Approved: Office Safety & Pets",
+          "section": "What is the company policy for pet alligators in the office?",
+          "sourceType": "HR Approved",
+          "score": 0.725
+        }
+      ],
+      "escalation": false,
+      "escalationId": null,
+      "reason": "",
+      "timestamp": "2026-09-19T09:53:25.000Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "ab306d4b-aec7-4c62-a0d4-d38c1c87c464",
+      "recipientId": "EMP-001",
+      "recipientRole": "employee",
+      "title": "HR Answered Your Question",
+      "message": "HR responded to your question: \"What is the company policy for pet allig...\"",
+      "type": "escalation_resolved",
+      "read": false,
+      "timestamp": "2026-09-19T09:53:23.807Z",
+      "relatedId": "e38620ae-ef41-4842-ba45-f4416be86d49"
+    },
+    {
+      "id": "a7b05214-b157-4296-aa6f-92e8cf8659b0",
+      "recipientId": "EMP-001",
+      "recipientRole": "employee",
+      "title": "Question Forwarded to HR",
+      "message": "Your inquiry (\"What is the company policy for pet alligators...\") has been escalated to HR for review.",
+      "type": "escalation_created",
+      "read": false,
+      "timestamp": "2026-09-19T09:53:23.793Z",
+      "relatedId": "e38620ae-ef41-4842-ba45-f4416be86d49"
+    },
+    {
+      "id": "e4b4b5ce-6f62-48c4-8606-e994380a5865",
+      "recipientId": "HR",
+      "recipientRole": "hr",
+      "title": "New Escalation: Alex Chen (Engineering)",
+      "message": "Employee asked: \"What is the company policy for pet alligators in the office?\"",
+      "type": "escalation_created",
+      "read": false,
+      "timestamp": "2026-09-19T09:53:23.791Z",
+      "relatedId": "e38620ae-ef41-4842-ba45-f4416be86d49"
+    },
+    {
+      "id": "e571c8e5-3888-4b81-b6f1-b440525799cb",
+      "recipientId": "EMP-001",
+      "recipientRole": "employee",
+      "title": "Question forwarded to HR",
+      "message": "Your question regarding working remotely from another country has been forwarded to HR.",
+      "type": "escalation_created",
+      "read": false,
+      "timestamp": "2026-09-19T08:53:20.095Z",
+      "relatedId": "esc-001"
+    },
+    {
+      "id": "f0a86234-9f27-4fc1-a262-4c8a54133c0f",
+      "recipientId": "HR-001",
+      "recipientRole": "hr",
+      "title": "New escalation from Alex Chen",
+      "message": "Alex Chen (Engineering) asked: \"Can I work remotely from another country during my trial period?\"",
+      "type": "escalation_created",
+      "read": false,
+      "timestamp": "2026-09-19T08:53:20.095Z",
+      "relatedId": "esc-001"
+    }
+  ],
+  "onboardingPlans": [
+    {
+      "id": "plan-emp-001",
+      "employeeId": "EMP-001",
+      "name": "Alex Chen",
+      "role": "Engineer",
+      "department": "Engineering",
+      "startDate": "2026-09-15",
+      "tasks": [
+        {
+          "id": "f0b9c233-f5ab-4aac-8e2f-65abee020eab",
+          "day": 1,
+          "title": "Complete HR onboarding and identity verification",
+          "done": true
+        },
+        {
+          "id": "1e475d0d-b8dd-4f44-ae02-03c8d816fc45",
+          "day": 1,
+          "title": "Set up company email, Slack, and 1Password",
+          "done": true
+        },
+        {
+          "id": "d39f3074-4601-4f1a-aa48-e52f8ce61f45",
+          "day": 2,
+          "title": "Obtain GitHub repository and AWS sandbox access",
+          "done": true
+        },
+        {
+          "id": "3565c113-9ce5-4131-855a-d44aa61c0308",
+          "day": 2,
+          "title": "Meet engineering manager for 30-day expectation alignment",
+          "done": false
+        },
+        {
+          "id": "9e996a5b-8873-4c99-a2f4-f6aa3909cef6",
+          "day": 3,
+          "title": "Attend daily engineering standup and introduction",
+          "done": false
+        },
+        {
+          "id": "e5c5a0b1-5e6f-43b8-9388-3cead34586c5",
+          "day": 3,
+          "title": "Review engineering standards and coding conventions",
+          "done": false
+        },
+        {
+          "id": "6d4aca5b-8ad3-4014-acd3-d42ce528efb2",
+          "day": 4,
+          "title": "Read the Code Review and Pull Request Process guide",
+          "done": false
+        },
+        {
+          "id": "27f04542-58f7-4ce3-89bc-e5c3f3d52675",
+          "day": 4,
+          "title": "Set up local development container and run unit tests",
+          "done": false
+        },
+        {
+          "id": "e2268211-52a1-477b-8d0a-da3760332d9d",
+          "day": 5,
+          "title": "Pair with onboarding buddy to submit first test PR",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "plan-emp-002",
+      "employeeId": "EMP-002",
+      "name": "Maya Patel",
+      "role": "Designer",
+      "department": "Design",
+      "startDate": "2026-09-16",
+      "tasks": [
+        {
+          "id": "dea71de0-b951-4747-8f36-5c632da86275",
+          "day": 1,
+          "title": "Complete HR onboarding and compliance training",
+          "done": true
+        },
+        {
+          "id": "44ca2e35-2dcb-475d-b3f6-f69592d6b60b",
+          "day": 1,
+          "title": "Set up Figma workspace and Design System library",
+          "done": true
+        },
+        {
+          "id": "6b94d399-2fe5-4252-8d5b-e74a0b073fb4",
+          "day": 2,
+          "title": "Meet with Lead Product Designer for design roadmap review",
+          "done": false
+        },
+        {
+          "id": "2b5297e5-ee6d-482e-b470-30b7067599d5",
+          "day": 3,
+          "title": "Join weekly design critique session",
+          "done": false
+        },
+        {
+          "id": "e16a4caf-3e61-415a-91ec-e71a4ba7abdd",
+          "day": 4,
+          "title": "Review brand documentation and component guidelines",
+          "done": false
+        },
+        {
+          "id": "01142317-ddd6-4be6-bee4-fd06e8ed197b",
+          "day": 5,
+          "title": "Complete initial UX audit of assigned feature area",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "plan-emp-003",
+      "employeeId": "EMP-003",
+      "name": "David Kim",
+      "role": "Sales",
+      "department": "Sales",
+      "startDate": "2026-09-17",
+      "tasks": [
+        {
+          "id": "40758698-0abf-4415-95e9-1b0ab1583e1a",
+          "day": 1,
+          "title": "Complete HR paperwork and benefits overview",
+          "done": true
+        },
+        {
+          "id": "160cb607-1c56-4ad3-9e3d-fe419c19fca7",
+          "day": 1,
+          "title": "Set up Salesforce CRM and outreach tooling",
+          "done": false
+        },
+        {
+          "id": "26096d48-4c83-45f4-b6d3-e359e5d09a1e",
+          "day": 2,
+          "title": "Shadow senior account executive on customer discovery call",
+          "done": false
+        },
+        {
+          "id": "bd11814a-339a-4fda-8202-c75cb6990c80",
+          "day": 3,
+          "title": "Complete product catalog and pricing matrix training",
+          "done": false
+        },
+        {
+          "id": "ff67eed7-9aa0-45d0-ae76-03c63053757f",
+          "day": 4,
+          "title": "Review lead qualification workflow and pitch deck",
+          "done": false
+        },
+        {
+          "id": "b326b246-ecd7-4667-84bd-6b245aa5cf2d",
+          "day": 5,
+          "title": "Conduct mock product demo with sales manager",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "plan-emp-004",
+      "employeeId": "EMP-004",
+      "name": "Sarah Jones",
+      "role": "Marketing",
+      "department": "Marketing",
+      "startDate": "2026-09-18",
+      "tasks": [
+        {
+          "id": "1a338b9e-eea9-4cd9-8656-7818ef2e2967",
+          "day": 1,
+          "title": "Complete HR onboarding and identity verification",
+          "done": true
+        },
+        {
+          "id": "a32b2338-f88d-4e13-9bdc-09fda53639b3",
+          "day": 1,
+          "title": "Set up company email, Slack, and 1Password",
+          "done": true
+        },
+        {
+          "id": "30bb6e9b-451d-401b-b59b-eb53605002af",
+          "day": 2,
+          "title": "Obtain GitHub repository and AWS sandbox access",
+          "done": true
+        },
+        {
+          "id": "8ac5439c-570d-4b0f-8204-e34e01ec034e",
+          "day": 2,
+          "title": "Meet marketing manager for 30-day expectation alignment",
+          "done": false
+        },
+        {
+          "id": "bf207cfd-d27d-491f-bd1a-9ee1820b5ce3",
+          "day": 3,
+          "title": "Attend daily marketing standup and introduction",
+          "done": false
+        },
+        {
+          "id": "291309d5-ec64-481d-b545-e1210a9034a4",
+          "day": 3,
+          "title": "Review marketing standards and coding conventions",
+          "done": false
+        },
+        {
+          "id": "631d1240-b974-495f-8898-3275d0309320",
+          "day": 4,
+          "title": "Read the Code Review and Pull Request Process guide",
+          "done": false
+        },
+        {
+          "id": "b57c4c04-bb2b-41aa-84a4-a265014ae8df",
+          "day": 4,
+          "title": "Set up local development container and run unit tests",
+          "done": false
+        },
+        {
+          "id": "e6b85847-ea3c-49d7-b12d-5b1fa1aeb042",
+          "day": 5,
+          "title": "Pair with onboarding buddy to submit first test PR",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "plan-emp-005",
+      "employeeId": "EMP-005",
+      "name": "James Wilson",
+      "role": "Finance",
+      "department": "Finance",
+      "startDate": "2026-09-18",
+      "tasks": [
+        {
+          "id": "930d931c-e57f-480c-84be-75628af7d4ce",
+          "day": 1,
+          "title": "Complete HR paperwork and benefits overview",
+          "done": true
+        },
+        {
+          "id": "1445004d-224e-445b-8714-23c85deb2df2",
+          "day": 1,
+          "title": "Set up Financeforce CRM and outreach tooling",
+          "done": false
+        },
+        {
+          "id": "0a7025b7-5951-489f-8988-77703b3dc73b",
+          "day": 2,
+          "title": "Shadow senior account executive on customer discovery call",
+          "done": false
+        },
+        {
+          "id": "90f7f07d-24a4-4b1c-9336-5cf74136c1d2",
+          "day": 3,
+          "title": "Complete product catalog and pricing matrix training",
+          "done": false
+        },
+        {
+          "id": "f4c43c28-0689-4d0a-a5f2-2e8da7ab17ce",
+          "day": 4,
+          "title": "Review lead qualification workflow and pitch deck",
+          "done": false
+        },
+        {
+          "id": "9cf82de1-49af-4e48-bfe7-9d6ced5a2981",
+          "day": 5,
+          "title": "Conduct mock product demo with sales manager",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "plan-emp-006",
+      "employeeId": "EMP-006",
+      "name": "Elena Rostova",
+      "role": "Operations",
+      "department": "Operations",
+      "startDate": "2026-09-19",
+      "tasks": [
+        {
+          "id": "9ca4ad50-1c68-499f-add0-b061a2169460",
+          "day": 1,
+          "title": "Complete HR paperwork and benefits overview",
+          "done": true
+        },
+        {
+          "id": "232158b3-7b5d-494c-babf-48c64856903a",
+          "day": 1,
+          "title": "Set up Salesforce CRM and outreach tooling",
+          "done": false
+        },
+        {
+          "id": "2eeb2149-683e-438e-8c20-8ee50154cbaa",
+          "day": 2,
+          "title": "Shadow senior account executive on customer discovery call",
+          "done": false
+        },
+        {
+          "id": "7985abcd-4886-4e9b-8e0b-9e239b66ad69",
+          "day": 3,
+          "title": "Complete product catalog and pricing matrix training",
+          "done": false
+        },
+        {
+          "id": "20e807e4-1c60-45a5-8f6c-b8be36d62345",
+          "day": 4,
+          "title": "Review lead qualification workflow and pitch deck",
+          "done": false
+        },
+        {
+          "id": "21f3e9ea-ec62-4af9-97be-571abb00a1b0",
+          "day": 5,
+          "title": "Conduct mock product demo with operations manager",
+          "done": false
+        }
+      ]
+    }
+  ],
+  "activities": [
+    {
+      "id": "32819bfa-d3bf-4a55-add9-2508fcf62a41",
+      "text": "Escalation resolved by Rachel Green for Alex Chen",
+      "timestamp": "2026-09-19T09:53:23.807Z"
+    },
+    {
+      "id": "afd89173-3c40-47cc-b0f7-1a6ae3475fac",
+      "text": "HR Knowledge Base updated: \"What is the company policy for pet alligators\"",
+      "timestamp": "2026-09-19T09:53:23.807Z"
+    },
+    {
+      "id": "cdeb3ee1-38c0-40f4-943c-55f84f22368a",
+      "text": "Question escalated: What is the company policy for pet alligators in the office?",
+      "timestamp": "2026-09-19T09:53:23.794Z"
+    },
+    {
+      "id": "631a4bbd-91da-4175-b895-84c3e165f05f",
+      "text": "Rachel Green (Human Resources) logged in",
+      "timestamp": "2026-09-19T09:53:22.163Z"
+    },
+    {
+      "id": "07b90e60-2ad0-42a9-b728-97f5a22af7dd",
+      "text": "Alex Chen (Engineering) logged in",
+      "timestamp": "2026-09-19T09:53:22.130Z"
+    },
+    {
+      "id": "37c715e8-cd48-4bb0-a71a-5436f6e65b42",
+      "text": "Question escalated: Can I work remotely from another country during my trial period?",
+      "timestamp": "2026-09-19T08:53:20.095Z"
+    },
+    {
+      "id": "8cb96a20-ed59-40d6-bfdc-f522a3fd46af",
+      "text": "Alex Chen (Engineering) logged in",
+      "timestamp": "2026-09-19T08:30:00.000Z"
+    },
+    {
+      "id": "45743b7b-8209-419c-a221-78d7c963dfc4",
+      "text": "Maya Patel (Design) logged in",
+      "timestamp": "2026-09-19T09:15:00.000Z"
+    }
+  ]
+}
